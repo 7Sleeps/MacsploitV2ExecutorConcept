@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macsploit V2 Concept</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs/loader.js"></script>
+    <style>
+        /* --- Base Theme (Dark - Matches Screenshot) --- */
+        :root {
+            --bg-window: #212121;
+            --bg-titlebar: #2B2B2B;
+            --bg-sidebar: #212121;
+            --bg-content: #1C1C1C; /* Editor/Pane background */
+            --bg-button: #3A3A3A;
+            --bg-button-hover: #454545;
+            --bg-tab-inactive: #2B2B2B;
+            --bg-tab-active: #1C1C1C; /* Match editor */
+            --bg-sidebar-active: #3A3A3A;
+            --bg-checkbox: #3A3A3A;
+            --bg-checkbox-checked: #5E5E5E;
+
+            --text-primary: #E0E0E0;
+            --text-secondary: #A0A0A0;
+            --text-muted: #757575;
+            --text-title: #CCCCCC;
+            --text-button: #D5D5D5;
+            --text-sidebar-active: #FFFFFF;
+            --text-settings-header: #CCCCCC;
+
+            --border-ui: #333333;
+            --border-strong: #111111;
+            --border-checkbox: #555555;
+
+            --mac-red: #FF5F57;
+            --mac-yellow: #FEBC2e;
+            --mac-green: #28C840;
+            --accent-green: #32CD32; /* Port dot */
+
+            --font-primary: 'Inter', sans-serif;
+        }
+
+        /* --- Additional Theme Definitions --- */
+
+        /* --- Light Theme --- */
+        .light-theme { --bg-window: #F3F3F3; --bg-titlebar: #EAEAEA; --bg-sidebar: #F3F3F3; --bg-content: #FFFFFF; --bg-button: #E0E0E0; --bg-button-hover: #D5D5D5; --bg-tab-inactive: #EAEAEA; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #D5D5D5; --bg-checkbox: #E0E0E0; --bg-checkbox-checked: #C0C0C0; --text-primary: #202020; --text-secondary: #555555; --text-muted: #888888; --text-title: #333333; --text-button: #252525; --text-sidebar-active: #000000; --text-settings-header: #444444; --border-ui: #DCDCDC; --border-strong: #C0C0C0; --border-checkbox: #B0B0B0; --accent-green: #28A745; }
+        /* --- Ocean Blue Theme --- */
+        .ocean-blue-theme { --bg-window: #1E2A3A; --bg-titlebar: #263446; --bg-sidebar: #1E2A3A; --bg-content: #16202C; --bg-button: #3A506B; --bg-button-hover: #4A6585; --bg-tab-inactive: #263446; --bg-tab-active: #16202C; --bg-sidebar-active: #3A506B; --bg-checkbox: #3A506B; --bg-checkbox-checked: #4A6585; --text-primary: #C0D0E0; --text-secondary: #8095AD; --text-muted: #607A90; --text-title: #D0E0F0; --text-button: #E0F0FF; --text-sidebar-active: #FFFFFF; --text-settings-header: #D0E0F0; --border-ui: #2D4055; --border-strong: #101822; --border-checkbox: #507090; --accent-green: #36AE7C; }
+        /* --- Monokai Theme --- */
+        .monokai-theme { --bg-window: #272822; --bg-titlebar: #3A3B34; --bg-sidebar: #272822; --bg-content: #2D2E27; --bg-button: #49483E; --bg-button-hover: #5A5950; --bg-tab-inactive: #3A3B34; --bg-tab-active: #2D2E27; --bg-sidebar-active: #49483E; --bg-checkbox: #49483E; --bg-checkbox-checked: #75715E; --text-primary: #F8F8F2; --text-secondary: #A0A095; --text-muted: #75715E; --text-title: #E0E0DA; --text-button: #F0F0EA; --text-sidebar-active: #FFFFFF; --text-settings-header: #E0E0DA; --border-ui: #44453E; --border-strong: #1A1A16; --border-checkbox: #656358; --accent-green: #A6E22E; }
+        /* --- Solarized Dark --- */
+        .solarized-dark-theme { --bg-window: #002b36; --bg-titlebar: #073642; --bg-sidebar: #002b36; --bg-content: #00252E; --bg-button: #586e75; --bg-button-hover: #657b83; --bg-tab-inactive: #073642; --bg-tab-active: #00252E; --bg-sidebar-active: #586e75; --bg-checkbox: #586e75; --bg-checkbox-checked: #839496; --text-primary: #839496; --text-secondary: #586e75; --text-muted: #4a5f68; --text-title: #93a1a1; --text-button: #eee8d5; --text-sidebar-active: #fdf6e3; --text-settings-header: #93a1a1; --border-ui: #073642; --border-strong: #001f27; --border-checkbox: #657b83; --accent-green: #859900; }
+        /* --- Solarized Light --- */
+        .solarized-light-theme { --bg-window: #fdf6e3; --bg-titlebar: #eee8d5; --bg-sidebar: #fdf6e3; --bg-content: #ffffff; --bg-button: #eee8d5; --bg-button-hover: #dcd5c2; --bg-tab-inactive: #eee8d5; --bg-tab-active: #ffffff; --bg-sidebar-active: #dcd5c2; --bg-checkbox: #eee8d5; --bg-checkbox-checked: #b8b09c; --text-primary: #657b83; --text-secondary: #93a1a1; --text-muted: #aab6b9; --text-title: #586e75; --text-button: #073642; --text-sidebar-active: #002b36; --text-settings-header: #586e75; --border-ui: #eee8d5; --border-strong: #dcd5c2; --border-checkbox: #93a1a1; --accent-green: #859900; }
+        /* --- Dracula --- */
+        .dracula-theme { --bg-window: #282a36; --bg-titlebar: #3a3c4a; --bg-sidebar: #282a36; --bg-content: #21222C; --bg-button: #44475a; --bg-button-hover: #5a5d75; --bg-tab-inactive: #3a3c4a; --bg-tab-active: #21222C; --bg-sidebar-active: #44475a; --bg-checkbox: #44475a; --bg-checkbox-checked: #6272a4; --text-primary: #f8f8f2; --text-secondary: #bd93f9; --text-muted: #6272a4; --text-title: #f0f0ea; --text-button: #f8f8f2; --text-sidebar-active: #f8f8f2; --text-settings-header: #f0f0ea; --border-ui: #44475a; --border-strong: #191a21; --border-checkbox: #6272a4; --accent-green: #50fa7b; }
+        /* --- Nord --- */
+        .nord-theme { --bg-window: #2E3440; --bg-titlebar: #3B4252; --bg-sidebar: #2E3440; --bg-content: #272C36; --bg-button: #4C566A; --bg-button-hover: #5E81AC; --bg-tab-inactive: #3B4252; --bg-tab-active: #272C36; --bg-sidebar-active: #4C566A; --bg-checkbox: #4C566A; --bg-checkbox-checked: #88C0D0; --text-primary: #D8DEE9; --text-secondary: #81A1C1; --text-muted: #4C566A; --text-title: #ECEFF4; --text-button: #ECEFF4; --text-sidebar-active: #FFFFFF; --text-settings-header: #ECEFF4; --border-ui: #3B4252; --border-strong: #21252E; --border-checkbox: #5E81AC; --accent-green: #A3BE8C; }
+        /* --- Gruvbox Dark --- */
+        .gruvbox-dark-theme { --bg-window: #282828; --bg-titlebar: #3c3836; --bg-sidebar: #282828; --bg-content: #1d2021; --bg-button: #504945; --bg-button-hover: #665c54; --bg-tab-inactive: #3c3836; --bg-tab-active: #1d2021; --bg-sidebar-active: #504945; --bg-checkbox: #504945; --bg-checkbox-checked: #928374; --text-primary: #ebdbb2; --text-secondary: #a89984; --text-muted: #7c6f64; --text-title: #fbf1c7; --text-button: #fbf1c7; --text-sidebar-active: #ffffff; --text-settings-header: #fbf1c7; --border-ui: #504945; --border-strong: #101213; --border-checkbox: #928374; --accent-green: #b8bb26; }
+        /* --- One Dark Pro --- */
+        .one-dark-pro-theme { --bg-window: #282c34; --bg-titlebar: #3a3f4b; --bg-sidebar: #282c34; --bg-content: #21252b; --bg-button: #3a3f4b; --bg-button-hover: #4b5263; --bg-tab-inactive: #3a3f4b; --bg-tab-active: #21252b; --bg-sidebar-active: #4b5263; --bg-checkbox: #3a3f4b; --bg-checkbox-checked: #abb2bf; --text-primary: #abb2bf; --text-secondary: #61afef; --text-muted: #5c6370; --text-title: #e6efff; --text-button: #d0d8e8; --text-sidebar-active: #ffffff; --text-settings-header: #e6efff; --border-ui: #3a3f4b; --border-strong: #181a1f; --border-checkbox: #5c6370; --accent-green: #98c379; }
+        /* --- GitHub Dark --- */
+        .github-dark-theme { --bg-window: #0d1117; --bg-titlebar: #161b22; --bg-sidebar: #0d1117; --bg-content: #06090F; --bg-button: #21262d; --bg-button-hover: #30363d; --bg-tab-inactive: #161b22; --bg-tab-active: #06090F; --bg-sidebar-active: #30363d; --bg-checkbox: #21262d; --bg-checkbox-checked: #8b949e; --text-primary: #c9d1d9; --text-secondary: #8b949e; --text-muted: #484f58; --text-title: #f0f6fc; --text-button: #e0e6ed; --text-sidebar-active: #ffffff; --text-settings-header: #f0f6fc; --border-ui: #30363d; --border-strong: #010409; --border-checkbox: #58a6ff; --accent-green: #3fb950; }
+        /* --- Material Darker --- */
+        .material-darker-theme { --bg-window: #212121; --bg-titlebar: #2a2a2a; --bg-sidebar: #212121; --bg-content: #1A1A1A; --bg-button: #323232; --bg-button-hover: #424242; --bg-tab-inactive: #2a2a2a; --bg-tab-active: #1A1A1A; --bg-sidebar-active: #424242; --bg-checkbox: #323232; --bg-checkbox-checked: #eeffff; --text-primary: #eeffff; --text-secondary: #8f93a2; --text-muted: #545c68; --text-title: #ffffff; --text-button: #e0e0e0; --text-sidebar-active: #ffffff; --text-settings-header: #ffffff; --border-ui: #353535; --border-strong: #0f0f0f; --border-checkbox: #8f93a2; --accent-green: #c3e88d; }
+        /* --- Cobalt --- */
+        .cobalt-theme { --bg-window: #002240; --bg-titlebar: #003360; --bg-sidebar: #002240; --bg-content: #00192F; --bg-button: #193555; --bg-button-hover: #2a4f7a; --bg-tab-inactive: #003360; --bg-tab-active: #00192F; --bg-sidebar-active: #193555; --bg-checkbox: #193555; --bg-checkbox-checked: #ffc600; --text-primary: #ffffff; --text-secondary: #9effff; --text-muted: #0088cc; --text-title: #e0e0ff; --text-button: #f0f0ff; --text-sidebar-active: #ffffff; --text-settings-header: #e0e0ff; --border-ui: #003360; --border-strong: #001120; --border-checkbox: #ffc600; --accent-green: #36ae7c; }
+        /* --- Ayu Mirage --- */
+        .ayu-mirage-theme { --bg-window: #1f2430; --bg-titlebar: #272c3a; --bg-sidebar: #1f2430; --bg-content: #1A1E28; --bg-button: #3e445e; --bg-button-hover: #565b78; --bg-tab-inactive: #272c3a; --bg-tab-active: #1A1E28; --bg-sidebar-active: #565b78; --bg-checkbox: #3e445e; --bg-checkbox-checked: #ffcc66; --text-primary: #cbccc6; --text-secondary: #707a8c; --text-muted: #5c677e; --text-title: #d9d7ce; --text-button: #e0e0d8; --text-sidebar-active: #ffffff; --text-settings-header: #d9d7ce; --border-ui: #3e445e; --border-strong: #151820; --border-checkbox: #ffcc66; --accent-green: #bae67e; }
+
+
+        /* Base styles for app-like scaling */
+        html, body { height: 100%; margin: 0; padding: 0; background-color: #333; display: flex; justify-content: center; align-items: center; font-family: var(--font-primary); }
+        .app-window { background-color: var(--bg-window); color: var(--text-primary); border-radius: 0.75rem; box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6); overflow: hidden; border: 1px solid var(--border-strong); width: 85vw; height: 80vh; max-width: 1100px; min-width: 700px; min-height: 500px; display: flex; flex-direction: column; resize: both; transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out; }
+        .title-bar { background-color: var(--bg-titlebar); padding: 0.6rem 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; cursor: grab; transition: background-color 0.2s ease-out; }
+        .title-bar:active { cursor: grabbing; }
+        .window-controls { display: flex; gap: 0.6rem; }
+        .control-dot { width: 0.8rem; height: 0.8rem; border-radius: 9999px; }
+        .dot-red { background-color: var(--mac-red); }
+        .dot-yellow { background-color: var(--mac-yellow); }
+        .dot-green { background-color: var(--mac-green); }
+        .title-text { color: var(--text-title); font-weight: 600; font-size: 0.875rem; transition: color 0.2s ease-out; }
+        .port-info { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--text-secondary); transition: color 0.2s ease-out; }
+        .port-indicator { width: 0.6rem; height: 0.6rem; background-color: var(--accent-green); border-radius: 9999px; transition: background-color 0.2s ease-out; }
+
+        /* Top Menu Bar */
+        .top-menu-bar { background-color: var(--bg-titlebar); padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-top: 1px solid var(--border-ui); border-bottom: 1px solid var(--border-ui); flex-shrink: 0; transition: background-color 0.2s ease-out, border-color 0.2s ease-out, height 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s ease-out; }
+        .top-menu-bar.hidden { height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; visibility: hidden; border-width: 0; } /* Hide smoothly */
+        .top-menu-bar button { background-color: var(--bg-button); border: 1px solid var(--border-ui); color: var(--text-button); padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 0.375rem; transition: all 0.15s ease-out; cursor: pointer; }
+        .top-menu-bar button:hover { background-color: var(--bg-button-hover); }
+        .top-menu-bar button i { font-size: 0.85em; }
+
+        /* Main Content Area */
+        .main-content-wrapper { display: flex; flex-grow: 1; overflow: hidden; }
+
+        /* Sidebar styling */
+        .sidebar { background-color: var(--bg-sidebar); width: 180px; border-right: 1px solid var(--border-ui); display: flex; flex-direction: column; padding: 1rem 0.75rem; gap: 0.5rem; flex-shrink: 0; overflow-y: auto; transition: background-color 0.2s ease-out, border-color 0.2s ease-out; }
+        .sidebar-tab { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 1rem; border-radius: 0.375rem; font-weight: 500; font-size: 0.875rem; color: var(--text-secondary); transition: all 0.15s ease-out; cursor: pointer; border: 1px solid transparent; }
+        .sidebar-tab:hover { background-color: var(--bg-button); color: var(--text-primary); }
+        .sidebar-tab.active { background-color: var(--bg-sidebar-active); color: var(--text-sidebar-active); font-weight: 600; }
+        .sidebar-tab i { font-size: 1.1rem; width: 1.25rem; text-align: center; color: var(--text-muted); transition: color 0.15s ease-out; }
+        .sidebar-tab.active i { color: var(--text-sidebar-active); }
+
+        /* Content pane styling */
+        .content-pane { flex-grow: 1; background-color: var(--bg-content); display: flex; flex-direction: column; overflow: hidden; transition: background-color 0.2s ease-out; }
+
+        /* File Tabs styling */
+        .file-tabs { display: flex; align-items: center; background-color: var(--bg-tab-inactive); border-bottom: 1px solid var(--border-ui); flex-shrink: 0; padding-left: 0.5rem; transition: background-color 0.2s ease-out, border-color 0.2s ease-out, height 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s ease-out; }
+        .file-tabs.hidden { height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; visibility: hidden; border-width: 0; } /* Hide smoothly */
+        .file-tab { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; font-size: 0.8rem; color: var(--text-secondary); background-color: var(--bg-tab-inactive); border-right: 1px solid var(--border-ui); cursor: pointer; position: relative; transition: all 0.15s ease-out; border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem; }
+        .file-tab:hover { color: var(--text-primary); background-color: var(--bg-button-hover); }
+        .file-tab.active { background-color: var(--bg-tab-active); color: var(--text-primary); border-bottom-color: var(--bg-tab-active); z-index: 1; margin-bottom: -1px; }
+        /* Add Tab Button */
+        .add-tab-button { background: none; border: none; color: var(--text-muted); padding: 0.6rem 0.8rem; margin-left: 0.3rem; cursor: pointer; font-size: 0.9rem; transition: color 0.15s ease-out; border-radius: 0.25rem; }
+        .add-tab-button:hover { color: var(--text-primary); background-color: var(--bg-button); }
+
+        /* Editor area container */
+        .editor-container { flex-grow: 1; overflow: hidden; position: relative; background-color: var(--bg-content); transition: background-color 0.2s ease-out; }
+        #monaco-editor-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+
+        /* Other tab content panes */
+        .tab-content { position: absolute; inset: 0; overflow: auto; padding: 1.5rem; background-color: var(--bg-content); transition: background-color 0.2s ease-out; }
+        .tab-content.hidden { display: none; }
+
+        /* Settings Layout */
+        .settings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .settings-section h3 { font-size: 1rem; font-weight: 600; color: var(--text-settings-header); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-ui); transition: color 0.2s ease-out, border-color 0.2s ease-out; }
+        .setting-item { display: flex; align-items: center; margin-bottom: 0.75rem; }
+        .setting-item label { color: var(--text-secondary); font-size: 0.9rem; cursor: pointer; flex-grow: 1; transition: color 0.2s ease-out; }
+        .setting-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; background-color: var(--bg-checkbox); border: 1px solid var(--border-checkbox); border-radius: 4px; cursor: pointer; position: relative; flex-shrink: 0; transition: background-color 0.15s ease-out, border-color 0.15s ease-out; margin-left: 1rem; }
+        .setting-item input[type="checkbox"]:checked { background-color: var(--bg-checkbox-checked); border-color: var(--border-checkbox); }
+        .setting-item input[type="checkbox"]:checked::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; color: var(--text-primary); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: color 0.2s ease-out; }
+        .setting-item label:hover { color: var(--text-primary); }
+
+        /* Theme selection buttons */
+        .theme-button { background-color: var(--bg-button); color: var(--text-button); border: 1px solid var(--border-ui); padding: 0.5rem 1rem; border-radius: 0.375rem; cursor: pointer; transition: all 0.15s ease-out; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+        .theme-button:hover { background-color: var(--bg-button-hover); }
+        .theme-button.active { background-color: var(--bg-sidebar-active); color: var(--text-sidebar-active); font-weight: 600; }
+
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.15); border-radius: 4px; border: 2px solid transparent; }
+        .light-theme ::-webkit-scrollbar-thumb { background-color: rgba(0, 0, 0, 0.2); }
+        ::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.25); }
+        .light-theme ::-webkit-scrollbar-thumb:hover { background-color: rgba(0, 0, 0, 0.3); }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-window" id="app-window">
+        <div class="title-bar">
+            <div class="window-controls">
+                <div class="control-dot dot-red"></div>
+                <div class="control-dot dot-yellow"></div>
+                <div class="control-dot dot-green"></div>
+            </div>
+            <div class="title-text">Macsploit V2</div>
+            <div class="port-info">
+                <div class="port-indicator"></div>
+                <span>Port: 5553</span> </div>
+        </div>
+
+        <div class="top-menu-bar" id="top-menu-bar">
+            <button><i class="fas fa-play"></i> Execute</button>
+            <button><i class="fas fa-eraser"></i> Clear</button>
+            <button><i class="fas fa-folder-open"></i> Open File</button>
+            <button><i class="fas fa-file-code"></i> Exec File</button>
+            <button><i class="fas fa-save"></i> Save File</button>
+        </div>
+
+        <div class="main-content-wrapper">
+            <div class="sidebar">
+                <div class="sidebar-tab active" data-tab="editor"> <i class="fas fa-code"></i> <span>Script Editor</span> </div>
+                <div class="sidebar-tab" data-tab="library"> <i class="fas fa-search"></i> <span>Script Library</span> </div>
+                <div class="sidebar-tab" data-tab="settings"> <i class="fas fa-cog"></i> <span>Settings</span> </div>
+                <div class="sidebar-tab" data-tab="themes"> <i class="fas fa-palette"></i> <span>Themes</span> </div>
+            </div>
+
+            <div class="content-pane">
+                <div class="file-tabs" id="file-tabs-bar">
+                    <div class="file-tab active" data-file="tab1"> <span>Tab - 1</span> </div>
+                    <button class="add-tab-button" title="New Tab"><i class="fas fa-plus"></i></button>
+                </div>
+
+                <div class="editor-container">
+                    <div class="tab-content" id="editor-content"> <div id="monaco-editor-container"></div> </div>
+                    <div class="tab-content hidden" id="library-content"> <h2 class="text-xl font-semibold mb-4">Script Library</h2> <p class="text-secondary">Browse or search scripts...</p> </div>
+                    <div class="tab-content hidden" id="settings-content">
+                         <h2 class="text-xl font-semibold mb-6">Settings</h2>
+                         <div class="settings-grid">
+                             <div class="settings-section"> <h3>Main Settings - Raptor</h3> <div class="setting-item"> <label for="auto-execute">Auto Execute</label> <input type="checkbox" id="auto-execute" checked> </div> <div class="setting-item"> <label for="uncap-fps">Uncap Fps</label> <input type="checkbox" id="uncap-fps"> </div> <div class="setting-item"> <label for="protect-errors">Protect Errors</label> <input type="checkbox" id="protect-errors" checked> </div> <div class="setting-item"> <label for="hwid-spoofer">HWID Spoofer</label> <input type="checkbox" id="hwid-spoofer" checked> </div> </div>
+                             <div class="settings-section"> <h3>Sandbox Settings - Raptor</h3> <div class="setting-item"> <label for="allow-fs">Allow File System</label> <input type="checkbox" id="allow-fs" checked> </div> <div class="setting-item"> <label for="allow-ws">Allow WebSocket Library</label> <input type="checkbox" id="allow-ws"> </div> <div class="setting-item"> <label for="allow-http">Allow HTTP Traffic</label> <input type="checkbox" id="allow-http" checked> </div> <div class="setting-item"> <label for="allow-queue">Allow Queue On Teleport</label> <input type="checkbox" id="allow-queue" checked> </div> </div>
+                             <div class="settings-section"> <h3>Environment Settings - Raptor</h3> <div class="setting-item"> <label for="allow-teleport">Allow Server Teleports</label> <input type="checkbox" id="allow-teleport" checked> </div> <div class="setting-item"> <label for="bypass-place">Bypass Place Restrictions</label> <input type="checkbox" id="bypass-place" checked> </div> <div class="setting-item"> <label for="dump-scripts">Dump All Scripts on Join</label> <input type="checkbox" id="dump-scripts"> </div> <div class="setting-item"> <label for="inject-auto">Inject MacSploit (Auto)</label> <input type="checkbox" id="inject-auto" checked> </div> <div class="setting-item"> <label for="script-compat">Script Compatibility Mode</label> <input type="checkbox" id="script-compat"> </div> </div>
+                             <div class="settings-section"> <h3>Misc Settings - Raptor</h3> <div class="setting-item"> <label for="norb-unc">Norb UNC Improvements</label> <input type="checkbox" id="norb-unc" checked> </div> <div class="setting-item"> <label for="http-improve">HTTP Improvements</label> <input type="checkbox" id="http-improve" checked> </div> <div class="setting-item"> <label for="macsploit-presence">Macsploit Presence</label> <input type="checkbox" id="macsploit-presence"> </div> <div class="setting-item"> <label for="discord-presence">Discord Presence</label> <input type="checkbox" id="discord-presence" checked> </div> <div class="setting-item"> <label for="dec-sandbox">Decreased Sandbox</label> <input type="checkbox" id="dec-sandbox" checked> </div> </div>
+                         </div>
+                         <div class="mt-8 text-sm text-muted flex justify-between"> <span>Developed by Nexus42</span> <span>More Coming Soon</span> </div>
+                    </div>
+                    <div class="tab-content hidden" id="themes-content">
+                         <h2 class="text-xl font-semibold mb-4">Themes</h2>
+                         <p class="text-secondary mb-4">Select a theme for the application:</p>
+                         <div class="flex flex-wrap"> <button class="theme-button" data-theme="dark">Default Dark</button>
+                            <button class="theme-button" data-theme="light">Light Theme</button>
+                            <button class="theme-button" data-theme="ocean-blue">Ocean Blue</button>
+                            <button class="theme-button" data-theme="monokai">Monokai</button>
+                            <button class="theme-button" data-theme="solarized-dark">Solarized Dark</button>
+                            <button class="theme-button" data-theme="solarized-light">Solarized Light</button>
+                            <button class="theme-button" data-theme="dracula">Dracula</button>
+                            <button class="theme-button" data-theme="nord">Nord</button>
+                            <button class="theme-button" data-theme="gruvbox-dark">Gruvbox Dark</button>
+                            <button class="theme-button" data-theme="one-dark-pro">One Dark Pro</button>
+                            <button class="theme-button" data-theme="github-dark">GitHub Dark</button>
+                            <button class="theme-button" data-theme="material-darker">Material Darker</button>
+                            <button class="theme-button" data-theme="cobalt">Cobalt</button>
+                            <button class="theme-button" data-theme="ayu-mirage">Ayu Mirage</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let editor;
+        let currentTheme = localStorage.getItem('appTheme') || 'dark';
+
+        // Get references to conditional UI elements
+        const topMenuBar = document.getElementById('top-menu-bar');
+        const fileTabsBar = document.getElementById('file-tabs-bar');
+
+        // --- Monaco Editor Initialization ---
+        require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs' }});
+        require(['vs/editor/editor.main'], function() {
+            const editorContainer = document.getElementById('monaco-editor-container');
+            const initialCode = `local Params = {
+    RepoURL = "https://raw.githubusercontent.com/luau/SynSaveInstance/main/",
+    SSI = "saveinstance",
+}
+local synsaveinstance = loadstring(game:HttpGet(Params.RepoURL .. Params.SSI .. ".luau", true), Params.SSI)()
+local Options = {} -- Documentation here https://luau.github.io/UniversalSynSaveInstance/api/SynSaveInstance
+synsaveinstance(Options)`;
+
+            if (editorContainer) {
+                 editor = monaco.editor.create(editorContainer, {
+                    value: initialCode, language: 'lua', theme: getMonacoThemeName(currentTheme),
+                    automaticLayout: true, minimap: { enabled: false },
+                    scrollbar: { verticalScrollbarSize: 8, horizontalScrollbarSize: 8 },
+                    fontFamily: '"Source Code Pro", monospace', fontSize: 14
+                });
+                 console.log("Monaco Editor Initialized with theme:", getMonacoThemeName(currentTheme));
+            } else { console.error("Monaco editor container not found!"); }
+            applyTheme(currentTheme); // Apply initial theme to app & editor
+            updateConditionalUI('editor'); // Show editor UI initially
+        });
+
+        // --- Tab Switching Logic ---
+        const sidebarTabs = document.querySelectorAll('.sidebar-tab');
+        const contentPanes = document.querySelectorAll('.tab-content');
+
+        function updateConditionalUI(activeTab) {
+            if (activeTab === 'editor') {
+                topMenuBar?.classList.remove('hidden');
+                fileTabsBar?.classList.remove('hidden');
+            } else {
+                topMenuBar?.classList.add('hidden');
+                fileTabsBar?.classList.add('hidden');
+            }
+        }
+
+        sidebarTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTabName = tab.getAttribute('data-tab');
+
+                sidebarTabs.forEach(t => t.classList.remove('active'));
+                contentPanes.forEach(p => p.classList.add('hidden'));
+
+                tab.classList.add('active');
+                const targetPane = document.getElementById(targetTabName + '-content');
+                if (targetPane) { targetPane.classList.remove('hidden'); }
+
+                // Update visibility of top bar and file tabs
+                updateConditionalUI(targetTabName);
+
+                if (targetTabName === 'editor' && editor) {
+                    setTimeout(() => editor.layout(), 50); // Slightly longer timeout might help
+                }
+            });
+        });
+
+        // --- Theme Switching Logic ---
+        const themeButtons = document.querySelectorAll('.theme-button');
+        const appWindow = document.getElementById('app-window');
+
+        function getMonacoThemeName(appTheme) {
+            // Map app themes to available Monaco themes (vs, vs-dark, hc-black)
+            switch(appTheme) {
+                case 'light':
+                case 'solarized-light':
+                     return 'vs'; // Light themes map to 'vs'
+                case 'monokai':
+                case 'dracula':
+                case 'nord':
+                case 'gruvbox-dark':
+                case 'one-dark-pro':
+                case 'github-dark':
+                case 'material-darker':
+                case 'cobalt':
+                case 'ayu-mirage':
+                case 'ocean-blue':
+                case 'dark':
+                default: return 'vs-dark'; // Most dark themes map to 'vs-dark'
+            }
+        }
+
+        function applyTheme(themeName) {
+             currentTheme = themeName;
+             // List all possible theme classes to remove
+             const themeClasses = ['light-theme', 'ocean-blue-theme', 'monokai-theme', 'solarized-dark-theme', 'solarized-light-theme', 'dracula-theme', 'nord-theme', 'gruvbox-dark-theme', 'one-dark-pro-theme', 'github-dark-theme', 'material-darker-theme', 'cobalt-theme', 'ayu-mirage-theme'];
+             appWindow.classList.remove(...themeClasses);
+
+             if (themeName !== 'dark') { appWindow.classList.add(`${themeName}-theme`); }
+
+             if (editor) {
+                 const monacoTheme = getMonacoThemeName(themeName);
+                 monaco.editor.setTheme(monacoTheme);
+                 console.log("Set Monaco theme to:", monacoTheme);
+             }
+
+             themeButtons.forEach(btn => {
+                 btn.classList.toggle('active', btn.getAttribute('data-theme') === themeName);
+             });
+
+             localStorage.setItem('appTheme', themeName);
+             console.log("Applied theme:", themeName);
+        }
+
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                applyTheme(button.getAttribute('data-theme'));
+            });
+        });
+
+    </script>
+
+</body>
+</html>
