@@ -13,64 +13,27 @@
     <style>
         /* --- Base Theme (Dark - Matches Screenshot) --- */
         :root {
-            --bg-window: #212121;
-            --bg-titlebar: #2B2B2B;
-            --bg-sidebar: #212121;
-            --bg-content: #1C1C1C; /* Editor/Pane background */
-            --bg-button: #3A3A3A;
-            --bg-button-hover: #454545;
-            --bg-tab-inactive: #2B2B2B;
-            --bg-tab-active: #1C1C1C; /* Match editor */
-            --bg-sidebar-active: #3A3A3A;
-            --bg-checkbox: #3A3A3A;
-            --bg-checkbox-checked: #5E5E5E;
-            --bg-input-rename: #4F4F4F;
-            --bg-context-menu: #3A3A3A;
-            --bg-context-menu-hover: #4A4A4A;
-
-            --text-primary: #E0E0E0;
-            --text-secondary: #A0A0A0;
-            --text-muted: #757575;
-            --text-title: #CCCCCC;
-            --text-button: #D5D5D5;
-            --text-sidebar-active: #FFFFFF;
-            --text-settings-header: #CCCCCC;
-            --text-context-menu: #E0E0E0;
-            /* For Monaco theme mapping */
-            --editor-foreground: #E0E0E0;
-            --editor-comment: #6A9955;
-            --editor-keyword: #569CD6;
-            --editor-string: #CE9178;
-            --editor-number: #b5cea8;
-            --editor-function: #DCDCAA;
-
-            --border-ui: #333333; /* Separator color */
-            --border-strong: #111111;
-            --border-checkbox: #555555;
-            --border-context-menu: #555555;
-
-            --mac-red: #FF5F57;
-            --mac-yellow: #FEBC2e;
-            --mac-green: #28C840;
-            --accent-green: #32CD32; /* Port dot */
-
+            --bg-window: #212121; --bg-titlebar: #2B2B2B; --bg-sidebar: #212121; --bg-content: #1C1C1C; --bg-button: #3A3A3A; --bg-button-hover: #454545; --bg-tab-inactive: #2B2B2B; --bg-tab-active: #1C1C1C; --bg-sidebar-active: #3A3A3A; --bg-checkbox: #3A3A3A; --bg-checkbox-checked: #5E5E5E; --bg-input-rename: #4F4F4F; --bg-context-menu: #3A3A3A; --bg-context-menu-hover: #4A4A4A; --bg-bypass-card: #2B2B2B; --bg-bypass-card-hover: #333333;
+            --text-primary: #E0E0E0; --text-secondary: #A0A0A0; --text-muted: #757575; --text-title: #CCCCCC; --text-button: #D5D5D5; --text-sidebar-active: #FFFFFF; --text-settings-header: #CCCCCC; --text-context-menu: #E0E0E0; --text-bypass-card-title: #E0E0E0; --text-bypass-card-desc: #A0A0A0;
+            --editor-foreground: #E0E0E0; --editor-comment: #6A9955; --editor-keyword: #569CD6; --editor-string: #CE9178; --editor-number: #b5cea8; --editor-function: #DCDCAA;
+            --border-ui: #333333; --border-strong: #111111; --border-checkbox: #555555; --border-context-menu: #555555; --border-bypass-card: #404040;
+            --mac-red: #FF5F57; --mac-yellow: #FEBC2e; --mac-green: #28C840; --accent-green-online: #32CD32; --accent-red-offline: #FF5F57;
             --font-primary: 'Inter', sans-serif;
         }
-
-        /* --- Additional Theme Definitions (Ensure --border-ui is set in each) --- */
-        .light-theme { --bg-window: #F3F3F3; --bg-titlebar: #EAEAEA; --bg-sidebar: #F3F3F3; --bg-content: #FFFFFF; --bg-button: #E0E0E0; --bg-button-hover: #D5D5D5; --bg-tab-inactive: #EAEAEA; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #D5D5D5; --bg-checkbox: #E0E0E0; --bg-checkbox-checked: #C0C0C0; --text-primary: #202020; --text-secondary: #555555; --text-muted: #888888; --text-title: #333333; --text-button: #252525; --text-sidebar-active: #000000; --text-settings-header: #444444; --border-ui: #DCDCDC; --border-strong: #C0C0C0; --border-checkbox: #B0B0B0; --accent-green: #28A745; --editor-foreground: #333333; --editor-comment: #008000; --editor-keyword: #0000FF; --editor-string: #A31515; --editor-number: #098658; --editor-function: #795E26; --bg-input-rename: #FFFFFF; --bg-context-menu: #FFFFFF; --bg-context-menu-hover: #F0F0F0; --text-context-menu: #202020; --border-context-menu: #D0D0D0; }
-        .ocean-blue-theme { --bg-window: #1E2A3A; --bg-titlebar: #263446; --bg-sidebar: #1E2A3A; --bg-content: #16202C; --bg-button: #3A506B; --bg-button-hover: #4A6585; --bg-tab-inactive: #263446; --bg-tab-active: #16202C; --bg-sidebar-active: #3A506B; --bg-checkbox: #3A506B; --bg-checkbox-checked: #4A6585; --text-primary: #C0D0E0; --text-secondary: #8095AD; --text-muted: #607A90; --text-title: #D0E0F0; --text-button: #E0F0FF; --text-sidebar-active: #FFFFFF; --text-settings-header: #D0E0F0; --border-ui: #2D4055; --border-strong: #101822; --border-checkbox: #507090; --accent-green: #36AE7C; --editor-foreground: #C0D0E0; --editor-comment: #607A90; --editor-keyword: #5d9cec; --editor-string: #c3e88d; --editor-number: #f78c6c; --editor-function: #82aaff; --bg-input-rename: #4A6585; --bg-context-menu: #263446; --bg-context-menu-hover: #3A506B; --text-context-menu: #C0D0E0; --border-context-menu: #3A506B; }
-        .monokai-theme { --bg-window: #272822; --bg-titlebar: #3A3B34; --bg-sidebar: #272822; --bg-content: #2D2E27; --bg-button: #49483E; --bg-button-hover: #5A5950; --bg-tab-inactive: #3A3B34; --bg-tab-active: #2D2E27; --bg-sidebar-active: #49483E; --bg-checkbox: #49483E; --bg-checkbox-checked: #75715E; --text-primary: #F8F8F2; --text-secondary: #A0A095; --text-muted: #75715E; --text-title: #E0E0DA; --text-button: #F0F0EA; --text-sidebar-active: #FFFFFF; --text-settings-header: #E0E0DA; --border-ui: #44453E; --border-strong: #1A1A16; --border-checkbox: #656358; --accent-green: #A6E22E; --editor-foreground: #F8F8F2; --editor-comment: #75715E; --editor-keyword: #F92672; --editor-string: #E6DB74; --editor-number: #AE81FF; --editor-function: #A6E22E; --bg-input-rename: #5A5950; --bg-context-menu: #3A3B34; --bg-context-menu-hover: #49483E; --text-context-menu: #F8F8F2; --border-context-menu: #49483E; }
-        .solarized-dark-theme { --bg-window: #002b36; --bg-titlebar: #073642; --bg-sidebar: #002b36; --bg-content: #00252E; --bg-button: #586e75; --bg-button-hover: #657b83; --bg-tab-inactive: #073642; --bg-tab-active: #00252E; --bg-sidebar-active: #586e75; --bg-checkbox: #586e75; --bg-checkbox-checked: #839496; --text-primary: #839496; --text-secondary: #586e75; --text-muted: #4a5f68; --text-title: #93a1a1; --text-button: #eee8d5; --text-sidebar-active: #fdf6e3; --text-settings-header: #93a1a1; --border-ui: #073642; --border-strong: #001f27; --border-checkbox: #657b83; --accent-green: #859900; --editor-foreground: #839496; --editor-comment: #586e75; --editor-keyword: #859900; --editor-string: #2aa198; --editor-number: #d33682; --editor-function: #268bd2; --bg-input-rename: #657b83; --bg-context-menu: #073642; --bg-context-menu-hover: #586e75; --text-context-menu: #93a1a1; --border-context-menu: #586e75; }
-        .solarized-light-theme { --bg-window: #fdf6e3; --bg-titlebar: #eee8d5; --bg-sidebar: #fdf6e3; --bg-content: #ffffff; --bg-button: #eee8d5; --bg-button-hover: #dcd5c2; --bg-tab-inactive: #eee8d5; --bg-tab-active: #ffffff; --bg-sidebar-active: #dcd5c2; --bg-checkbox: #eee8d5; --bg-checkbox-checked: #b8b09c; --text-primary: #657b83; --text-secondary: #93a1a1; --text-muted: #aab6b9; --text-title: #586e75; --text-button: #073642; --text-sidebar-active: #002b36; --text-settings-header: #586e75; --border-ui: #eee8d5; --border-strong: #dcd5c2; --border-checkbox: #93a1a1; --accent-green: #859900; --editor-foreground: #657b83; --editor-comment: #93a1a1; --editor-keyword: #859900; --editor-string: #2aa198; --editor-number: #d33682; --editor-function: #268bd2; --bg-input-rename: #ffffff; --bg-context-menu: #ffffff; --bg-context-menu-hover: #eee8d5; --text-context-menu: #586e75; --border-context-menu: #eee8d5; }
-        .dracula-theme { --bg-window: #282a36; --bg-titlebar: #3a3c4a; --bg-sidebar: #282a36; --bg-content: #21222C; --bg-button: #44475a; --bg-button-hover: #5a5d75; --bg-tab-inactive: #3a3c4a; --bg-tab-active: #21222C; --bg-sidebar-active: #44475a; --bg-checkbox: #44475a; --bg-checkbox-checked: #6272a4; --text-primary: #f8f8f2; --text-secondary: #bd93f9; --text-muted: #6272a4; --text-title: #f0f0ea; --text-button: #f8f8f2; --text-sidebar-active: #f8f8f2; --text-settings-header: #f0f0ea; --border-ui: #44475a; --border-strong: #191a21; --border-checkbox: #6272a4; --accent-green: #50fa7b; --editor-foreground: #f8f8f2; --editor-comment: #6272a4; --editor-keyword: #ff79c6; --editor-string: #f1fa8c; --editor-number: #bd93f9; --editor-function: #50fa7b; --bg-input-rename: #5a5d75; --bg-context-menu: #3a3c4a; --bg-context-menu-hover: #44475a; --text-context-menu: #f8f8f2; --border-context-menu: #44475a; }
-        .nord-theme { --bg-window: #2E3440; --bg-titlebar: #3B4252; --bg-sidebar: #2E3440; --bg-content: #272C36; --bg-button: #4C566A; --bg-button-hover: #5E81AC; --bg-tab-inactive: #3B4252; --bg-tab-active: #272C36; --bg-sidebar-active: #4C566A; --bg-checkbox: #4C566A; --bg-checkbox-checked: #88C0D0; --text-primary: #D8DEE9; --text-secondary: #81A1C1; --text-muted: #4C566A; --text-title: #ECEFF4; --text-button: #ECEFF4; --text-sidebar-active: #FFFFFF; --text-settings-header: #ECEFF4; --border-ui: #3B4252; --border-strong: #21252E; --border-checkbox: #5E81AC; --accent-green: #A3BE8C; --editor-foreground: #D8DEE9; --editor-comment: #4C566A; --editor-keyword: #81A1C1; --editor-string: #A3BE8C; --editor-number: #B48EAD; --editor-function: #88C0D0; --bg-input-rename: #5E81AC; --bg-context-menu: #3B4252; --bg-context-menu-hover: #4C566A; --text-context-menu: #D8DEE9; --border-context-menu: #4C566A; }
-        .gruvbox-dark-theme { --bg-window: #282828; --bg-titlebar: #3c3836; --bg-sidebar: #282828; --bg-content: #1d2021; --bg-button: #504945; --bg-button-hover: #665c54; --bg-tab-inactive: #3c3836; --bg-tab-active: #1d2021; --bg-sidebar-active: #504945; --bg-checkbox: #504945; --bg-checkbox-checked: #928374; --text-primary: #ebdbb2; --text-secondary: #a89984; --text-muted: #7c6f64; --text-title: #fbf1c7; --text-button: #fbf1c7; --text-sidebar-active: #ffffff; --text-settings-header: #fbf1c7; --border-ui: #504945; --border-strong: #101213; --border-checkbox: #928374; --accent-green: #b8bb26; --editor-foreground: #ebdbb2; --editor-comment: #928374; --editor-keyword: #fb4934; --editor-string: #b8bb26; --editor-number: #d3869b; --editor-function: #fabd2f; --bg-input-rename: #665c54; --bg-context-menu: #3c3836; --bg-context-menu-hover: #504945; --text-context-menu: #ebdbb2; --border-context-menu: #504945; }
-        .one-dark-pro-theme { --bg-window: #282c34; --bg-titlebar: #3a3f4b; --bg-sidebar: #282c34; --bg-content: #21252b; --bg-button: #3a3f4b; --bg-button-hover: #4b5263; --bg-tab-inactive: #3a3f4b; --bg-tab-active: #21252b; --bg-sidebar-active: #4b5263; --bg-checkbox: #3a3f4b; --bg-checkbox-checked: #abb2bf; --text-primary: #abb2bf; --text-secondary: #61afef; --text-muted: #5c6370; --text-title: #e6efff; --text-button: #d0d8e8; --text-sidebar-active: #ffffff; --text-settings-header: #e6efff; --border-ui: #3a3f4b; --border-strong: #181a1f; --border-checkbox: #5c6370; --accent-green: #98c379; --editor-foreground: #abb2bf; --editor-comment: #5c6370; --editor-keyword: #c678dd; --editor-string: #98c379; --editor-number: #d19a66; --editor-function: #61afef; --bg-input-rename: #4b5263; --bg-context-menu: #3a3f4b; --bg-context-menu-hover: #4b5263; --text-context-menu: #abb2bf; --border-context-menu: #4b5263; }
-        .github-dark-theme { --bg-window: #0d1117; --bg-titlebar: #161b22; --bg-sidebar: #0d1117; --bg-content: #06090F; --bg-button: #21262d; --bg-button-hover: #30363d; --bg-tab-inactive: #161b22; --bg-tab-active: #06090F; --bg-sidebar-active: #30363d; --bg-checkbox: #21262d; --bg-checkbox-checked: #8b949e; --text-primary: #c9d1d9; --text-secondary: #8b949e; --text-muted: #484f58; --text-title: #f0f6fc; --text-button: #e0e6ed; --text-sidebar-active: #ffffff; --text-settings-header: #f0f6fc; --border-ui: #30363d; --border-strong: #010409; --border-checkbox: #58a6ff; --accent-green: #3fb950; --editor-foreground: #c9d1d9; --editor-comment: #8b949e; --editor-keyword: #ff7b72; --editor-string: #a5d6ff; --editor-number: #79c0ff; --editor-function: #d2a8ff; --bg-input-rename: #30363d; --bg-context-menu: #161b22; --bg-context-menu-hover: #21262d; --text-context-menu: #c9d1d9; --border-context-menu: #30363d; }
-        .material-darker-theme { --bg-window: #212121; --bg-titlebar: #2a2a2a; --bg-sidebar: #212121; --bg-content: #1A1A1A; --bg-button: #323232; --bg-button-hover: #424242; --bg-tab-inactive: #2a2a2a; --bg-tab-active: #1A1A1A; --bg-sidebar-active: #424242; --bg-checkbox: #323232; --bg-checkbox-checked: #eeffff; --text-primary: #eeffff; --text-secondary: #8f93a2; --text-muted: #545c68; --text-title: #ffffff; --text-button: #e0e0e0; --text-sidebar-active: #ffffff; --text-settings-header: #ffffff; --border-ui: #353535; --border-strong: #0f0f0f; --border-checkbox: #8f93a2; --accent-green: #c3e88d; --editor-foreground: #eeffff; --editor-comment: #545c68; --editor-keyword: #c792ea; --editor-string: #c3e88d; --editor-number: #f78c6c; --editor-function: #82aaff; --bg-input-rename: #424242; --bg-context-menu: #2a2a2a; --bg-context-menu-hover: #323232; --text-context-menu: #eeffff; --border-context-menu: #323232; }
-        .cobalt-theme { --bg-window: #002240; --bg-titlebar: #003360; --bg-sidebar: #002240; --bg-content: #00192F; --bg-button: #193555; --bg-button-hover: #2a4f7a; --bg-tab-inactive: #003360; --bg-tab-active: #00192F; --bg-sidebar-active: #193555; --bg-checkbox: #193555; --bg-checkbox-checked: #ffc600; --text-primary: #ffffff; --text-secondary: #9effff; --text-muted: #0088cc; --text-title: #e0e0ff; --text-button: #f0f0ff; --text-sidebar-active: #ffffff; --text-settings-header: #e0e0ff; --border-ui: #003360; --border-strong: #001120; --border-checkbox: #ffc600; --accent-green: #36ae7c; --editor-foreground: #ffffff; --editor-comment: #0088cc; --editor-keyword: #ff9d00; --editor-string: #3ad900; --editor-number: #ff628c; --editor-function: #ffc600; --bg-input-rename: #2a4f7a; --bg-context-menu: #003360; --bg-context-menu-hover: #193555; --text-context-menu: #ffffff; --border-context-menu: #193555; }
-        .ayu-mirage-theme { --bg-window: #1f2430; --bg-titlebar: #272c3a; --bg-sidebar: #1f2430; --bg-content: #1A1E28; --bg-button: #3e445e; --bg-button-hover: #565b78; --bg-tab-inactive: #272c3a; --bg-tab-active: #1A1E28; --bg-sidebar-active: #565b78; --bg-checkbox: #3e445e; --bg-checkbox-checked: #ffcc66; --text-primary: #cbccc6; --text-secondary: #707a8c; --text-muted: #5c677e; --text-title: #d9d7ce; --text-button: #e0e0d8; --text-sidebar-active: #ffffff; --text-settings-header: #d9d7ce; --border-ui: #3e445e; --border-strong: #151820; --border-checkbox: #ffcc66; --accent-green: #bae67e; --editor-foreground: #cbccc6; --editor-comment: #5c677e; --editor-keyword: #ffa759; --editor-string: #bae67e; --editor-number: #ffcc66; --editor-function: #ffd580; --bg-input-rename: #565b78; --bg-context-menu: #272c3a; --bg-context-menu-hover: #3e445e; --text-context-menu: #cbccc6; --border-context-menu: #3e445e; }
+        /* --- Theme Definitions (Ensure --border-ui is set in each) --- */
+        .light-theme { --bg-window: #F3F3F3; --bg-titlebar: #EAEAEA; --bg-sidebar: #F3F3F3; --bg-content: #FFFFFF; --bg-button: #E0E0E0; --bg-button-hover: #D5D5D5; --bg-tab-inactive: #EAEAEA; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #D5D5D5; --bg-checkbox: #E0E0E0; --bg-checkbox-checked: #C0C0C0; --text-primary: #202020; --text-secondary: #555555; --text-muted: #888888; --text-title: #333333; --text-button: #252525; --text-sidebar-active: #000000; --text-settings-header: #444444; --border-ui: #DCDCDC; --border-strong: #C0C0C0; --border-checkbox: #B0B0B0; --accent-green-online: #28A745; --accent-red-offline: #DC3545; --editor-foreground: #333333; --editor-comment: #008000; --editor-keyword: #0000FF; --editor-string: #A31515; --editor-number: #098658; --editor-function: #795E26; --bg-input-rename: #FFFFFF; --bg-context-menu: #FFFFFF; --bg-context-menu-hover: #F0F0F0; --text-context-menu: #202020; --border-context-menu: #D0D0D0; --bg-bypass-card: #EAEAEA; --bg-bypass-card-hover: #DADADA; --border-bypass-card: #D0D0D0; --text-bypass-card-title: #202020; --text-bypass-card-desc: #555555; }
+        .ocean-blue-theme { --bg-window: #1E2A3A; --bg-titlebar: #263446; --bg-sidebar: #1E2A3A; --bg-content: #16202C; --bg-button: #3A506B; --bg-button-hover: #4A6585; --bg-tab-inactive: #263446; --bg-tab-active: #16202C; --bg-sidebar-active: #3A506B; --bg-checkbox: #3A506B; --bg-checkbox-checked: #4A6585; --text-primary: #C0D0E0; --text-secondary: #8095AD; --text-muted: #607A90; --text-title: #D0E0F0; --text-button: #E0F0FF; --text-sidebar-active: #FFFFFF; --text-settings-header: #D0E0F0; --border-ui: #2D4055; --border-strong: #101822; --border-checkbox: #507090; --accent-green-online: #36AE7C; --accent-red-offline: #E16B6B; --editor-foreground: #C0D0E0; --editor-comment: #607A90; --editor-keyword: #5d9cec; --editor-string: #c3e88d; --editor-number: #f78c6c; --editor-function: #82aaff; --bg-input-rename: #4A6585; --bg-context-menu: #263446; --bg-context-menu-hover: #3A506B; --text-context-menu: #C0D0E0; --border-context-menu: #3A506B; --bg-bypass-card: #263446; --bg-bypass-card-hover: #304055; --border-bypass-card: #3A506B; --text-bypass-card-title: #C0D0E0; --text-bypass-card-desc: #8095AD; }
+        .monokai-theme { --bg-window: #272822; --bg-titlebar: #3A3B34; --bg-sidebar: #272822; --bg-content: #2D2E27; --bg-button: #49483E; --bg-button-hover: #5A5950; --bg-tab-inactive: #3A3B34; --bg-tab-active: #2D2E27; --bg-sidebar-active: #49483E; --bg-checkbox: #49483E; --bg-checkbox-checked: #75715E; --text-primary: #F8F8F2; --text-secondary: #A0A095; --text-muted: #75715E; --text-title: #E0E0DA; --text-button: #F0F0EA; --text-sidebar-active: #FFFFFF; --text-settings-header: #E0E0DA; --border-ui: #44453E; --border-strong: #1A1A16; --border-checkbox: #656358; --accent-green-online: #A6E22E; --accent-red-offline: #F92672; --editor-foreground: #F8F8F2; --editor-comment: #75715E; --editor-keyword: #F92672; --editor-string: #E6DB74; --editor-number: #AE81FF; --editor-function: #A6E22E; --bg-input-rename: #5A5950; --bg-context-menu: #3A3B34; --bg-context-menu-hover: #49483E; --text-context-menu: #F8F8F2; --border-context-menu: #49483E; --bg-bypass-card: #3A3B34; --bg-bypass-card-hover: #49483E; --border-bypass-card: #5A5950; --text-bypass-card-title: #F8F8F2; --text-bypass-card-desc: #A0A095; }
+        .solarized-dark-theme { --bg-window: #002b36; --bg-titlebar: #073642; --bg-sidebar: #002b36; --bg-content: #00252E; --bg-button: #586e75; --bg-button-hover: #657b83; --bg-tab-inactive: #073642; --bg-tab-active: #00252E; --bg-sidebar-active: #586e75; --bg-checkbox: #586e75; --bg-checkbox-checked: #839496; --text-primary: #839496; --text-secondary: #586e75; --text-muted: #4a5f68; --text-title: #93a1a1; --text-button: #eee8d5; --text-sidebar-active: #fdf6e3; --text-settings-header: #93a1a1; --border-ui: #073642; --border-strong: #001f27; --border-checkbox: #657b83; --accent-green-online: #859900; --accent-red-offline: #dc322f; --editor-foreground: #839496; --editor-comment: #586e75; --editor-keyword: #859900; --editor-string: #2aa198; --editor-number: #d33682; --editor-function: #268bd2; --bg-input-rename: #657b83; --bg-context-menu: #073642; --bg-context-menu-hover: #586e75; --text-context-menu: #93a1a1; --border-context-menu: #586e75; --bg-bypass-card: #073642; --bg-bypass-card-hover: #586e75; --border-bypass-card: #586e75; --text-bypass-card-title: #93a1a1; --text-bypass-card-desc: #586e75; }
+        .solarized-light-theme { --bg-window: #fdf6e3; --bg-titlebar: #eee8d5; --bg-sidebar: #fdf6e3; --bg-content: #ffffff; --bg-button: #eee8d5; --bg-button-hover: #dcd5c2; --bg-tab-inactive: #eee8d5; --bg-tab-active: #ffffff; --bg-sidebar-active: #dcd5c2; --bg-checkbox: #eee8d5; --bg-checkbox-checked: #b8b09c; --text-primary: #657b83; --text-secondary: #93a1a1; --text-muted: #aab6b9; --text-title: #586e75; --text-button: #073642; --text-sidebar-active: #002b36; --text-settings-header: #586e75; --border-ui: #eee8d5; --border-strong: #dcd5c2; --border-checkbox: #93a1a1; --accent-green-online: #859900; --accent-red-offline: #dc322f; --editor-foreground: #657b83; --editor-comment: #93a1a1; --editor-keyword: #859900; --editor-string: #2aa198; --editor-number: #d33682; --editor-function: #268bd2; --bg-input-rename: #ffffff; --bg-context-menu: #ffffff; --bg-context-menu-hover: #eee8d5; --text-context-menu: #586e75; --border-context-menu: #eee8d5; --bg-bypass-card: #eee8d5; --bg-bypass-card-hover: #f5efe2; --border-bypass-card: #dcd5c2; --text-bypass-card-title: #586e75; --text-bypass-card-desc: #93a1a1; }
+        .dracula-theme { --bg-window: #282a36; --bg-titlebar: #3a3c4a; --bg-sidebar: #282a36; --bg-content: #21222C; --bg-button: #44475a; --bg-button-hover: #5a5d75; --bg-tab-inactive: #3a3c4a; --bg-tab-active: #21222C; --bg-sidebar-active: #44475a; --bg-checkbox: #44475a; --bg-checkbox-checked: #6272a4; --text-primary: #f8f8f2; --text-secondary: #bd93f9; --text-muted: #6272a4; --text-title: #f0f0ea; --text-button: #f8f8f2; --text-sidebar-active: #f8f8f2; --text-settings-header: #f0f0ea; --border-ui: #44475a; --border-strong: #191a21; --border-checkbox: #6272a4; --accent-green-online: #50fa7b; --accent-red-offline: #ff5555; --editor-foreground: #f8f8f2; --editor-comment: #6272a4; --editor-keyword: #ff79c6; --editor-string: #f1fa8c; --editor-number: #bd93f9; --editor-function: #50fa7b; --bg-input-rename: #5a5d75; --bg-context-menu: #3a3c4a; --bg-context-menu-hover: #44475a; --text-context-menu: #f8f8f2; --border-context-menu: #44475a; --bg-bypass-card: #3a3c4a; --bg-bypass-card-hover: #44475a; --border-bypass-card: #6272a4; --text-bypass-card-title: #f8f8f2; --text-bypass-card-desc: #bd93f9; }
+        .nord-theme { --bg-window: #2E3440; --bg-titlebar: #3B4252; --bg-sidebar: #2E3440; --bg-content: #272C36; --bg-button: #4C566A; --bg-button-hover: #5E81AC; --bg-tab-inactive: #3B4252; --bg-tab-active: #272C36; --bg-sidebar-active: #4C566A; --bg-checkbox: #4C566A; --bg-checkbox-checked: #88C0D0; --text-primary: #D8DEE9; --text-secondary: #81A1C1; --text-muted: #4C566A; --text-title: #ECEFF4; --text-button: #ECEFF4; --text-sidebar-active: #FFFFFF; --text-settings-header: #ECEFF4; --border-ui: #3B4252; --border-strong: #21252E; --border-checkbox: #5E81AC; --accent-green-online: #A3BE8C; --accent-red-offline: #BF616A; --editor-foreground: #D8DEE9; --editor-comment: #4C566A; --editor-keyword: #81A1C1; --editor-string: #A3BE8C; --editor-number: #B48EAD; --editor-function: #88C0D0; --bg-input-rename: #5E81AC; --bg-context-menu: #3B4252; --bg-context-menu-hover: #4C566A; --text-context-menu: #D8DEE9; --border-context-menu: #4C566A; --bg-bypass-card: #3B4252; --bg-bypass-card-hover: #434C5E; --border-bypass-card: #4C566A; --text-bypass-card-title: #ECEFF4; --text-bypass-card-desc: #81A1C1; }
+        .gruvbox-dark-theme { --bg-window: #282828; --bg-titlebar: #3c3836; --bg-sidebar: #282828; --bg-content: #1d2021; --bg-button: #504945; --bg-button-hover: #665c54; --bg-tab-inactive: #3c3836; --bg-tab-active: #1d2021; --bg-sidebar-active: #504945; --bg-checkbox: #504945; --bg-checkbox-checked: #928374; --text-primary: #ebdbb2; --text-secondary: #a89984; --text-muted: #7c6f64; --text-title: #fbf1c7; --text-button: #fbf1c7; --text-sidebar-active: #ffffff; --text-settings-header: #fbf1c7; --border-ui: #504945; --border-strong: #101213; --border-checkbox: #928374; --accent-green-online: #b8bb26; --accent-red-offline: #fb4934; --editor-foreground: #ebdbb2; --editor-comment: #928374; --editor-keyword: #fb4934; --editor-string: #b8bb26; --editor-number: #d3869b; --editor-function: #fabd2f; --bg-input-rename: #665c54; --bg-context-menu: #3c3836; --bg-context-menu-hover: #504945; --text-context-menu: #ebdbb2; --border-context-menu: #504945; --bg-bypass-card: #3c3836; --bg-bypass-card-hover: #504945; --border-bypass-card: #665c54; --text-bypass-card-title: #fbf1c7; --text-bypass-card-desc: #a89984; }
+        .one-dark-pro-theme { --bg-window: #282c34; --bg-titlebar: #3a3f4b; --bg-sidebar: #282c34; --bg-content: #21252b; --bg-button: #3a3f4b; --bg-button-hover: #4b5263; --bg-tab-inactive: #3a3f4b; --bg-tab-active: #21252b; --bg-sidebar-active: #4b5263; --bg-checkbox: #3a3f4b; --bg-checkbox-checked: #abb2bf; --text-primary: #abb2bf; --text-secondary: #61afef; --text-muted: #5c6370; --text-title: #e6efff; --text-button: #d0d8e8; --text-sidebar-active: #ffffff; --text-settings-header: #e6efff; --border-ui: #3a3f4b; --border-strong: #181a1f; --border-checkbox: #5c6370; --accent-green-online: #98c379; --accent-red-offline: #e06c75; --editor-foreground: #abb2bf; --editor-comment: #5c6370; --editor-keyword: #c678dd; --editor-string: #98c379; --editor-number: #d19a66; --editor-function: #61afef; --bg-input-rename: #4b5263; --bg-context-menu: #3a3f4b; --bg-context-menu-hover: #4b5263; --text-context-menu: #abb2bf; --border-context-menu: #4b5263; --bg-bypass-card: #3a3f4b; --bg-bypass-card-hover: #4b5263; --border-bypass-card: #5c6370; --text-bypass-card-title: #e6efff; --text-bypass-card-desc: #61afef; }
+        .github-dark-theme { --bg-window: #0d1117; --bg-titlebar: #161b22; --bg-sidebar: #0d1117; --bg-content: #06090F; --bg-button: #21262d; --bg-button-hover: #30363d; --bg-tab-inactive: #161b22; --bg-tab-active: #06090F; --bg-sidebar-active: #30363d; --bg-checkbox: #21262d; --bg-checkbox-checked: #8b949e; --text-primary: #c9d1d9; --text-secondary: #8b949e; --text-muted: #484f58; --text-title: #f0f6fc; --text-button: #e0e6ed; --text-sidebar-active: #ffffff; --text-settings-header: #f0f6fc; --border-ui: #30363d; --border-strong: #010409; --border-checkbox: #58a6ff; --accent-green-online: #3fb950; --accent-red-offline: #f85149; --editor-foreground: #c9d1d9; --editor-comment: #8b949e; --editor-keyword: #ff7b72; --editor-string: #a5d6ff; --editor-number: #79c0ff; --editor-function: #d2a8ff; --bg-input-rename: #30363d; --bg-context-menu: #161b22; --bg-context-menu-hover: #21262d; --text-context-menu: #c9d1d9; --border-context-menu: #30363d; --bg-bypass-card: #161b22; --bg-bypass-card-hover: #21262d; --border-bypass-card: #30363d; --text-bypass-card-title: #f0f6fc; --text-bypass-card-desc: #8b949e; }
+        .material-darker-theme { --bg-window: #212121; --bg-titlebar: #2a2a2a; --bg-sidebar: #212121; --bg-content: #1A1A1A; --bg-button: #323232; --bg-button-hover: #424242; --bg-tab-inactive: #2a2a2a; --bg-tab-active: #1A1A1A; --bg-sidebar-active: #424242; --bg-checkbox: #323232; --bg-checkbox-checked: #eeffff; --text-primary: #eeffff; --text-secondary: #8f93a2; --text-muted: #545c68; --text-title: #ffffff; --text-button: #e0e0e0; --text-sidebar-active: #ffffff; --text-settings-header: #ffffff; --border-ui: #353535; --border-strong: #0f0f0f; --border-checkbox: #8f93a2; --accent-green-online: #c3e88d; --accent-red-offline: #f07178; --editor-foreground: #eeffff; --editor-comment: #545c68; --editor-keyword: #c792ea; --editor-string: #c3e88d; --editor-number: #f78c6c; --editor-function: #82aaff; --bg-input-rename: #424242; --bg-context-menu: #2a2a2a; --bg-context-menu-hover: #323232; --text-context-menu: #eeffff; --border-context-menu: #323232; --bg-bypass-card: #2a2a2a; --bg-bypass-card-hover: #323232; --border-bypass-card: #424242; --text-bypass-card-title: #eeffff; --text-bypass-card-desc: #8f93a2; }
+        .cobalt-theme { --bg-window: #002240; --bg-titlebar: #003360; --bg-sidebar: #002240; --bg-content: #00192F; --bg-button: #193555; --bg-button-hover: #2a4f7a; --bg-tab-inactive: #003360; --bg-tab-active: #00192F; --bg-sidebar-active: #193555; --bg-checkbox: #193555; --bg-checkbox-checked: #ffc600; --text-primary: #ffffff; --text-secondary: #9effff; --text-muted: #0088cc; --text-title: #e0e0ff; --text-button: #f0f0ff; --text-sidebar-active: #ffffff; --text-settings-header: #e0e0ff; --border-ui: #003360; --border-strong: #001120; --border-checkbox: #ffc600; --accent-green-online: #36ae7c; --accent-red-offline: #ff5370; --editor-foreground: #ffffff; --editor-comment: #0088cc; --editor-keyword: #ff9d00; --editor-string: #3ad900; --editor-number: #ff628c; --editor-function: #ffc600; --bg-input-rename: #2a4f7a; --bg-context-menu: #003360; --bg-context-menu-hover: #193555; --text-context-menu: #ffffff; --border-context-menu: #193555; --bg-bypass-card: #003360; --bg-bypass-card-hover: #193555; --border-bypass-card: #2a4f7a; --text-bypass-card-title: #e0e0ff; --text-bypass-card-desc: #9effff; }
+        .ayu-mirage-theme { --bg-window: #1f2430; --bg-titlebar: #272c3a; --bg-sidebar: #1f2430; --bg-content: #1A1E28; --bg-button: #3e445e; --bg-button-hover: #565b78; --bg-tab-inactive: #272c3a; --bg-tab-active: #1A1E28; --bg-sidebar-active: #565b78; --bg-checkbox: #3e445e; --bg-checkbox-checked: #ffcc66; --text-primary: #cbccc6; --text-secondary: #707a8c; --text-muted: #5c677e; --text-title: #d9d7ce; --text-button: #e0e0d8; --text-sidebar-active: #ffffff; --text-settings-header: #d9d7ce; --border-ui: #3e445e; --border-strong: #151820; --border-checkbox: #ffcc66; --accent-green-online: #bae67e; --accent-red-offline: #f07178; --editor-foreground: #cbccc6; --editor-comment: #5c677e; --editor-keyword: #ffa759; --editor-string: #bae67e; --editor-number: #ffcc66; --editor-function: #ffd580; --bg-input-rename: #565b78; --bg-context-menu: #272c3a; --bg-context-menu-hover: #3e445e; --text-context-menu: #cbccc6; --border-context-menu: #3e445e; --bg-bypass-card: #272c3a; --bg-bypass-card-hover: #3e445e; --border-bypass-card: #565b78; --text-bypass-card-title: #d9d7ce; --text-bypass-card-desc: #707a8c; }
 
 
         /* Base styles */
@@ -84,11 +47,13 @@
         .dot-yellow { background-color: var(--mac-yellow); }
         .dot-green { background-color: var(--mac-green); }
         .title-text { color: var(--text-title); font-weight: 600; font-size: 0.875rem; transition: color 0.2s ease-out; }
-        .port-info { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--text-secondary); transition: color 0.2s ease-out; }
-        .port-indicator { width: 0.6rem; height: 0.6rem; background-color: var(--accent-green); border-radius: 9999px; transition: background-color 0.2s ease-out; }
+        .port-info { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--text-secondary); transition: color 0.2s ease-out; cursor: pointer; }
+        .port-indicator { width: 0.6rem; height: 0.6rem; border-radius: 9999px; transition: background-color 0.2s ease-out; }
+        .port-indicator.online { background-color: var(--accent-green-online); }
+        .port-indicator.offline { background-color: var(--accent-red-offline); }
 
         /* Top Menu Bar - Includes separator color via border-ui */
-        .top-menu-bar { background-color: var(--bg-titlebar); padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-top: 1px solid var(--border-ui); /* Always has top border */ flex-shrink: 0; transition: background-color 0.2s ease-out, border-color 0.2s ease-out, height 0.2s ease-out, padding 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s ease-out; overflow: hidden; }
+        .top-menu-bar { background-color: var(--bg-titlebar); padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-top: 1px solid var(--border-ui); flex-shrink: 0; transition: background-color 0.2s ease-out, border-color 0.2s ease-out, height 0.2s ease-out, padding 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s ease-out; overflow: hidden; }
         .top-menu-bar.hidden { height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; visibility: hidden; border-width: 0; } /* Hide smoothly */
         .top-menu-bar button { background-color: var(--bg-button); border: 1px solid var(--border-ui); color: var(--text-button); padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 0.375rem; transition: all 0.15s ease-out; cursor: pointer; }
         .top-menu-bar button:hover { background-color: var(--bg-button-hover); }
@@ -109,7 +74,6 @@
         .content-pane { flex-grow: 1; background-color: var(--bg-content); display: flex; flex-direction: column; overflow: hidden; transition: background-color 0.2s ease-out; }
 
         /* File Tabs styling - Includes separator color via border-ui */
-        /* IMPORTANT: Added border-top here to ensure separation */
         .file-tabs-container { display: flex; align-items: center; background-color: var(--bg-tab-inactive); border-top: 1px solid var(--border-ui); border-bottom: 1px solid var(--border-ui); flex-shrink: 0; padding-left: 0.5rem; transition: background-color 0.2s ease-out, border-color 0.2s ease-out, height 0.2s ease-out, padding 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s ease-out; overflow: hidden; }
         .file-tabs-container.hidden { height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; visibility: hidden; border-width: 0; } /* Hide smoothly */
         .file-tabs-scroller { flex-grow: 1; display: flex; overflow-x: hidden; white-space: nowrap; }
@@ -143,6 +107,15 @@
         .setting-item input[type="checkbox"]:checked::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; color: var(--text-primary); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: color 0.2s ease-out; }
         .setting-item label:hover { color: var(--text-primary); }
 
+         /* Bypass Hub Layout */
+        .bypass-hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .bypass-card-link { display: block; text-decoration: none; } /* Make link block level */
+        .bypass-card { background-color: var(--bg-bypass-card); border: 1px solid var(--border-bypass-card); border-radius: var(--radius-medium); padding: 1rem; transition: background-color 0.15s ease-out, border-color 0.15s ease-out; cursor: pointer; }
+        .bypass-card-link:hover .bypass-card { background-color: var(--bg-bypass-card-hover); border-color: var(--border-ui); } /* Hover effect on link hover */
+        .bypass-card h4 { font-weight: 600; color: var(--text-bypass-card-title); margin-bottom: 0.5rem; transition: color 0.2s ease-out; }
+        .bypass-card p { font-size: 0.8rem; color: var(--text-bypass-card-desc); display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s ease-out; }
+        .bypass-card p i { font-size: 0.85em; }
+
         /* Theme selection buttons */
         .theme-button { background-color: var(--bg-button); color: var(--text-button); border: 1px solid var(--border-ui); padding: 0.5rem 1rem; border-radius: 0.375rem; cursor: pointer; transition: all 0.15s ease-out; margin-right: 0.5rem; margin-bottom: 0.5rem; }
         .theme-button:hover { background-color: var(--bg-button-hover); }
@@ -169,15 +142,15 @@
         <div class="title-bar">
             <div class="window-controls"> <div class="control-dot dot-red"></div> <div class="control-dot dot-yellow"></div> <div class="control-dot dot-green"></div> </div>
             <div class="title-text">Macsploit V2</div>
-            <div class="port-info"> <div class="port-indicator"></div> <span>Port: 5553</span> </div>
+            <div class="port-info" id="port-info"> <div class="port-indicator offline" id="port-indicator"></div> <span>Port: 5553</span> </div>
         </div>
 
-        <div class="top-menu-bar hidden" id="top-menu-bar"> <button><i class="fas fa-play"></i> Execute</button> <button><i class="fas fa-eraser"></i> Clear</button> <button><i class="fas fa-folder-open"></i> Open File</button> <button><i class="fas fa-file-code"></i> Exec File</button> <button><i class="fas fa-save"></i> Save File</button> </div>
+        <div class="top-menu-bar hidden" id="top-menu-bar"> <button id="execute-btn"><i class="fas fa-play"></i> Execute</button> <button id="clear-btn"><i class="fas fa-eraser"></i> Clear</button> <button id="open-file-btn"><i class="fas fa-folder-open"></i> Open File</button> <button id="exec-file-btn"><i class="fas fa-file-code"></i> Exec File</button> <button id="save-file-btn"><i class="fas fa-save"></i> Save File</button> </div>
 
         <div class="main-content-wrapper">
             <div class="sidebar">
                 <div class="sidebar-tab active" data-tab="editor"> <i class="fas fa-code"></i> <span>Script Editor</span> </div>
-                <div class="sidebar-tab" data-tab="library"> <i class="fas fa-search"></i> <span>Script Library</span> </div>
+                <div class="sidebar-tab" data-tab="bypass-hub"> <i class="fas fa-shield-alt"></i> <span>Bypass Hub</span> </div>
                 <div class="sidebar-tab" data-tab="settings"> <i class="fas fa-cog"></i> <span>Settings</span> </div>
                 <div class="sidebar-tab" data-tab="themes"> <i class="fas fa-palette"></i> <span>Themes</span> </div>
             </div>
@@ -185,22 +158,35 @@
             <div class="content-pane">
                 <div class="file-tabs-container hidden" id="file-tabs-container">
                     <button class="tab-scroll-btn" id="tab-scroll-left"><i class="fas fa-chevron-left"></i></button>
-                    <div class="file-tabs-scroller" id="file-tabs-scroller">
-                         </div>
+                    <div class="file-tabs-scroller" id="file-tabs-scroller"> </div>
                     <button class="tab-scroll-btn" id="tab-scroll-right"><i class="fas fa-chevron-right"></i></button>
                     <button class="add-tab-button" id="add-tab-button" title="New Tab"><i class="fas fa-plus"></i></button>
                 </div>
 
                 <div class="editor-container">
                     <div class="tab-content hidden" id="editor-content"> <div id="monaco-editor-container"></div> </div>
-                    <div class="tab-content hidden" id="library-content"> <h2 class="text-xl font-semibold mb-4">Script Library</h2> <p class="text-secondary">Browse or search scripts...</p> </div>
+                    <div class="tab-content hidden" id="bypass-hub-content">
+                         <h2 class="text-xl font-semibold mb-6">Bypass Hub</h2>
+                         <div class="bypass-hub-grid">
+                            <a href="https://rip.linkvertise.lol" target="_blank" rel="noopener noreferrer" class="bypass-card-link"> <div class="bypass-card"> <h4>rip.linkvertise.lol</h4> <p>Bypasses Linkvertise links.</p> </div> </a>
+                            <a href="https://bypass.link" target="_blank" rel="noopener noreferrer" class="bypass-card-link"> <div class="bypass-card"> <h4>bypass.link</h4> <p>General link shortener bypass.</p> </div> </a>
+                            <a href="https://bypass.city" target="_blank" rel="noopener noreferrer" class="bypass-card-link"> <div class="bypass-card"> <h4>bypass.city</h4> <p>Another link bypass service.</p> </div> </a>
+                            <a href="https://bypassunlock.com" target="_blank" rel="noopener noreferrer" class="bypass-card-link"> <div class="bypass-card"> <h4>bypassunlock.com</h4> <p>Unlock content behind links.</p> </div> </a>
+                            <a href="https://unshorten.it" target="_blank" rel="noopener noreferrer" class="bypass-card-link"> <div class="bypass-card"> <h4>unshorten.it</h4> <p>Reveals original URLs.</p> </div> </a>
+                            <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer" class="bypass-card-link"> <div class="bypass-card"> <h4>chat.deepseek.com</h4> <p>AI Chat (Not a bypass site).</p> </div> </a>
+                         </div>
+                    </div>
                     <div class="tab-content hidden" id="settings-content">
                          <h2 class="text-xl font-semibold mb-6">Settings</h2>
                          <div class="settings-grid">
-                             <div class="settings-section"> <h3>Main Settings - Raptor</h3> <div class="setting-item"> <label for="auto-execute">Auto Execute</label> <input type="checkbox" id="auto-execute" checked> </div> <div class="setting-item"> <label for="uncap-fps">Uncap Fps</label> <input type="checkbox" id="uncap-fps"> </div> <div class="setting-item"> <label for="protect-errors">Protect Errors</label> <input type="checkbox" id="protect-errors" checked> </div> <div class="setting-item"> <label for="hwid-spoofer">HWID Spoofer</label> <input type="checkbox" id="hwid-spoofer" checked> </div> </div>
-                             <div class="settings-section"> <h3>Sandbox Settings - Raptor</h3> <div class="setting-item"> <label for="allow-fs">Allow File System</label> <input type="checkbox" id="allow-fs" checked> </div> <div class="setting-item"> <label for="allow-ws">Allow WebSocket Library</label> <input type="checkbox" id="allow-ws"> </div> <div class="setting-item"> <label for="allow-http">Allow HTTP Traffic</label> <input type="checkbox" id="allow-http" checked> </div> <div class="setting-item"> <label for="allow-queue">Allow Queue On Teleport</label> <input type="checkbox" id="allow-queue" checked> </div> </div>
-                             <div class="settings-section"> <h3>Environment Settings - Raptor</h3> <div class="setting-item"> <label for="allow-teleport">Allow Server Teleports</label> <input type="checkbox" id="allow-teleport" checked> </div> <div class="setting-item"> <label for="bypass-place">Bypass Place Restrictions</label> <input type="checkbox" id="bypass-place" checked> </div> <div class="setting-item"> <label for="dump-scripts">Dump All Scripts on Join</label> <input type="checkbox" id="dump-scripts"> </div> <div class="setting-item"> <label for="inject-auto">Inject MacSploit (Auto)</label> <input type="checkbox" id="inject-auto" checked> </div> <div class="setting-item"> <label for="script-compat">Script Compatibility Mode</label> <input type="checkbox" id="script-compat"> </div> </div>
-                             <div class="settings-section"> <h3>Misc Settings - Raptor</h3> <div class="setting-item"> <label for="norb-unc">Norb UNC Improvements</label> <input type="checkbox" id="norb-unc" checked> </div> <div class="setting-item"> <label for="http-improve">HTTP Improvements</label> <input type="checkbox" id="http-improve" checked> </div> <div class="setting-item"> <label for="macsploit-presence">Macsploit Presence</label> <input type="checkbox" id="macsploit-presence"> </div> <div class="setting-item"> <label for="discord-presence">Discord Presence</label> <input type="checkbox" id="discord-presence" checked> </div> <div class="setting-item"> <label for="dec-sandbox">Decreased Sandbox</label> <input type="checkbox" id="dec-sandbox" checked> </div> </div>
+                             <div class="settings-section"> <h3>Main Settings - Raptor</h3> <div class="setting-item"> <label for="auto-execute">Auto Execute</label> <input type="checkbox" id="auto-execute" data-setting="auto-execute" checked> </div> <div class="setting-item"> <label for="uncap-fps">Uncap Fps</label> <input type="checkbox" id="uncap-fps" data-setting="uncap-fps"> </div> <div class="setting-item"> <label for="protect-errors">Protect Errors</label> <input type="checkbox" id="protect-errors" data-setting="protect-errors" checked> </div> <div class="setting-item"> <label for="hwid-spoofer">HWID Spoofer</label> <input type="checkbox" id="hwid-spoofer" data-setting="hwid-spoofer" checked> </div> </div>
+                             <div class="settings-section"> <h3>Sandbox Settings - Raptor</h3> <div class="setting-item"> <label for="allow-fs">Allow File System</label> <input type="checkbox" id="allow-fs" data-setting="allow-fs" checked> </div> <div class="setting-item"> <label for="allow-ws">Allow WebSocket Library</label> <input type="checkbox" id="allow-ws" data-setting="allow-ws"> </div> <div class="setting-item"> <label for="allow-http">Allow HTTP Traffic</label> <input type="checkbox" id="allow-http" data-setting="allow-http" checked> </div> <div class="setting-item"> <label for="allow-queue">Allow Queue On Teleport</label> <input type="checkbox" id="allow-queue" data-setting="allow-queue" checked> </div> </div>
+                             <div class="settings-section"> <h3>Environment Settings - Raptor</h3> <div class="setting-item"> <label for="allow-teleport">Allow Server Teleports</label> <input type="checkbox" id="allow-teleport" data-setting="allow-teleport" checked> </div> <div class="setting-item"> <label for="bypass-place">Bypass Place Restrictions</label> <input type="checkbox" id="bypass-place" data-setting="bypass-place" checked> </div> <div class="setting-item"> <label for="dump-scripts">Dump All Scripts on Join</label> <input type="checkbox" id="dump-scripts" data-setting="dump-scripts"> </div> <div class="setting-item"> <label for="inject-auto">Inject MacSploit (Auto)</label> <input type="checkbox" id="inject-auto" data-setting="inject-auto" checked> </div> <div class="setting-item"> <label for="script-compat">Script Compatibility Mode</label> <input type="checkbox" id="script-compat" data-setting="script-compat"> </div> </div>
+                             <div class="settings-section"> <h3>Misc Settings - Raptor</h3> <div class="setting-item"> <label for="norb-unc">Norb UNC Improvements</label> <input type="checkbox" id="norb-unc" data-setting="norb-unc" checked> </div> <div class="setting-item"> <label for="http-improve">HTTP Improvements</label> <input type="checkbox" id="http-improve" data-setting="http-improve" checked> </div> <div class="setting-item"> <label for="macsploit-presence">Macsploit Presence</label> <input type="checkbox" id="macsploit-presence" data-setting="macsploit-presence"> </div> <div class="setting-item"> <label for="discord-presence">Discord Presence</label> <input type="checkbox" id="discord-presence" data-setting="discord-presence" checked> </div> <div class="setting-item"> <label for="dec-sandbox">Decreased Sandbox</label> <input type="checkbox" id="dec-sandbox" data-setting="dec-sandbox" checked> </div> </div>
+                             <div class="settings-section">
+                                 <h3>Editor Settings</h3>
+                                 <div class="setting-item"> <label for="show-minimap">Show Minimap</label> <input type="checkbox" id="show-minimap" data-setting="show-minimap"> </div>
+                             </div>
                          </div>
                          <div class="mt-8 text-sm text-muted flex justify-between"> <span>Developed by Nexus42</span> <span>More Coming Soon</span> </div>
                     </div>
@@ -239,9 +225,10 @@
         let currentTheme = localStorage.getItem('appTheme') || 'dark';
         let tabCounter = 0;
         let activeTabId = null;
-        let editorModels = {}; // { id: { model: monacoModel, title: string } }
+        let editorModels = {}; // { id: { model: monaco.editor.ITextModel, title: string, path?: string } }
+        let showMinimap = localStorage.getItem('showMinimap') === 'true';
 
-        // DOM Element References
+        // DOM Element References (ensure they are correct)
         const topMenuBar = document.getElementById('top-menu-bar');
         const fileTabsContainer = document.getElementById('file-tabs-container');
         const fileTabsScroller = document.getElementById('file-tabs-scroller');
@@ -257,7 +244,13 @@
         const closeTabBtn = document.getElementById('close-tab-btn');
         const scrollLeftBtn = document.getElementById('tab-scroll-left');
         const scrollRightBtn = document.getElementById('tab-scroll-right');
+        const portIndicator = document.getElementById('port-indicator');
+        const portInfo = document.getElementById('port-info');
         let contextMenuTargetTabId = null;
+
+        // --- Simulated API State ---
+        let isConnected = false;
+        let connectionError = null;
 
         const initialCode = `local Params = {
     RepoURL = "https://raw.githubusercontent.com/luau/SynSaveInstance/main/",
@@ -270,33 +263,45 @@ synsaveinstance(Options)`;
         // --- Monaco Editor Initialization ---
         require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs' }});
         require(['vs/editor/editor.main'], function() {
-            // Define themes *before* creating editor
+            // Define themes *before* creating editor that uses them
             defineCustomMonacoThemes();
 
             if (editorContainer) {
                  editor = monaco.editor.create(editorContainer, {
-                    model: null, // Start with no model
-                    language: 'lua',
-                    theme: getMonacoThemeName(currentTheme), // Set initial theme
-                    automaticLayout: true, minimap: { enabled: false },
+                    model: null, language: 'lua', theme: getMonacoThemeName(currentTheme),
+                    automaticLayout: true,
+                    minimap: { enabled: showMinimap }, // Apply initial minimap state
                     scrollbar: { verticalScrollbarSize: 8, horizontalScrollbarSize: 8 },
                     fontFamily: '"Source Code Pro", monospace', fontSize: 14
                 });
-                 console.log("Monaco Editor Initialized with theme:", getMonacoThemeName(currentTheme));
+                 console.log("Monaco Editor Initialized");
 
-                 // Apply app theme *before* creating first tab
-                 applyTheme(currentTheme);
+                 applyTheme(currentTheme); // Apply app theme
+                 createNewTab(); // Create and activate the initial tab
 
-                 // Create and activate the first tab
-                 createNewTab();
-
-                 // Show editor pane and conditional UI
+                 // Show editor pane and conditional UI *after* editor is ready and first tab exists
                  editorContentPane.classList.remove('hidden');
-                 updateConditionalUI('editor'); // Show editor UI elements
+                 updateConditionalUI('editor');
+                 updatePortIndicator();
+
+                 // Set initial minimap checkbox state
+                 const minimapCheckbox = document.getElementById('show-minimap');
+                 if (minimapCheckbox instanceof HTMLInputElement) minimapCheckbox.checked = showMinimap;
 
 
             } else { console.error("Monaco editor container not found!"); }
         });
+
+        // --- Simulated API Functions ---
+        function connect() { if (isConnected) return; console.log("Simulating connection..."); connectionError = null; updatePortIndicator(); setTimeout(() => { isConnected = true; updatePortIndicator(); console.log("Connected (Simulated)"); }, 500); }
+        function disconnect() { if (!isConnected) return; console.log("Simulating disconnection..."); isConnected = false; connectionError = "Disconnected"; updatePortIndicator(); }
+        function updatePortIndicator() { if (!portIndicator || !portInfo) return; portIndicator.classList.toggle('online', isConnected); portIndicator.classList.toggle('offline', !isConnected); portInfo.title = isConnected ? "Connected" : (connectionError || "Disconnected - Click to Connect"); }
+        function executeScript(script) { if (!isConnected) { console.warn("Not connected"); return; } console.log("Simulating Execute:", script.substring(0, 50) + '...'); }
+        function clearEditor() { if (!isConnected) { console.warn("Not connected"); return; } console.log("Simulating Clear"); if (editor && activeTabId && editorModels[activeTabId]) editorModels[activeTabId].model.setValue(''); }
+        async function openFile() { console.log("Simulating Open File..."); alert("File operations require Tauri backend."); return null; /* Needs Tauri API */ }
+        async function executeFile() { console.log("Simulating Exec File..."); alert("File operations require Tauri backend."); }
+        async function saveFile(content, path) { console.log("Simulating Save File...", path || '(Save As)'); alert("File operations require Tauri backend."); return null; /* Needs Tauri API */ }
+        function toggleSetting(name, value) { if (!isConnected) { console.warn("Not connected"); return false; } console.log(`Simulating toggle setting ${name} to ${value}`); return true; }
 
         // --- Tab Management ---
         function createTabElement(id, title, isActive = false) {
@@ -314,7 +319,7 @@ synsaveinstance(Options)`;
             closeBtn.innerHTML = '<i class="fas fa-times text-xs pointer-events-none"></i>';
             closeBtn.classList.add('tab-close-btn');
             closeBtn.title = "Close Tab";
-            closeBtn.dataset.tabId = id;
+            closeBtn.dataset.tabId = id; // Link button to tab ID for the click listener
 
             tabElement.appendChild(titleSpan);
             tabElement.appendChild(closeBtn);
@@ -325,54 +330,40 @@ synsaveinstance(Options)`;
         }
 
         function getOrCreateModel(tabId, title) {
-            if (!editorModels[tabId]) {
-                let content = (tabId === 'tab-1' && tabCounter === 1) ? initialCode : `-- ${title}\n`;
-                editorModels[tabId] = {
-                    model: monaco.editor.createModel(content, 'lua'),
-                    title: title
-                };
-                console.log(`Created model for ${tabId}`);
-            }
-            return editorModels[tabId].model;
-        }
+             if (!editorModels[tabId]) {
+                 let content = (tabId === 'tab-1' && tabCounter === 1) ? initialCode : `-- ${title}\n`;
+                 editorModels[tabId] = {
+                     model: monaco.editor.createModel(content, 'lua'),
+                     title: title
+                 };
+                 console.log(`Created model for ${tabId}`);
+             }
+             return editorModels[tabId].model;
+         }
 
         function setActiveTab(tabId) {
-            if (!editor || !editorModels[tabId]) {
-                // If model doesn't exist (e.g., after closing all but one), try creating it
-                if (tabId && !editorModels[tabId]) {
-                     const tabElement = fileTabsScroller.querySelector(`.file-tab[data-file="${tabId}"]`);
-                     const title = tabElement ? tabElement.querySelector('.tab-title').textContent : `Tab - ${tabId.split('-')[1]}`;
-                     getOrCreateModel(tabId, title); // This will create the model
-                } else if (!tabId) {
-                     console.error("setActiveTab called with null or undefined tabId");
-                     return;
-                } else {
-                     console.error(`setActiveTab: Editor not ready or model missing for ${tabId}`);
-                     return;
-                }
+            if (!editor) return;
+            if (!editorModels[tabId]) {
+                 const tabElement = fileTabsScroller.querySelector(`.file-tab[data-file="${tabId}"]`);
+                 const title = tabElement ? tabElement.querySelector('.tab-title').textContent : `Tab - ${tabId.split('-')[1]}`;
+                 getOrCreateModel(tabId, title);
+                 if (!editorModels[tabId]) { console.error(`Failed to create or find model for ${tabId}`); return; }
             }
-
 
             activeTabId = tabId;
             const allTabs = fileTabsScroller.querySelectorAll('.file-tab');
-            allTabs.forEach(t => {
-                t.classList.toggle('active', t.dataset.file === tabId);
-            });
+            allTabs.forEach(t => { t.classList.toggle('active', t.dataset.file === tabId); });
 
             const model = editorModels[tabId].model;
-            if (editor.getModel() !== model) {
-                editor.setModel(model);
-                console.log(`Switched editor model to ${tabId}`);
-            }
+            if (editor.getModel() !== model) { editor.setModel(model); console.log(`Switched editor model to ${tabId}`); }
             editorContentPane.classList.remove('hidden');
              const activeTabElement = fileTabsScroller.querySelector(`.file-tab[data-file="${tabId}"]`);
-             if (activeTabElement) {
-                 activeTabElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-             }
+             if (activeTabElement) { activeTabElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' }); }
              checkTabOverflow();
         }
 
         function createNewTab() {
+             if (!editor) { console.error("Editor not ready for new tab"); return; }
              tabCounter++;
              const newTabId = `tab-${tabCounter}`;
              const newTabTitle = `Tab - ${tabCounter}`;
@@ -385,10 +376,7 @@ synsaveinstance(Options)`;
             const modelData = editorModels[tabId];
             const allTabs = fileTabsScroller.querySelectorAll('.file-tab');
 
-            if (!tabElement || !modelData || allTabs.length <= 1) {
-                console.log("Cannot close the last tab.");
-                return;
-            }
+            if (!tabElement || !modelData || allTabs.length <= 1) { console.log("Cannot close the last tab."); return; }
             console.log(`Closing tab: ${tabId}`);
             modelData.model.dispose(); delete editorModels[tabId];
 
@@ -398,18 +386,19 @@ synsaveinstance(Options)`;
             if (tabElement.classList.contains('active')) {
                  if (tabIndex > 0) { nextActiveTabId = allTabs[tabIndex - 1].dataset.file; }
                  else if (allTabs.length > 1) { nextActiveTabId = allTabs[1].dataset.file; }
+            } else {
+                nextActiveTabId = activeTabId; // Keep current active tab if closing inactive
             }
+
             tabElement.remove();
             checkTabOverflow();
 
-            if (nextActiveTabId) { setActiveTab(nextActiveTabId); }
-            else {
-                // If the closed tab wasn't active, we don't need to switch, but ensure *something* is active if tabs remain
-                const remainingTabs = fileTabsScroller.querySelectorAll('.file-tab');
-                if (remainingTabs.length > 0 && !activeTabId) { // If activeTabId became null somehow
-                    setActiveTab(remainingTabs[0].dataset.file);
-                }
-            }
+            const remainingTabs = fileTabsScroller.querySelectorAll('.file-tab');
+            if (remainingTabs.length > 0 && nextActiveTabId && editorModels[nextActiveTabId]) {
+                 setActiveTab(nextActiveTabId);
+            } else if (remainingTabs.length > 0) {
+                 setActiveTab(remainingTabs[0].dataset.file); // Fallback to first
+            } else { editor.setModel(null); activeTabId = null; updateConditionalUI('none'); }
         }
 
         function initiateRename(tabId) {
@@ -442,26 +431,24 @@ synsaveinstance(Options)`;
 
         // --- Tab Scrolling ---
         function checkTabOverflow() {
-            // Use timeout to allow DOM updates to settle before checking geometry
             setTimeout(() => {
+                if (!fileTabsScroller) return;
                 const containerWidth = fileTabsScroller.offsetWidth;
                 const contentWidth = fileTabsScroller.scrollWidth;
                 const scrollLeft = fileTabsScroller.scrollLeft;
-
-                scrollLeftBtn.style.display = scrollLeft > 5 ? 'block' : 'none'; // Add small buffer
-                scrollRightBtn.style.display = contentWidth > containerWidth && scrollLeft < (contentWidth - containerWidth - 5) ? 'block' : 'none'; // Add small buffer
-            }, 50); // 50ms delay
+                scrollLeftBtn.style.display = scrollLeft > 5 ? 'block' : 'none';
+                scrollRightBtn.style.display = contentWidth > containerWidth && scrollLeft < (contentWidth - containerWidth - 5) ? 'block' : 'none';
+            }, 50);
         }
 
         scrollLeftBtn.addEventListener('click', () => { fileTabsScroller.scrollBy({ left: -150, behavior: 'smooth' }); setTimeout(checkTabOverflow, 300); });
         scrollRightBtn.addEventListener('click', () => { fileTabsScroller.scrollBy({ left: 150, behavior: 'smooth' }); setTimeout(checkTabOverflow, 300); });
-        new ResizeObserver(checkTabOverflow).observe(fileTabsScroller);
+        if (fileTabsScroller) new ResizeObserver(checkTabOverflow).observe(fileTabsScroller);
         addTabButton.addEventListener('click', checkTabOverflow);
 
 
         // --- Event Listeners ---
         addTabButton.addEventListener('click', createNewTab);
-
         fileTabsContainer.addEventListener('contextmenu', (event) => {
             const clickedTab = event.target.closest('.file-tab');
             if (clickedTab && clickedTab.dataset.file) {
@@ -474,33 +461,67 @@ synsaveinstance(Options)`;
         });
 
         fileTabsContainer.addEventListener('click', (event) => {
-            hideContextMenu();
-            const closeButton = event.target.closest('.tab-close-btn');
-            const clickedTab = event.target.closest('.file-tab');
+            hideContextMenu(); // Hide on any left click
+            const targetElement = event.target;
+            const closeButton = targetElement.closest('.tab-close-btn');
+            const clickedTab = targetElement.closest('.file-tab');
 
             if (closeButton) {
-                event.stopPropagation();
+                event.stopPropagation(); // Important: Prevent tab activation
                 const tabIdToClose = closeButton.dataset.tabId;
-                closeTab(tabIdToClose);
+                if(tabIdToClose) closeTab(tabIdToClose);
             } else if (clickedTab && clickedTab.dataset.file) {
-                setActiveTab(clickedTab.dataset.file);
+                 // Only activate if not clicking the close button itself
+                 if (!targetElement.closest('.tab-close-btn')) {
+                    setActiveTab(clickedTab.dataset.file);
+                 }
             }
         });
+
 
         renameTabBtn.addEventListener('click', () => { if (contextMenuTargetTabId) { initiateRename(contextMenuTargetTabId); } hideContextMenu(); });
         closeTabBtn.addEventListener('click', () => { if (contextMenuTargetTabId) { closeTab(contextMenuTargetTabId); } hideContextMenu(); });
         function hideContextMenu() { contextMenu.style.display = 'none'; contextMenuTargetTabId = null; }
         document.addEventListener('click', hideContextMenu);
         document.addEventListener('scroll', hideContextMenu, true);
+        portInfo.addEventListener('click', () => isConnected ? disconnect() : connect());
+
+        // Top Menu Button Listeners (Simulated)
+        document.getElementById('execute-btn')?.addEventListener('click', () => { if (editor && activeTabId && editorModels[activeTabId]) executeScript(editorModels[activeTabId].model.getValue()); });
+        document.getElementById('clear-btn')?.addEventListener('click', clearEditor);
+        document.getElementById('open-file-btn')?.addEventListener('click', async () => { const data = await openFile(); if (data && editor && activeTabId && editorModels[activeTabId]) editorModels[activeTabId].model.setValue(data.content); /* TODO: Handle path/title */ });
+        document.getElementById('exec-file-btn')?.addEventListener('click', executeFile);
+        document.getElementById('save-file-btn')?.addEventListener('click', async () => { if (editor && activeTabId && editorModels[activeTabId]) await saveFile(editorModels[activeTabId].model.getValue(), editorModels[activeTabId].path); /* TODO: Handle returned path */ });
+
+        // Settings Checkbox Listeners
+        document.getElementById('settings-content')?.addEventListener('change', (event) => {
+            const target = event.target;
+            if (target instanceof HTMLInputElement && target.type === 'checkbox' && target.dataset.setting) {
+                 const settingName = target.dataset.setting;
+                 const newValue = target.checked;
+                 console.log(`Checkbox change: ${settingName} = ${newValue}`);
+
+                 if (settingName === 'show-minimap') {
+                     showMinimap = newValue;
+                     localStorage.setItem('showMinimap', String(showMinimap));
+                     if (editor) {
+                         editor.updateOptions({ minimap: { enabled: showMinimap } });
+                         console.log(`Set editor minimap to: ${showMinimap}`);
+                     }
+                 } else {
+                     const success = toggleSetting(settingName, newValue);
+                     if (!success) { target.checked = !newValue; }
+                 }
+            }
+        });
 
 
         // --- Sidebar Tab Switching & Conditional UI ---
         function updateConditionalUI(activeSidebarTab) {
             const isEditorTab = activeSidebarTab === 'editor';
-            // Apply immediately now that init order is fixed
             topMenuBar?.classList.toggle('hidden', !isEditorTab);
-            fileTabsContainer?.classList.toggle('hidden', !isEditorTab); // Toggle container
-            checkTabOverflow(); // Update scroll buttons when visibility changes
+            fileTabsContainer?.classList.toggle('hidden', !isEditorTab);
+            checkTabOverflow();
         }
 
         sidebarTabs.forEach(tab => {
