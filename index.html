@@ -3,44 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Macsploit V2 Concept</title>
+    <title>Macsploit UI Refresh</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs/loader.js"></script>
     <style>
-        /* --- Base Theme (Dark - Matches Screenshot) --- */
         :root {
             --bg-window: #212121; --bg-titlebar: #2B2B2B; --bg-sidebar: #212121; --bg-content: #1C1C1C; --bg-button: #3A3A3A; --bg-button-hover: #454545; --bg-tab-inactive: #2B2B2B; --bg-tab-active: #1C1C1C; --bg-sidebar-active: #3A3A3A; --bg-checkbox: #3A3A3A; --bg-checkbox-checked: #5E5E5E; --bg-input-rename: #4F4F4F; --bg-context-menu: #3A3A3A; --bg-context-menu-hover: #4A4A4A; --bg-bypass-card: #2B2B2B; --bg-bypass-card-hover: #333333;
             --text-primary: #E0E0E0; --text-secondary: #A0A0A0; --text-muted: #757575; --text-title: #CCCCCC; --text-button: #D5D5D5; --text-sidebar-active: #FFFFFF; --text-settings-header: #CCCCCC; --text-context-menu: #E0E0E0; --text-bypass-card-title: #E0E0E0; --text-bypass-card-desc: #A0A0A0;
-            --editor-foreground: #E0E0E0; --editor-comment: #6A9955; --editor-keyword: #569CD6; --editor-string: #CE9178; --editor-number: #b5cea8; --editor-function: #DCDCAA;
+            --editor-foreground: #E0E0E0; --editor-comment: #6A9955; --editor-keyword: #569CD6; --editor-string: #CE9178; --editor-number: #b5cea8; --editor-function: #DCDCAA; --editor-selection-background: #264F78; --editor-cursor-foreground: #E0E0E0;
             --border-ui: #333333; --border-strong: #111111; --border-checkbox: #555555; --border-context-menu: #555555; --border-bypass-card: #404040;
             --mac-red: #FF5F57; --mac-yellow: #FEBC2e; --mac-green: #28C840; --accent-green-online: #32CD32; --accent-red-offline: #FF5F57;
             --font-primary: 'Inter', sans-serif;
+            --radius-medium: 0.375rem;
         }
-        /* --- Theme Definitions (Ensure --border-ui is set in each) --- */
-        .light-theme { --bg-window: #F3F3F3; --bg-titlebar: #EAEAEA; --bg-sidebar: #F3F3F3; --bg-content: #FFFFFF; --bg-button: #E0E0E0; --bg-button-hover: #D5D5D5; --bg-tab-inactive: #EAEAEA; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #D5D5D5; --bg-checkbox: #E0E0E0; --bg-checkbox-checked: #C0C0C0; --text-primary: #202020; --text-secondary: #555555; --text-muted: #888888; --text-title: #333333; --text-button: #252525; --text-sidebar-active: #000000; --text-settings-header: #444444; --border-ui: #DCDCDC; --border-strong: #C0C0C0; --border-checkbox: #B0B0B0; --accent-green-online: #28A745; --accent-red-offline: #DC3545; --editor-foreground: #333333; --editor-comment: #008000; --editor-keyword: #0000FF; --editor-string: #A31515; --editor-number: #098658; --editor-function: #795E26; --bg-input-rename: #FFFFFF; --bg-context-menu: #FFFFFF; --bg-context-menu-hover: #F0F0F0; --text-context-menu: #202020; --border-context-menu: #D0D0D0; --bg-bypass-card: #EAEAEA; --bg-bypass-card-hover: #DADADA; --border-bypass-card: #D0D0D0; --text-bypass-card-title: #202020; --text-bypass-card-desc: #555555; }
-        .ocean-blue-theme { --bg-window: #1E2A3A; --bg-titlebar: #263446; --bg-sidebar: #1E2A3A; --bg-content: #16202C; --bg-button: #3A506B; --bg-button-hover: #4A6585; --bg-tab-inactive: #263446; --bg-tab-active: #16202C; --bg-sidebar-active: #3A506B; --bg-checkbox: #3A506B; --bg-checkbox-checked: #4A6585; --text-primary: #C0D0E0; --text-secondary: #8095AD; --text-muted: #607A90; --text-title: #D0E0F0; --text-button: #E0F0FF; --text-sidebar-active: #FFFFFF; --text-settings-header: #D0E0F0; --border-ui: #2D4055; --border-strong: #101822; --border-checkbox: #507090; --accent-green-online: #36AE7C; --accent-red-offline: #E16B6B; --editor-foreground: #C0D0E0; --editor-comment: #607A90; --editor-keyword: #5d9cec; --editor-string: #c3e88d; --editor-number: #f78c6c; --editor-function: #82aaff; --bg-input-rename: #4A6585; --bg-context-menu: #263446; --bg-context-menu-hover: #3A506B; --text-context-menu: #C0D0E0; --border-context-menu: #3A506B; --bg-bypass-card: #263446; --bg-bypass-card-hover: #304055; --border-bypass-card: #3A506B; --text-bypass-card-title: #C0D0E0; --text-bypass-card-desc: #8095AD; }
-        .monokai-theme { --bg-window: #272822; --bg-titlebar: #3A3B34; --bg-sidebar: #272822; --bg-content: #2D2E27; --bg-button: #49483E; --bg-button-hover: #5A5950; --bg-tab-inactive: #3A3B34; --bg-tab-active: #2D2E27; --bg-sidebar-active: #49483E; --bg-checkbox: #49483E; --bg-checkbox-checked: #75715E; --text-primary: #F8F8F2; --text-secondary: #A0A095; --text-muted: #75715E; --text-title: #E0E0DA; --text-button: #F0F0EA; --text-sidebar-active: #FFFFFF; --text-settings-header: #E0E0DA; --border-ui: #44453E; --border-strong: #1A1A16; --border-checkbox: #656358; --accent-green-online: #A6E22E; --accent-red-offline: #F92672; --editor-foreground: #F8F8F2; --editor-comment: #75715E; --editor-keyword: #F92672; --editor-string: #E6DB74; --editor-number: #AE81FF; --editor-function: #A6E22E; --bg-input-rename: #5A5950; --bg-context-menu: #3A3B34; --bg-context-menu-hover: #49483E; --text-context-menu: #F8F8F2; --border-context-menu: #49483E; --bg-bypass-card: #3A3B34; --bg-bypass-card-hover: #49483E; --border-bypass-card: #5A5950; --text-bypass-card-title: #F8F8F2; --text-bypass-card-desc: #A0A095; }
-        .solarized-dark-theme { --bg-window: #002b36; --bg-titlebar: #073642; --bg-sidebar: #002b36; --bg-content: #00252E; --bg-button: #586e75; --bg-button-hover: #657b83; --bg-tab-inactive: #073642; --bg-tab-active: #00252E; --bg-sidebar-active: #586e75; --bg-checkbox: #586e75; --bg-checkbox-checked: #839496; --text-primary: #839496; --text-secondary: #586e75; --text-muted: #4a5f68; --text-title: #93a1a1; --text-button: #eee8d5; --text-sidebar-active: #fdf6e3; --text-settings-header: #93a1a1; --border-ui: #073642; --border-strong: #001f27; --border-checkbox: #657b83; --accent-green-online: #859900; --accent-red-offline: #dc322f; --editor-foreground: #839496; --editor-comment: #586e75; --editor-keyword: #859900; --editor-string: #2aa198; --editor-number: #d33682; --editor-function: #268bd2; --bg-input-rename: #657b83; --bg-context-menu: #073642; --bg-context-menu-hover: #586e75; --text-context-menu: #93a1a1; --border-context-menu: #586e75; --bg-bypass-card: #073642; --bg-bypass-card-hover: #586e75; --border-bypass-card: #586e75; --text-bypass-card-title: #93a1a1; --text-bypass-card-desc: #586e75; }
-        .solarized-light-theme { --bg-window: #fdf6e3; --bg-titlebar: #eee8d5; --bg-sidebar: #fdf6e3; --bg-content: #ffffff; --bg-button: #eee8d5; --bg-button-hover: #dcd5c2; --bg-tab-inactive: #eee8d5; --bg-tab-active: #ffffff; --bg-sidebar-active: #dcd5c2; --bg-checkbox: #eee8d5; --bg-checkbox-checked: #b8b09c; --text-primary: #657b83; --text-secondary: #93a1a1; --text-muted: #aab6b9; --text-title: #586e75; --text-button: #073642; --text-sidebar-active: #002b36; --text-settings-header: #586e75; --border-ui: #eee8d5; --border-strong: #dcd5c2; --border-checkbox: #93a1a1; --accent-green-online: #859900; --accent-red-offline: #dc322f; --editor-foreground: #657b83; --editor-comment: #93a1a1; --editor-keyword: #859900; --editor-string: #2aa198; --editor-number: #d33682; --editor-function: #268bd2; --bg-input-rename: #ffffff; --bg-context-menu: #ffffff; --bg-context-menu-hover: #eee8d5; --text-context-menu: #586e75; --border-context-menu: #eee8d5; --bg-bypass-card: #eee8d5; --bg-bypass-card-hover: #f5efe2; --border-bypass-card: #dcd5c2; --text-bypass-card-title: #586e75; --text-bypass-card-desc: #93a1a1; }
-        .dracula-theme { --bg-window: #282a36; --bg-titlebar: #3a3c4a; --bg-sidebar: #282a36; --bg-content: #21222C; --bg-button: #44475a; --bg-button-hover: #5a5d75; --bg-tab-inactive: #3a3c4a; --bg-tab-active: #21222C; --bg-sidebar-active: #44475a; --bg-checkbox: #44475a; --bg-checkbox-checked: #6272a4; --text-primary: #f8f8f2; --text-secondary: #bd93f9; --text-muted: #6272a4; --text-title: #f0f0ea; --text-button: #f8f8f2; --text-sidebar-active: #f8f8f2; --text-settings-header: #f0f0ea; --border-ui: #44475a; --border-strong: #191a21; --border-checkbox: #6272a4; --accent-green-online: #50fa7b; --accent-red-offline: #ff5555; --editor-foreground: #f8f8f2; --editor-comment: #6272a4; --editor-keyword: #ff79c6; --editor-string: #f1fa8c; --editor-number: #bd93f9; --editor-function: #50fa7b; --bg-input-rename: #5a5d75; --bg-context-menu: #3a3c4a; --bg-context-menu-hover: #44475a; --text-context-menu: #f8f8f2; --border-context-menu: #44475a; --bg-bypass-card: #3a3c4a; --bg-bypass-card-hover: #44475a; --border-bypass-card: #6272a4; --text-bypass-card-title: #f8f8f2; --text-bypass-card-desc: #bd93f9; }
-        .nord-theme { --bg-window: #2E3440; --bg-titlebar: #3B4252; --bg-sidebar: #2E3440; --bg-content: #272C36; --bg-button: #4C566A; --bg-button-hover: #5E81AC; --bg-tab-inactive: #3B4252; --bg-tab-active: #272C36; --bg-sidebar-active: #4C566A; --bg-checkbox: #4C566A; --bg-checkbox-checked: #88C0D0; --text-primary: #D8DEE9; --text-secondary: #81A1C1; --text-muted: #4C566A; --text-title: #ECEFF4; --text-button: #ECEFF4; --text-sidebar-active: #FFFFFF; --text-settings-header: #ECEFF4; --border-ui: #3B4252; --border-strong: #21252E; --border-checkbox: #5E81AC; --accent-green-online: #A3BE8C; --accent-red-offline: #BF616A; --editor-foreground: #D8DEE9; --editor-comment: #4C566A; --editor-keyword: #81A1C1; --editor-string: #A3BE8C; --editor-number: #B48EAD; --editor-function: #88C0D0; --bg-input-rename: #5E81AC; --bg-context-menu: #3B4252; --bg-context-menu-hover: #4C566A; --text-context-menu: #D8DEE9; --border-context-menu: #4C566A; --bg-bypass-card: #3B4252; --bg-bypass-card-hover: #434C5E; --border-bypass-card: #4C566A; --text-bypass-card-title: #ECEFF4; --text-bypass-card-desc: #81A1C1; }
-        .gruvbox-dark-theme { --bg-window: #282828; --bg-titlebar: #3c3836; --bg-sidebar: #282828; --bg-content: #1d2021; --bg-button: #504945; --bg-button-hover: #665c54; --bg-tab-inactive: #3c3836; --bg-tab-active: #1d2021; --bg-sidebar-active: #504945; --bg-checkbox: #504945; --bg-checkbox-checked: #928374; --text-primary: #ebdbb2; --text-secondary: #a89984; --text-muted: #7c6f64; --text-title: #fbf1c7; --text-button: #fbf1c7; --text-sidebar-active: #ffffff; --text-settings-header: #fbf1c7; --border-ui: #504945; --border-strong: #101213; --border-checkbox: #928374; --accent-green-online: #b8bb26; --accent-red-offline: #fb4934; --editor-foreground: #ebdbb2; --editor-comment: #928374; --editor-keyword: #fb4934; --editor-string: #b8bb26; --editor-number: #d3869b; --editor-function: #fabd2f; --bg-input-rename: #665c54; --bg-context-menu: #3c3836; --bg-context-menu-hover: #504945; --text-context-menu: #ebdbb2; --border-context-menu: #504945; --bg-bypass-card: #3c3836; --bg-bypass-card-hover: #504945; --border-bypass-card: #665c54; --text-bypass-card-title: #fbf1c7; --text-bypass-card-desc: #a89984; }
-        .one-dark-pro-theme { --bg-window: #282c34; --bg-titlebar: #3a3f4b; --bg-sidebar: #282c34; --bg-content: #21252b; --bg-button: #3a3f4b; --bg-button-hover: #4b5263; --bg-tab-inactive: #3a3f4b; --bg-tab-active: #21252b; --bg-sidebar-active: #4b5263; --bg-checkbox: #3a3f4b; --bg-checkbox-checked: #abb2bf; --text-primary: #abb2bf; --text-secondary: #61afef; --text-muted: #5c6370; --text-title: #e6efff; --text-button: #d0d8e8; --text-sidebar-active: #ffffff; --text-settings-header: #e6efff; --border-ui: #3a3f4b; --border-strong: #181a1f; --border-checkbox: #5c6370; --accent-green-online: #98c379; --accent-red-offline: #e06c75; --editor-foreground: #abb2bf; --editor-comment: #5c6370; --editor-keyword: #c678dd; --editor-string: #98c379; --editor-number: #d19a66; --editor-function: #61afef; --bg-input-rename: #4b5263; --bg-context-menu: #3a3f4b; --bg-context-menu-hover: #4b5263; --text-context-menu: #abb2bf; --border-context-menu: #4b5263; --bg-bypass-card: #3a3f4b; --bg-bypass-card-hover: #4b5263; --border-bypass-card: #5c6370; --text-bypass-card-title: #e6efff; --text-bypass-card-desc: #61afef; }
-        .github-dark-theme { --bg-window: #0d1117; --bg-titlebar: #161b22; --bg-sidebar: #0d1117; --bg-content: #06090F; --bg-button: #21262d; --bg-button-hover: #30363d; --bg-tab-inactive: #161b22; --bg-tab-active: #06090F; --bg-sidebar-active: #30363d; --bg-checkbox: #21262d; --bg-checkbox-checked: #8b949e; --text-primary: #c9d1d9; --text-secondary: #8b949e; --text-muted: #484f58; --text-title: #f0f6fc; --text-button: #e0e6ed; --text-sidebar-active: #ffffff; --text-settings-header: #f0f6fc; --border-ui: #30363d; --border-strong: #010409; --border-checkbox: #58a6ff; --accent-green-online: #3fb950; --accent-red-offline: #f85149; --editor-foreground: #c9d1d9; --editor-comment: #8b949e; --editor-keyword: #ff7b72; --editor-string: #a5d6ff; --editor-number: #79c0ff; --editor-function: #d2a8ff; --bg-input-rename: #30363d; --bg-context-menu: #161b22; --bg-context-menu-hover: #21262d; --text-context-menu: #c9d1d9; --border-context-menu: #30363d; --bg-bypass-card: #161b22; --bg-bypass-card-hover: #21262d; --border-bypass-card: #30363d; --text-bypass-card-title: #f0f6fc; --text-bypass-card-desc: #8b949e; }
-        .material-darker-theme { --bg-window: #212121; --bg-titlebar: #2a2a2a; --bg-sidebar: #212121; --bg-content: #1A1A1A; --bg-button: #323232; --bg-button-hover: #424242; --bg-tab-inactive: #2a2a2a; --bg-tab-active: #1A1A1A; --bg-sidebar-active: #424242; --bg-checkbox: #323232; --bg-checkbox-checked: #eeffff; --text-primary: #eeffff; --text-secondary: #8f93a2; --text-muted: #545c68; --text-title: #ffffff; --text-button: #e0e0e0; --text-sidebar-active: #ffffff; --text-settings-header: #ffffff; --border-ui: #353535; --border-strong: #0f0f0f; --border-checkbox: #8f93a2; --accent-green-online: #c3e88d; --accent-red-offline: #f07178; --editor-foreground: #eeffff; --editor-comment: #545c68; --editor-keyword: #c792ea; --editor-string: #c3e88d; --editor-number: #f78c6c; --editor-function: #82aaff; --bg-input-rename: #424242; --bg-context-menu: #2a2a2a; --bg-context-menu-hover: #323232; --text-context-menu: #eeffff; --border-context-menu: #323232; --bg-bypass-card: #2a2a2a; --bg-bypass-card-hover: #323232; --border-bypass-card: #424242; --text-bypass-card-title: #eeffff; --text-bypass-card-desc: #8f93a2; }
-        .cobalt-theme { --bg-window: #002240; --bg-titlebar: #003360; --bg-sidebar: #002240; --bg-content: #00192F; --bg-button: #193555; --bg-button-hover: #2a4f7a; --bg-tab-inactive: #003360; --bg-tab-active: #00192F; --bg-sidebar-active: #193555; --bg-checkbox: #193555; --bg-checkbox-checked: #ffc600; --text-primary: #ffffff; --text-secondary: #9effff; --text-muted: #0088cc; --text-title: #e0e0ff; --text-button: #f0f0ff; --text-sidebar-active: #ffffff; --text-settings-header: #e0e0ff; --border-ui: #003360; --border-strong: #001120; --border-checkbox: #ffc600; --accent-green-online: #36ae7c; --accent-red-offline: #ff5370; --editor-foreground: #ffffff; --editor-comment: #0088cc; --editor-keyword: #ff9d00; --editor-string: #3ad900; --editor-number: #ff628c; --editor-function: #ffc600; --bg-input-rename: #2a4f7a; --bg-context-menu: #003360; --bg-context-menu-hover: #193555; --text-context-menu: #ffffff; --border-context-menu: #193555; --bg-bypass-card: #003360; --bg-bypass-card-hover: #193555; --border-bypass-card: #2a4f7a; --text-bypass-card-title: #e0e0ff; --text-bypass-card-desc: #9effff; }
-        .ayu-mirage-theme { --bg-window: #1f2430; --bg-titlebar: #272c3a; --bg-sidebar: #1f2430; --bg-content: #1A1E28; --bg-button: #3e445e; --bg-button-hover: #565b78; --bg-tab-inactive: #272c3a; --bg-tab-active: #1A1E28; --bg-sidebar-active: #565b78; --bg-checkbox: #3e445e; --bg-checkbox-checked: #ffcc66; --text-primary: #cbccc6; --text-secondary: #707a8c; --text-muted: #5c677e; --text-title: #d9d7ce; --text-button: #e0e0d8; --text-sidebar-active: #ffffff; --text-settings-header: #d9d7ce; --border-ui: #3e445e; --border-strong: #151820; --border-checkbox: #ffcc66; --accent-green-online: #bae67e; --accent-red-offline: #f07178; --editor-foreground: #cbccc6; --editor-comment: #5c677e; --editor-keyword: #ffa759; --editor-string: #bae67e; --editor-number: #ffcc66; --editor-function: #ffd580; --bg-input-rename: #565b78; --bg-context-menu: #272c3a; --bg-context-menu-hover: #3e445e; --text-context-menu: #cbccc6; --border-context-menu: #3e445e; --bg-bypass-card: #272c3a; --bg-bypass-card-hover: #3e445e; --border-bypass-card: #565b78; --text-bypass-card-title: #d9d7ce; --text-bypass-card-desc: #707a8c; }
+        .light-theme { --bg-window: #F3F3F3; --bg-titlebar: #EAEAEA; --bg-sidebar: #F3F3F3; --bg-content: #FFFFFF; --bg-button: #E0E0E0; --bg-button-hover: #D5D5D5; --bg-tab-inactive: #EAEAEA; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #D5D5D5; --bg-checkbox: #E0E0E0; --bg-checkbox-checked: #C0C0C0; --text-primary: #202020; --text-secondary: #555555; --text-muted: #888888; --text-title: #333333; --text-button: #252525; --text-sidebar-active: #000000; --text-settings-header: #444444; --border-ui: #DCDCDC; --border-strong: #C0C0C0; --border-checkbox: #B0B0B0; --accent-green-online: #28A745; --accent-red-offline: #DC3545; --editor-foreground: #333333; --editor-comment: #008000; --editor-keyword: #0000FF; --editor-string: #A31515; --editor-number: #098658; --editor-function: #795E26; --editor-selection-background: #ADD6FF; --editor-cursor-foreground: #333333; --bg-input-rename: #FFFFFF; --bg-context-menu: #FFFFFF; --bg-context-menu-hover: #F0F0F0; --text-context-menu: #202020; --border-context-menu: #D0D0D0; --bg-bypass-card: #EAEAEA; --bg-bypass-card-hover: #DADADA; --border-bypass-card: #D0D0D0; --text-bypass-card-title: #202020; --text-bypass-card-desc: #555555; }
+        .ocean-blue-theme { --bg-window: #1E2A3A; --bg-titlebar: #263446; --bg-sidebar: #1E2A3A; --bg-content: #16202C; --bg-button: #3A506B; --bg-button-hover: #4A6585; --bg-tab-inactive: #263446; --bg-tab-active: #16202C; --bg-sidebar-active: #3A506B; --bg-checkbox: #3A506B; --bg-checkbox-checked: #4A6585; --text-primary: #C0D0E0; --text-secondary: #8095AD; --text-muted: #607A90; --text-title: #D0E0F0; --text-button: #E0F0FF; --text-sidebar-active: #FFFFFF; --text-settings-header: #D0E0F0; --border-ui: #2D4055; --border-strong: #101822; --border-checkbox: #507090; --accent-green-online: #36AE7C; --accent-red-offline: #E16B6B; --editor-foreground: #C0D0E0; --editor-comment: #607A90; --editor-keyword: #5d9cec; --editor-string: #c3e88d; --editor-number: #f78c6c; --editor-function: #82aaff; --editor-selection-background: #2A425C; --editor-cursor-foreground: #C0D0E0; --bg-input-rename: #4A6585; --bg-context-menu: #263446; --bg-context-menu-hover: #3A506B; --text-context-menu: #C0D0E0; --border-context-menu: #3A506B; --bg-bypass-card: #263446; --bg-bypass-card-hover: #304055; --border-bypass-card: #3A506B; --text-bypass-card-title: #C0D0E0; --text-bypass-card-desc: #8095AD; }
+        .monokai-theme { --bg-window: #272822; --bg-titlebar: #3A3B34; --bg-sidebar: #272822; --bg-content: #2D2E27; --bg-button: #49483E; --bg-button-hover: #5A5950; --bg-tab-inactive: #3A3B34; --bg-tab-active: #2D2E27; --bg-sidebar-active: #49483E; --bg-checkbox: #49483E; --bg-checkbox-checked: #75715E; --text-primary: #F8F8F2; --text-secondary: #A0A095; --text-muted: #75715E; --text-title: #E0E0DA; --text-button: #F0F0EA; --text-sidebar-active: #FFFFFF; --text-settings-header: #E0E0DA; --border-ui: #44453E; --border-strong: #1A1A16; --border-checkbox: #656358; --accent-green-online: #A6E22E; --accent-red-offline: #F92672; --editor-foreground: #F8F8F2; --editor-comment: #75715E; --editor-keyword: #F92672; --editor-string: #E6DB74; --editor-number: #AE81FF; --editor-function: #A6E22E; --editor-selection-background: #49483E; --editor-cursor-foreground: #F8F8F2; --bg-input-rename: #5A5950; --bg-context-menu: #3A3B34; --bg-context-menu-hover: #49483E; --text-context-menu: #F8F8F2; --border-context-menu: #49483E; --bg-bypass-card: #3A3B34; --bg-bypass-card-hover: #49483E; --border-bypass-card: #5A5950; --text-bypass-card-title: #F8F8F2; --text-bypass-card-desc: #A0A095; }
+        .solarized-dark-theme { --bg-window: #002b36; --bg-titlebar: #073642; --bg-sidebar: #002b36; --bg-content: #00252E; --bg-button: #586e75; --bg-button-hover: #657b83; --bg-tab-inactive: #073642; --bg-tab-active: #00252E; --bg-sidebar-active: #586e75; --bg-checkbox: #586e75; --bg-checkbox-checked: #839496; --text-primary: #839496; --text-secondary: #586e75; --text-muted: #4a5f68; --text-title: #93a1a1; --text-button: #eee8d5; --text-sidebar-active: #fdf6e3; --text-settings-header: #93a1a1; --border-ui: #073642; --border-strong: #001f27; --border-checkbox: #657b83; --accent-green-online: #859900; --accent-red-offline: #dc322f; --editor-foreground: #839496; --editor-comment: #586e75; --editor-keyword: #859900; --editor-string: #2aa198; --editor-number: #d33682; --editor-function: #268bd2; --editor-selection-background: #073642; --editor-cursor-foreground: #839496; --bg-input-rename: #657b83; --bg-context-menu: #073642; --bg-context-menu-hover: #586e75; --text-context-menu: #93a1a1; --border-context-menu: #586e75; --bg-bypass-card: #073642; --bg-bypass-card-hover: #586e75; --border-bypass-card: #586e75; --text-bypass-card-title: #93a1a1; --text-bypass-card-desc: #586e75; }
+        .solarized-light-theme { --bg-window: #fdf6e3; --bg-titlebar: #eee8d5; --bg-sidebar: #fdf6e3; --bg-content: #ffffff; --bg-button: #eee8d5; --bg-button-hover: #dcd5c2; --bg-tab-inactive: #eee8d5; --bg-tab-active: #ffffff; --bg-sidebar-active: #dcd5c2; --bg-checkbox: #eee8d5; --bg-checkbox-checked: #b8b09c; --text-primary: #657b83; --text-secondary: #93a1a1; --text-muted: #aab6b9; --text-title: #586e75; --text-button: #073642; --text-sidebar-active: #002b36; --text-settings-header: #586e75; --border-ui: #eee8d5; --border-strong: #dcd5c2; --border-checkbox: #93a1a1; --accent-green-online: #859900; --accent-red-offline: #dc322f; --editor-foreground: #657b83; --editor-comment: #93a1a1; --editor-keyword: #859900; --editor-string: #2aa198; --editor-number: #d33682; --editor-function: #268bd2; --editor-selection-background: #eee8d5; --editor-cursor-foreground: #657b83; --bg-input-rename: #ffffff; --bg-context-menu: #ffffff; --bg-context-menu-hover: #eee8d5; --text-context-menu: #586e75; --border-context-menu: #eee8d5; --bg-bypass-card: #eee8d5; --bg-bypass-card-hover: #f5efe2; --border-bypass-card: #dcd5c2; --text-bypass-card-title: #586e75; --text-bypass-card-desc: #93a1a1; }
+        .dracula-theme { --bg-window: #282a36; --bg-titlebar: #3a3c4a; --bg-sidebar: #282a36; --bg-content: #21222C; --bg-button: #44475a; --bg-button-hover: #5a5d75; --bg-tab-inactive: #3a3c4a; --bg-tab-active: #21222C; --bg-sidebar-active: #44475a; --bg-checkbox: #44475a; --bg-checkbox-checked: #6272a4; --text-primary: #f8f8f2; --text-secondary: #bd93f9; --text-muted: #6272a4; --text-title: #f0f0ea; --text-button: #f8f8f2; --text-sidebar-active: #f8f8f2; --text-settings-header: #f0f0ea; --border-ui: #44475a; --border-strong: #191a21; --border-checkbox: #6272a4; --accent-green-online: #50fa7b; --accent-red-offline: #ff5555; --editor-foreground: #f8f8f2; --editor-comment: #6272a4; --editor-keyword: #ff79c6; --editor-string: #f1fa8c; --editor-number: #bd93f9; --editor-function: #50fa7b; --editor-selection-background: #44475A; --editor-cursor-foreground: #f8f8f2; --bg-input-rename: #5a5d75; --bg-context-menu: #3a3c4a; --bg-context-menu-hover: #44475a; --text-context-menu: #f8f8f2; --border-context-menu: #44475a; --bg-bypass-card: #3a3c4a; --bg-bypass-card-hover: #44475a; --border-bypass-card: #6272a4; --text-bypass-card-title: #f8f8f2; --text-bypass-card-desc: #bd93f9; }
+        .nord-theme { --bg-window: #2E3440; --bg-titlebar: #3B4252; --bg-sidebar: #2E3440; --bg-content: #272C36; --bg-button: #4C566A; --bg-button-hover: #5E81AC; --bg-tab-inactive: #3B4252; --bg-tab-active: #272C36; --bg-sidebar-active: #4C566A; --bg-checkbox: #4C566A; --bg-checkbox-checked: #88C0D0; --text-primary: #D8DEE9; --text-secondary: #81A1C1; --text-muted: #4C566A; --text-title: #ECEFF4; --text-button: #ECEFF4; --text-sidebar-active: #FFFFFF; --text-settings-header: #ECEFF4; --border-ui: #3B4252; --border-strong: #21252E; --border-checkbox: #5E81AC; --accent-green-online: #A3BE8C; --accent-red-offline: #BF616A; --editor-foreground: #D8DEE9; --editor-comment: #4C566A; --editor-keyword: #81A1C1; --editor-string: #A3BE8C; --editor-number: #B48EAD; --editor-function: #88C0D0; --editor-selection-background: #3B4252; --editor-cursor-foreground: #D8DEE9; --bg-input-rename: #5E81AC; --bg-context-menu: #3B4252; --bg-context-menu-hover: #4C566A; --text-context-menu: #D8DEE9; --border-context-menu: #4C566A; --bg-bypass-card: #3B4252; --bg-bypass-card-hover: #434C5E; --border-bypass-card: #4C566A; --text-bypass-card-title: #ECEFF4; --text-bypass-card-desc: #81A1C1; }
+        .gruvbox-dark-theme { --bg-window: #282828; --bg-titlebar: #3c3836; --bg-sidebar: #282828; --bg-content: #1d2021; --bg-button: #504945; --bg-button-hover: #665c54; --bg-tab-inactive: #3c3836; --bg-tab-active: #1d2021; --bg-sidebar-active: #504945; --bg-checkbox: #504945; --bg-checkbox-checked: #928374; --text-primary: #ebdbb2; --text-secondary: #a89984; --text-muted: #7c6f64; --text-title: #fbf1c7; --text-button: #fbf1c7; --text-sidebar-active: #ffffff; --text-settings-header: #fbf1c7; --border-ui: #504945; --border-strong: #101213; --border-checkbox: #928374; --accent-green-online: #b8bb26; --accent-red-offline: #fb4934; --editor-foreground: #ebdbb2; --editor-comment: #928374; --editor-keyword: #fb4934; --editor-string: #b8bb26; --editor-number: #d3869b; --editor-function: #fabd2f; --editor-selection-background: #504945; --editor-cursor-foreground: #ebdbb2; --bg-input-rename: #665c54; --bg-context-menu: #3c3836; --bg-context-menu-hover: #504945; --text-context-menu: #ebdbb2; --border-context-menu: #504945; --bg-bypass-card: #3c3836; --bg-bypass-card-hover: #504945; --border-bypass-card: #665c54; --text-bypass-card-title: #fbf1c7; --text-bypass-card-desc: #a89984; }
+        .one-dark-pro-theme { --bg-window: #282c34; --bg-titlebar: #3a3f4b; --bg-sidebar: #282c34; --bg-content: #21252b; --bg-button: #3a3f4b; --bg-button-hover: #4b5263; --bg-tab-inactive: #3a3f4b; --bg-tab-active: #21252b; --bg-sidebar-active: #4b5263; --bg-checkbox: #3a3f4b; --bg-checkbox-checked: #abb2bf; --text-primary: #abb2bf; --text-secondary: #61afef; --text-muted: #5c6370; --text-title: #e6efff; --text-button: #d0d8e8; --text-sidebar-active: #ffffff; --text-settings-header: #e6efff; --border-ui: #3a3f4b; --border-strong: #181a1f; --border-checkbox: #5c6370; --accent-green-online: #98c379; --accent-red-offline: #e06c75; --editor-foreground: #abb2bf; --editor-comment: #5c6370; --editor-keyword: #c678dd; --editor-string: #98c379; --editor-number: #d19a66; --editor-function: #61afef; --editor-selection-background: #3A3F4B; --editor-cursor-foreground: #abb2bf; --bg-input-rename: #4b5263; --bg-context-menu: #3a3f4b; --bg-context-menu-hover: #4b5263; --text-context-menu: #abb2bf; --border-context-menu: #4b5263; --bg-bypass-card: #3a3f4b; --bg-bypass-card-hover: #4b5263; --border-bypass-card: #5c6370; --text-bypass-card-title: #e6efff; --text-bypass-card-desc: #61afef; }
+        .github-dark-theme { --bg-window: #0d1117; --bg-titlebar: #161b22; --bg-sidebar: #0d1117; --bg-content: #06090F; --bg-button: #21262d; --bg-button-hover: #30363d; --bg-tab-inactive: #161b22; --bg-tab-active: #06090F; --bg-sidebar-active: #30363d; --bg-checkbox: #21262d; --bg-checkbox-checked: #8b949e; --text-primary: #c9d1d9; --text-secondary: #8b949e; --text-muted: #484f58; --text-title: #f0f6fc; --text-button: #e0e6ed; --text-sidebar-active: #ffffff; --text-settings-header: #f0f6fc; --border-ui: #30363d; --border-strong: #010409; --border-checkbox: #58a6ff; --accent-green-online: #3fb950; --accent-red-offline: #f85149; --editor-foreground: #c9d1d9; --editor-comment: #8b949e; --editor-keyword: #ff7b72; --editor-string: #a5d6ff; --editor-number: #79c0ff; --editor-function: #d2a8ff; --editor-selection-background: #264F78; --editor-cursor-foreground: #c9d1d9; --bg-input-rename: #30363d; --bg-context-menu: #161b22; --bg-context-menu-hover: #21262d; --text-context-menu: #c9d1d9; --border-context-menu: #30363d; --bg-bypass-card: #161b22; --bg-bypass-card-hover: #21262d; --border-bypass-card: #30363d; --text-bypass-card-title: #f0f6fc; --text-bypass-card-desc: #8b949e; }
+        .material-darker-theme { --bg-window: #212121; --bg-titlebar: #2a2a2a; --bg-sidebar: #212121; --bg-content: #1A1A1A; --bg-button: #323232; --bg-button-hover: #424242; --bg-tab-inactive: #2a2a2a; --bg-tab-active: #1A1A1A; --bg-sidebar-active: #424242; --bg-checkbox: #323232; --bg-checkbox-checked: #eeffff; --text-primary: #eeffff; --text-secondary: #8f93a2; --text-muted: #545c68; --text-title: #ffffff; --text-button: #e0e0e0; --text-sidebar-active: #ffffff; --text-settings-header: #ffffff; --border-ui: #353535; --border-strong: #0f0f0f; --border-checkbox: #8f93a2; --accent-green-online: #c3e88d; --accent-red-offline: #f07178; --editor-foreground: #eeffff; --editor-comment: #545c68; --editor-keyword: #c792ea; --editor-string: #c3e88d; --editor-number: #f78c6c; --editor-function: #82aaff; --editor-selection-background: #323232; --editor-cursor-foreground: #eeffff; --bg-input-rename: #424242; --bg-context-menu: #2a2a2a; --bg-context-menu-hover: #323232; --text-context-menu: #eeffff; --border-context-menu: #323232; --bg-bypass-card: #2a2a2a; --bg-bypass-card-hover: #323232; --border-bypass-card: #424242; --text-bypass-card-title: #eeffff; --text-bypass-card-desc: #8f93a2; }
+        .cobalt-theme { --bg-window: #002240; --bg-titlebar: #003360; --bg-sidebar: #002240; --bg-content: #00192F; --bg-button: #193555; --bg-button-hover: #2a4f7a; --bg-tab-inactive: #003360; --bg-tab-active: #00192F; --bg-sidebar-active: #193555; --bg-checkbox: #193555; --bg-checkbox-checked: #ffc600; --text-primary: #ffffff; --text-secondary: #9effff; --text-muted: #0088cc; --text-title: #e0e0ff; --text-button: #f0f0ff; --text-sidebar-active: #ffffff; --text-settings-header: #e0e0ff; --border-ui: #003360; --border-strong: #001120; --border-checkbox: #ffc600; --accent-green-online: #36ae7c; --accent-red-offline: #ff5370; --editor-foreground: #ffffff; --editor-comment: #0088cc; --editor-keyword: #ff9d00; --editor-string: #3ad900; --editor-number: #ff628c; --editor-function: #ffc600; --editor-selection-background: #193555; --editor-cursor-foreground: #ffffff; --bg-input-rename: #2a4f7a; --bg-context-menu: #003360; --bg-context-menu-hover: #193555; --text-context-menu: #ffffff; --border-context-menu: #193555; --bg-bypass-card: #003360; --bg-bypass-card-hover: #193555; --border-bypass-card: #2a4f7a; --text-bypass-card-title: #e0e0ff; --text-bypass-card-desc: #9effff; }
+        .ayu-mirage-theme { --bg-window: #1f2430; --bg-titlebar: #272c3a; --bg-sidebar: #1f2430; --bg-content: #1A1E28; --bg-button: #3e445e; --bg-button-hover: #565b78; --bg-tab-inactive: #272c3a; --bg-tab-active: #1A1E28; --bg-sidebar-active: #565b78; --bg-checkbox: #3e445e; --bg-checkbox-checked: #ffcc66; --text-primary: #cbccc6; --text-secondary: #707a8c; --text-muted: #5c677e; --text-title: #d9d7ce; --text-button: #e0e0d8; --text-sidebar-active: #ffffff; --text-settings-header: #d9d7ce; --border-ui: #3e445e; --border-strong: #151820; --border-checkbox: #ffcc66; --accent-green-online: #bae67e; --accent-red-offline: #f07178; --editor-foreground: #cbccc6; --editor-comment: #5c677e; --editor-keyword: #ffa759; --editor-string: #bae67e; --editor-number: #ffcc66; --editor-function: #ffd580; --editor-selection-background: #3E445E; --editor-cursor-foreground: #cbccc6; --bg-input-rename: #565b78; --bg-context-menu: #272c3a; --bg-context-menu-hover: #3e445e; --text-context-menu: #cbccc6; --border-context-menu: #3e445e; --bg-bypass-card: #272c3a; --bg-bypass-card-hover: #3e445e; --border-bypass-card: #565b78; --text-bypass-card-title: #d9d7ce; --text-bypass-card-desc: #707a8c; }
+
+        .matrix-theme { --bg-window: #0D0208; --bg-titlebar: #0A0105; --bg-sidebar: #0D0208; --bg-content: #000000; --bg-button: #003B00; --bg-button-hover: #005F00; --bg-tab-inactive: #0A0105; --bg-tab-active: #000000; --bg-sidebar-active: #005F00; --bg-checkbox: #003B00; --bg-checkbox-checked: #008F00; --bg-input-rename: #002F00; --bg-context-menu: #0A0105; --bg-context-menu-hover: #003B00; --bg-bypass-card: #0A0105; --bg-bypass-card-hover: #001F00; --text-primary: #00FF00; --text-secondary: #00C000; --text-muted: #008000; --text-title: #33FF33; --text-button: #00FF00; --text-sidebar-active: #55FF55; --text-settings-header: #33FF33; --text-context-menu: #00FF00; --text-bypass-card-title: #00FF00; --text-bypass-card-desc: #00C000; --border-ui: #005000; --border-strong: #002000; --border-checkbox: #007000; --border-context-menu: #005000; --border-bypass-card: #005000; --editor-foreground: #00FF00; --editor-comment: #00A000; --editor-keyword: #33FF33; --editor-string: #55FF55; --editor-number: #77FF77; --editor-function: #99FF99; --editor-selection-background: #007F00; --editor-cursor-foreground: #00FF00;}
+        .red-alert-theme { --bg-window: #1A0000; --bg-titlebar: #2A0000; --bg-sidebar: #1A0000; --bg-content: #100000; --bg-button: #5C0000; --bg-button-hover: #7C0000; --bg-tab-inactive: #2A0000; --bg-tab-active: #100000; --bg-sidebar-active: #7C0000; --bg-checkbox: #5C0000; --bg-checkbox-checked: #9C0000; --bg-input-rename: #4C0000; --bg-context-menu: #2A0000; --bg-context-menu-hover: #5C0000; --bg-bypass-card: #2A0000; --bg-bypass-card-hover: #3A0000; --text-primary: #FF4040; --text-secondary: #FF6060; --text-muted: #D02020; --text-title: #FF6666; --text-button: #FF4040; --text-sidebar-active: #FF8888; --text-settings-header: #FF6666; --text-context-menu: #FF4040; --text-bypass-card-title: #FF4040; --text-bypass-card-desc: #FF6060; --border-ui: #4F0000; --border-strong: #2F0000; --border-checkbox: #6F0000; --border-context-menu: #4F0000; --border-bypass-card: #4F0000; --editor-foreground: #FF4040; --editor-comment: #CC3030; --editor-keyword: #FF6666; --editor-string: #FF8888; --editor-number: #FFAAAA; --editor-function: #FFCCCC; --editor-selection-background: #7C0000; --editor-cursor-foreground: #FF4040;}
+        .cyberpunk-neon-theme { --bg-window: #0A0F2C; --bg-titlebar: #10153D; --bg-sidebar: #0A0F2C; --bg-content: #050A1F; --bg-button: #F400E0; --bg-button-hover: #FF33F0; --bg-tab-inactive: #10153D; --bg-tab-active: #050A1F; --bg-sidebar-active: #FF33F0; --bg-checkbox: #F400E0; --bg-checkbox-checked: #C400B0; --bg-input-rename: #A40090; --bg-context-menu: #10153D; --bg-context-menu-hover: #F400E0; --bg-bypass-card: #10153D; --bg-bypass-card-hover: #20254D; --text-primary: #00F0FF; --text-secondary: #70D0FF; --text-muted: #A0A0FF; --text-title: #33FFFF; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #33FFFF; --text-context-menu: #00F0FF; --text-bypass-card-title: #00F0FF; --text-bypass-card-desc: #70D0FF; --border-ui: #303080; --border-strong: #202070; --border-checkbox: #FF00BF; --border-context-menu: #303080; --border-bypass-card: #303080; --editor-foreground: #00F0FF; --editor-comment: #8080C0; --editor-keyword: #FF00BF; --editor-string: #33FFDD; --editor-number: #F0FF00; --editor-function: #B070FF; --editor-selection-background: #500080; --editor-cursor-foreground: #00F0FF;}
+        .forest-calm-theme { --bg-window: #2A3D2E; --bg-titlebar: #384D3C; --bg-sidebar: #2A3D2E; --bg-content: #1F2D23; --bg-button: #4A6D4F; --bg-button-hover: #5A7D5F; --bg-tab-inactive: #384D3C; --bg-tab-active: #1F2D23; --bg-sidebar-active: #5A7D5F; --bg-checkbox: #4A6D4F; --bg-checkbox-checked: #6A8D6F; --bg-input-rename: #3A5D3F; --bg-context-menu: #384D3C; --bg-context-menu-hover: #4A6D4F; --bg-bypass-card: #384D3C; --bg-bypass-card-hover: #405D43; --text-primary: #B0C0B5; --text-secondary: #809085; --text-muted: #607065; --text-title: #C0D0C5; --text-button: #D0E0D5; --text-sidebar-active: #FFFFFF; --text-settings-header: #C0D0C5; --text-context-menu: #B0C0B5; --text-bypass-card-title: #B0C0B5; --text-bypass-card-desc: #809085; --border-ui: #405045; --border-strong: #102015; --border-checkbox: #507055; --border-context-menu: #405045; --border-bypass-card: #405045; --editor-foreground: #B0C0B5; --editor-comment: #708075; --editor-keyword: #8FBC8F; --editor-string: #A0A070; --editor-number: #90B080; --editor-function: #BDB76B; --editor-selection-background: #3A5D3F; --editor-cursor-foreground: #B0C0B5;}
+        .ocean-deep-theme { --bg-window: #00334E; --bg-titlebar: #004C66; --bg-sidebar: #00334E; --bg-content: #002233; --bg-button: #0077A3; --bg-button-hover: #008FBA; --bg-tab-inactive: #004C66; --bg-tab-active: #002233; --bg-sidebar-active: #008FBA; --bg-checkbox: #0077A3; --bg-checkbox-checked: #00A0C0; --bg-input-rename: #006793; --bg-context-menu: #004C66; --bg-context-menu-hover: #0077A3; --bg-bypass-card: #004C66; --bg-bypass-card-hover: #005C76; --text-primary: #87CEEB; --text-secondary: #60A0C0; --text-muted: #4080A0; --text-title: #A7DEFB; --text-button: #B7EEFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #A7DEFB; --text-context-menu: #87CEEB; --text-bypass-card-title: #87CEEB; --text-bypass-card-desc: #60A0C0; --border-ui: #005F7F; --border-strong: #001223; --border-checkbox: #008FB0; --border-context-menu: #005F7F; --border-bypass-card: #005F7F; --editor-foreground: #87CEEB; --editor-comment: #5090B0; --editor-keyword: #ADD8E6; --editor-string: #B0E0E6; --editor-number: #AFEEEE; --editor-function: #90EE90; --editor-selection-background: #005773; --editor-cursor-foreground: #87CEEB;}
+        .sunset-glow-theme { --bg-window: #4A1E4E; --bg-titlebar: #5A2E5E; --bg-sidebar: #4A1E4E; --bg-content: #3A0E3E; --bg-button: #FF7F50; --bg-button-hover: #FF9F70; --bg-tab-inactive: #5A2E5E; --bg-tab-active: #3A0E3E; --bg-sidebar-active: #FF9F70; --bg-checkbox: #FF7F50; --bg-checkbox-checked: #FFB080; --bg-input-rename: #E06F40; --bg-context-menu: #5A2E5E; --bg-context-menu-hover: #FF7F50; --bg-bypass-card: #5A2E5E; --bg-bypass-card-hover: #6A3E6E; --text-primary: #FFDAB9; --text-secondary: #FFA07A; --text-muted: #E9967A; --text-title: #FFEAC9; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #FFEAC9; --text-context-menu: #FFDAB9; --text-bypass-card-title: #FFDAB9; --text-bypass-card-desc: #FFA07A; --border-ui: #7A3E7E; --border-strong: #2A002E; --border-checkbox: #FF8F60; --border-context-menu: #7A3E7E; --border-bypass-card: #7A3E7E; --editor-foreground: #FFDAB9; --editor-comment: #DDA0DD; --editor-keyword: #FF69B4; --editor-string: #DB7093; --editor-number: #FFB6C1; --editor-function: #FFC0CB; --editor-selection-background: #8A2E2E; --editor-cursor-foreground: #FFDAB9;}
+        .arctic-aurora-theme { --bg-window: #0A1A2A; --bg-titlebar: #102030; --bg-sidebar: #0A1A2A; --bg-content: #05101A; --bg-button: #32CD32; --bg-button-hover: #52ED52; --bg-tab-inactive: #102030; --bg-tab-active: #05101A; --bg-sidebar-active: #52ED52; --bg-checkbox: #32CD32; --bg-checkbox-checked: #72FD72; --bg-input-rename: #22BD22; --bg-context-menu: #102030; --bg-context-menu-hover: #32CD32; --bg-bypass-card: #102030; --bg-bypass-card-hover: #152535; --text-primary: #AFEEEE; --text-secondary: #7FFFD4; --text-muted: #66CDAA; --text-title: #CFFFFF; --text-button: #DFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #CFFFFF; --text-context-menu: #AFEEEE; --text-bypass-card-title: #AFEEEE; --text-bypass-card-desc: #7FFFD4; --border-ui: #1A3A5A; --border-strong: #000A1A; --border-checkbox: #42DD42; --border-context-menu: #1A3A5A; --border-bypass-card: #1A3A5A; --editor-foreground: #AFEEEE; --editor-comment: #40E0D0; --editor-keyword: #00FA9A; --editor-string: #7FFFD4; --editor-number: #AFEEEE; --editor-function: #B0E0E6; --editor-selection-background: #1A4A6A; --editor-cursor-foreground: #AFEEEE;}
+        .desert-night-theme { --bg-window: #3D2B1F; --bg-titlebar: #4D3B2F; --bg-sidebar: #3D2B1F; --bg-content: #2D1B0F; --bg-button: #8B4513; --bg-button-hover: #A0522D; --bg-tab-inactive: #4D3B2F; --bg-tab-active: #2D1B0F; --bg-sidebar-active: #A0522D; --bg-checkbox: #8B4513; --bg-checkbox-checked: #B0623D; --bg-input-rename: #7B3503; --bg-context-menu: #4D3B2F; --bg-context-menu-hover: #8B4513; --bg-bypass-card: #4D3B2F; --bg-bypass-card-hover: #5D4B3F; --text-primary: #F5DEB3; --text-secondary: #D2B48C; --text-muted: #BC8F8F; --text-title: #FFFEE3; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #FFFEE3; --text-context-menu: #F5DEB3; --text-bypass-card-title: #F5DEB3; --text-bypass-card-desc: #D2B48C; --border-ui: #5D4B3F; --border-strong: #1D0B00; --border-checkbox: #9B5523; --border-context-menu: #5D4B3F; --border-bypass-card: #5D4B3F; --editor-foreground: #F5DEB3; --editor-comment: #A0522D; --editor-keyword: #CD853F; --editor-string: #DEB887; --editor-number: #E0C090; --editor-function: #F4A460; --editor-selection-background: #7B3503; --editor-cursor-foreground: #F5DEB3;}
+        .vintage-paper-theme { --bg-window: #F5F5DC; --bg-titlebar: #FAF0E6; --bg-sidebar: #F5F5DC; --bg-content: #FFFFFF; --bg-button: #D2B48C; --bg-button-hover: #BC8F8F; --bg-tab-inactive: #FAF0E6; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #BC8F8F; --bg-checkbox: #D2B48C; --bg-checkbox-checked: #C2A47C; --bg-input-rename: #E2C49C; --bg-context-menu: #FAF0E6; --bg-context-menu-hover: #D2B48C; --bg-bypass-card: #FAF0E6; --bg-bypass-card-hover: #F0E8DC; --text-primary: #5D4037; --text-secondary: #795548; --text-muted: #8D6E63; --text-title: #4D3027; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #4D3027; --text-context-menu: #5D4037; --text-bypass-card-title: #5D4037; --text-bypass-card-desc: #795548; --border-ui: #E0DCD1; --border-strong: #D0C0B1; --border-checkbox: #B2946C; --border-context-menu: #E0DCD1; --border-bypass-card: #E0DCD1; --editor-foreground: #5D4037; --editor-comment: #A1887F; --editor-keyword: #795548; --editor-string: #8D6E63; --editor-number: #A1887F; --editor-function: #BCAAA4; --editor-selection-background: #E0D0B0; --editor-cursor-foreground: #5D4037;}
+        .stealth-ops-theme { --bg-window: #080808; --bg-titlebar: #101010; --bg-sidebar: #080808; --bg-content: #000000; --bg-button: #282828; --bg-button-hover: #383838; --bg-tab-inactive: #101010; --bg-tab-active: #000000; --bg-sidebar-active: #383838; --bg-checkbox: #282828; --bg-checkbox-checked: #484848; --bg-input-rename: #181818; --bg-context-menu: #101010; --bg-context-menu-hover: #282828; --bg-bypass-card: #101010; --bg-bypass-card-hover: #151515; --text-primary: #A0A0A0; --text-secondary: #808080; --text-muted: #606060; --text-title: #C0C0C0; --text-button: #D0D0D0; --text-sidebar-active: #FFFFFF; --text-settings-header: #C0C0C0; --text-context-menu: #A0A0A0; --text-bypass-card-title: #A0A0A0; --text-bypass-card-desc: #808080; --border-ui: #202020; --border-strong: #000000; --border-checkbox: #303030; --border-context-menu: #202020; --border-bypass-card: #202020; --editor-foreground: #A0A0A0; --editor-comment: #505050; --editor-keyword: #B0B0B0; --editor-string: #C0C0C0; --editor-number: #D0D0D0; --editor-function: #E0E0E0; --editor-selection-background: #303030; --editor-cursor-foreground: #A0A0A0;}
+        .lavender-dream-theme { --bg-window: #E6E6FA; --bg-titlebar: #F0F0FF; --bg-sidebar: #E6E6FA; --bg-content: #FFFFFF; --bg-button: #D8BFD8; --bg-button-hover: #DDA0DD; --bg-tab-inactive: #F0F0FF; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #DDA0DD; --bg-checkbox: #D8BFD8; --bg-checkbox-checked: #C8A0C8; --bg-input-rename: #E8CFE8; --bg-context-menu: #F0F0FF; --bg-context-menu-hover: #D8BFD8; --bg-bypass-card: #F0F0FF; --bg-bypass-card-hover: #E0E0F0; --text-primary: #483D8B; --text-secondary: #6A5ACD; --text-muted: #7B68EE; --text-title: #382D7B; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #382D7B; --text-context-menu: #483D8B; --text-bypass-card-title: #483D8B; --text-bypass-card-desc: #6A5ACD; --border-ui: #E0D8F0; --border-strong: #D0C8E0; --border-checkbox: #B890B8; --border-context-menu: #E0D8F0; --border-bypass-card: #E0D8F0; --editor-foreground: #483D8B; --editor-comment: #9370DB; --editor-keyword: #8A2BE2; --editor-string: #9932CC; --editor-number: #BA55D3; --editor-function: #C71585; --editor-selection-background: #D8BFD8AA; --editor-cursor-foreground: #483D8B;}
+        .hacker-green-theme { --bg-window: #011400; --bg-titlebar: #022000; --bg-sidebar: #011400; --bg-content: #000A00; --bg-button: #006400; --bg-button-hover: #008000; --bg-tab-inactive: #022000; --bg-tab-active: #000A00; --bg-sidebar-active: #008000; --bg-checkbox: #006400; --bg-checkbox-checked: #00A000; --bg-input-rename: #004400; --bg-context-menu: #022000; --bg-context-menu-hover: #006400; --bg-bypass-card: #022000; --bg-bypass-card-hover: #003000; --text-primary: #22FF00; --text-secondary: #44DD00; --text-muted: #66BB00; --text-title: #44FF22; --text-button: #66FF44; --text-sidebar-active: #88FF66; --text-settings-header: #44FF22; --text-context-menu: #22FF00; --text-bypass-card-title: #22FF00; --text-bypass-card-desc: #44DD00; --border-ui: #004000; --border-strong: #001000; --border-checkbox: #005000; --border-context-menu: #004000; --border-bypass-card: #004000; --editor-foreground: #22FF00; --editor-comment: #00AA00; --editor-keyword: #44FF22; --editor-string: #66FF44; --editor-number: #88FF66; --editor-function: #AAFF88; --editor-selection-background: #005000; --editor-cursor-foreground: #22FF00;}
+        .candy-pop-theme { --bg-window: #FFF0F5; --bg-titlebar: #FFFAFA; --bg-sidebar: #FFF0F5; --bg-content: #FFFFFF; --bg-button: #FFB6C1; --bg-button-hover: #FFC0CB; --bg-tab-inactive: #FFFAFA; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #FFC0CB; --bg-checkbox: #FFB6C1; --bg-checkbox-checked: #FFA6B1; --bg-input-rename: #FFD6E1; --bg-context-menu: #FFFAFA; --bg-context-menu-hover: #FFB6C1; --bg-bypass-card: #FFFAFA; --bg-bypass-card-hover: #FFF0F0; --text-primary: #DB7093; --text-secondary: #FF69B4; --text-muted: #FF1493; --text-title: #C71585; --text-button: #FFFFFF; --text-sidebar-active: #8B0000; --text-settings-header: #C71585; --text-context-menu: #DB7093; --text-bypass-card-title: #DB7093; --text-bypass-card-desc: #FF69B4; --border-ui: #FFE0E5; --border-strong: #FFD0D5; --border-checkbox: #FF96A1; --border-context-menu: #FFE0E5; --border-bypass-card: #FFE0E5; --editor-foreground: #DB7093; --editor-comment: #C71585; --editor-keyword: #FF69B4; --editor-string: #FF1493; --editor-number: #FF00FF; --editor-function: #DA70D6; --editor-selection-background: #FFD6E1AA; --editor-cursor-foreground: #DB7093;}
+        .gothic-rose-theme { --bg-window: #1A1A1D; --bg-titlebar: #2A2A2D; --bg-sidebar: #1A1A1D; --bg-content: #0A0A0D; --bg-button: #8B0000; --bg-button-hover: #A52A2A; --bg-tab-inactive: #2A2A2D; --bg-tab-active: #0A0A0D; --bg-sidebar-active: #A52A2A; --bg-checkbox: #8B0000; --bg-checkbox-checked: #B53A3A; --bg-input-rename: #7B0000; --bg-context-menu: #2A2A2D; --bg-context-menu-hover: #8B0000; --bg-bypass-card: #2A2A2D; --bg-bypass-card-hover: #3A3A3D; --text-primary: #C9C9D9; --text-secondary: #B00000; --text-muted: #700000; --text-title: #D9D9E9; --text-button: #E9E9F9; --text-sidebar-active: #FFFFFF; --text-settings-header: #D9D9E9; --text-context-menu: #C9C9D9; --text-bypass-card-title: #C9C9D9; --text-bypass-card-desc: #B00000; --border-ui: #40404D; --border-strong: #000000; --border-checkbox: #9B1010; --border-context-menu: #40404D; --border-bypass-card: #40404D; --editor-foreground: #C9C9D9; --editor-comment: #5A5A5D; --editor-keyword: #DC143C; --editor-string: #FF6347; --editor-number: #FF7F50; --editor-function: #FF4500; --editor-selection-background: #6B0000; --editor-cursor-foreground: #C9C9D9;}
+        .starry-night-theme { --bg-window: #00103F; --bg-titlebar: #001F5F; --bg-sidebar: #00103F; --bg-content: #00052F; --bg-button: #FFD700; --bg-button-hover: #FFFF00; --bg-tab-inactive: #001F5F; --bg-tab-active: #00052F; --bg-sidebar-active: #FFFF00; --bg-checkbox: #FFD700; --bg-checkbox-checked: #FFEE30; --bg-input-rename: #EFC700; --bg-context-menu: #001F5F; --bg-context-menu-hover: #FFD700; --bg-bypass-card: #001F5F; --bg-bypass-card-hover: #002F6F; --text-primary: #E0E0FF; --text-secondary: #B0B0FF; --text-muted: #9090FF; --text-title: #F0F0FF; --text-button: #000000; --text-sidebar-active: #000000; --text-settings-header: #F0F0FF; --text-context-menu: #E0E0FF; --text-bypass-card-title: #E0E0FF; --text-bypass-card-desc: #B0B0FF; --border-ui: #00307F; --border-strong: #00001F; --border-checkbox: #FFF040; --border-context-menu: #00307F; --border-bypass-card: #00307F; --editor-foreground: #E0E0FF; --editor-comment: #7070A0; --editor-keyword: #FFFFE0; --editor-string: #FFFACD; --editor-number: #F0E68C; --editor-function: #ADD8E6; --editor-selection-background: #00307F80; --editor-cursor-foreground: #E0E0FF;}
+        .coffee-house-theme { --bg-window: #EFEBE9; --bg-titlebar: #F5F5F0; --bg-sidebar: #EFEBE9; --bg-content: #FFFFFF; --bg-button: #A1887F; --bg-button-hover: #BCAAA4; --bg-tab-inactive: #F5F5F0; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #BCAAA4; --bg-checkbox: #A1887F; --bg-checkbox-checked: #91786F; --bg-input-rename: #D1B8AF; --bg-context-menu: #F5F5F0; --bg-context-menu-hover: #A1887F; --bg-bypass-card: #F5F5F0; --bg-bypass-card-hover: #E5E5E0; --text-primary: #4E342E; --text-secondary: #6D4C41; --text-muted: #795548; --text-title: #3E2723; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #3E2723; --text-context-menu: #4E342E; --text-bypass-card-title: #4E342E; --text-bypass-card-desc: #6D4C41; --border-ui: #D7CCC8; --border-strong: #C7BCB8; --border-checkbox: #81685F; --border-context-menu: #D7CCC8; --border-bypass-card: #D7CCC8; --editor-foreground: #4E342E; --editor-comment: #8D6E63; --editor-keyword: #5D4037; --editor-string: #6D4C41; --editor-number: #795548; --editor-function: #A1887F; --editor-selection-background: #D7CCC8AA; --editor-cursor-foreground: #4E342E;}
+        .minty-fresh-theme { --bg-window: #F0FFF0; --bg-titlebar: #F5FFFA; --bg-sidebar: #F0FFF0; --bg-content: #FFFFFF; --bg-button: #98FB98; --bg-button-hover: #AFEBAF; --bg-tab-inactive: #F5FFFA; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #AFEBAF; --bg-checkbox: #98FB98; --bg-checkbox-checked: #88EB88; --bg-input-rename: #C8FFC8; --bg-context-menu: #F5FFFA; --bg-context-menu-hover: #98FB98; --bg-bypass-card: #F5FFFA; --bg-bypass-card-hover: #E5FFF0; --text-primary: #2E8B57; --text-secondary: #3CB371; --text-muted: #66CDAA; --text-title: #1E7B47; --text-button: #000000; --text-sidebar-active: #000000; --text-settings-header: #1E7B47; --text-context-menu: #2E8B57; --text-bypass-card-title: #2E8B57; --text-bypass-card-desc: #3CB371; --border-ui: #E0F0E0; --border-strong: #D0E0D0; --border-checkbox: #78DB78; --border-context-menu: #E0F0E0; --border-bypass-card: #E0F0E0; --editor-foreground: #2E8B57; --editor-comment: #8FBC8F; --editor-keyword: #3CB371; --editor-string: #20B2AA; --editor-number: #66CDAA; --editor-function: #00FA9A; --editor-selection-background: #B0E0E6AA; --editor-cursor-foreground: #2E8B57;}
+        .crimson-peak-theme { --bg-window: #2C001E; --bg-titlebar: #3C002E; --bg-sidebar: #2C001E; --bg-content: #1C000E; --bg-button: #DC143C; --bg-button-hover: #FF4040; --bg-tab-inactive: #3C002E; --bg-tab-active: #1C000E; --bg-sidebar-active: #FF4040; --bg-checkbox: #DC143C; --bg-checkbox-checked: #EC445C; --bg-input-rename: #CC042C; --bg-context-menu: #3C002E; --bg-context-menu-hover: #DC143C; --bg-bypass-card: #3C002E; --bg-bypass-card-hover: #4C003E; --text-primary: #FFD700; --text-secondary: #FFB700; --text-muted: #FFA700; --text-title: #FFFF30; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #FFFF30; --text-context-menu: #FFD700; --text-bypass-card-title: #FFD700; --text-bypass-card-desc: #FFB700; --border-ui: #5C004E; --border-strong: #0C0000; --border-checkbox: #EC244C; --border-context-menu: #5C004E; --border-bypass-card: #5C004E; --editor-foreground: #FFD700; --editor-comment: #8B0000; --editor-keyword: #FF1493; --editor-string: #FF69B4; --editor-number: #DB7093; --editor-function: #C71585; --editor-selection-background: #8B000080; --editor-cursor-foreground: #FFD700;}
+        .electric-blue-theme { --bg-window: #050A1F; --bg-titlebar: #0A142F; --bg-sidebar: #050A1F; --bg-content: #00051A; --bg-button: #007FFF; --bg-button-hover: #3399FF; --bg-tab-inactive: #0A142F; --bg-tab-active: #00051A; --bg-sidebar-active: #3399FF; --bg-checkbox: #007FFF; --bg-checkbox-checked: #0099FF; --bg-input-rename: #006FDF; --bg-context-menu: #0A142F; --bg-context-menu-hover: #007FFF; --bg-bypass-card: #0A142F; --bg-bypass-card-hover: #0F1E3F; --text-primary: #E0FFFF; --text-secondary: #B0E0FF; --text-muted: #87CEFA; --text-title: #F0FFFF; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #F0FFFF; --text-context-menu: #E0FFFF; --text-bypass-card-title: #E0FFFF; --text-bypass-card-desc: #B0E0FF; --border-ui: #0A1E3F; --border-strong: #00000F; --border-checkbox: #008FFF; --border-context-menu: #0A1E3F; --border-bypass-card: #0A1E3F; --editor-foreground: #E0FFFF; --editor-comment: #50A0DF; --editor-keyword: #1E90FF; --editor-string: #87CEEB; --editor-number: #ADD8E6; --editor-function: #B0E0E6; --editor-selection-background: #005FBF80; --editor-cursor-foreground: #E0FFFF;}
+        .sandstone-theme { --bg-window: #FAEBD7; --bg-titlebar: #FAF0E6; --bg-sidebar: #FAEBD7; --bg-content: #FFFFFF; --bg-button: #DEB887; --bg-button-hover: #D2B48C; --bg-tab-inactive: #FAF0E6; --bg-tab-active: #FFFFFF; --bg-sidebar-active: #D2B48C; --bg-checkbox: #DEB887; --bg-checkbox-checked: #C2A47C; --bg-input-rename: #EED8A7; --bg-context-menu: #FAF0E6; --bg-context-menu-hover: #DEB887; --bg-bypass-card: #FAF0E6; --bg-bypass-card-hover: #F0E8DC; --text-primary: #8B4513; --text-secondary: #A0522D; --text-muted: #BC8F8F; --text-title: #7B3503; --text-button: #FFFFFF; --text-sidebar-active: #FFFFFF; --text-settings-header: #7B3503; --text-context-menu: #8B4513; --text-bypass-card-title: #8B4513; --text-bypass-card-desc: #A0522D; --border-ui: #F0E8D0; --border-strong: #E0D8C0; --border-checkbox: #B2946C; --border-context-menu: #F0E8D0; --border-bypass-card: #F0E8D0; --editor-foreground: #8B4513; --editor-comment: #CD853F; --editor-keyword: #A0522D; --editor-string: #BC8F8F; --editor-number: #D2B48C; --editor-function: #DEB887; --editor-selection-background: #F0E8D0AA; --editor-cursor-foreground: #8B4513;}
 
 
-        /* Base styles */
-        html, body { height: 100%; margin: 0; padding: 0; background-color: #333; display: flex; justify-content: center; align-items: center; font-family: var(--font-primary); }
-        .app-window { background-color: var(--bg-window); color: var(--text-primary); border-radius: 0.75rem; box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6); overflow: hidden; border: 1px solid var(--border-strong); width: 85vw; height: 80vh; max-width: 1100px; min-width: 700px; min-height: 500px; display: flex; flex-direction: column; resize: both; transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out; }
-        .title-bar { background-color: var(--bg-titlebar); padding: 0.6rem 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; cursor: grab; transition: background-color 0.2s ease-out; }
-        .title-bar:active { cursor: grabbing; }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-window);
+            display: flex;
+            font-family: var(--font-primary);
+            overflow: hidden;
+        }
+        .app-window {
+            background-color: var(--bg-window);
+            color: var(--text-primary);
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            resize: none;
+            overflow: hidden;
+            transition: background-color 0.2s ease-out, color 0.2s ease-out;
+        }
+        .title-bar {
+            background-color: var(--bg-titlebar);
+            padding: 0.6rem 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            transition: background-color 0.2s ease-out;
+        }
         .window-controls { display: flex; gap: 0.6rem; }
         .control-dot { width: 0.8rem; height: 0.8rem; border-radius: 9999px; }
         .dot-red { background-color: var(--mac-red); }
@@ -52,17 +99,14 @@
         .port-indicator.online { background-color: var(--accent-green-online); }
         .port-indicator.offline { background-color: var(--accent-red-offline); }
 
-        /* Top Menu Bar - Includes separator color via border-ui */
         .top-menu-bar { background-color: var(--bg-titlebar); padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-top: 1px solid var(--border-ui); flex-shrink: 0; transition: background-color 0.2s ease-out, border-color 0.2s ease-out, height 0.2s ease-out, padding 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s ease-out; overflow: hidden; }
-        .top-menu-bar.hidden { height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; visibility: hidden; border-width: 0; } /* Hide smoothly */
+        .top-menu-bar.hidden { height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; visibility: hidden; border-width: 0; }
         .top-menu-bar button { background-color: var(--bg-button); border: 1px solid var(--border-ui); color: var(--text-button); padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 0.375rem; transition: all 0.15s ease-out; cursor: pointer; }
         .top-menu-bar button:hover { background-color: var(--bg-button-hover); }
         .top-menu-bar button i { font-size: 0.85em; }
 
-        /* Main Content Area */
         .main-content-wrapper { display: flex; flex-grow: 1; overflow: hidden; }
 
-        /* Sidebar styling */
         .sidebar { background-color: var(--bg-sidebar); width: 180px; border-right: 1px solid var(--border-ui); display: flex; flex-direction: column; padding: 1rem 0.75rem; gap: 0.5rem; flex-shrink: 0; overflow-y: auto; transition: background-color 0.2s ease-out, border-color 0.2s ease-out; }
         .sidebar-tab { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 1rem; border-radius: 0.375rem; font-weight: 500; font-size: 0.875rem; color: var(--text-secondary); transition: all 0.15s ease-out; cursor: pointer; border: 1px solid transparent; }
         .sidebar-tab:hover { background-color: var(--bg-button); color: var(--text-primary); }
@@ -70,12 +114,10 @@
         .sidebar-tab i { font-size: 1.1rem; width: 1.25rem; text-align: center; color: var(--text-muted); transition: color 0.15s ease-out; }
         .sidebar-tab.active i { color: var(--text-sidebar-active); }
 
-        /* Content pane styling */
         .content-pane { flex-grow: 1; background-color: var(--bg-content); display: flex; flex-direction: column; overflow: hidden; transition: background-color 0.2s ease-out; }
 
-        /* File Tabs styling - Includes separator color via border-ui */
         .file-tabs-container { display: flex; align-items: center; background-color: var(--bg-tab-inactive); border-top: 1px solid var(--border-ui); border-bottom: 1px solid var(--border-ui); flex-shrink: 0; padding-left: 0.5rem; transition: background-color 0.2s ease-out, border-color 0.2s ease-out, height 0.2s ease-out, padding 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s ease-out; overflow: hidden; }
-        .file-tabs-container.hidden { height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; visibility: hidden; border-width: 0; } /* Hide smoothly */
+        .file-tabs-container.hidden { height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; visibility: hidden; border-width: 0; }
         .file-tabs-scroller { flex-grow: 1; display: flex; overflow-x: hidden; white-space: nowrap; }
         .file-tab { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.6rem 0.5rem 0.6rem 1rem; font-size: 0.8rem; color: var(--text-secondary); background-color: var(--bg-tab-inactive); border-right: 1px solid var(--border-ui); cursor: pointer; position: relative; transition: all 0.15s ease-out; border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem; flex-shrink: 0; }
         .file-tab:hover { color: var(--text-primary); background-color: var(--bg-button-hover); }
@@ -89,15 +131,12 @@
         .tab-scroll-btn { background: none; border: none; color: var(--text-muted); padding: 0.6rem 0.4rem; cursor: pointer; transition: color 0.15s ease-out; flex-shrink: 0; display: none; }
         .tab-scroll-btn:hover { color: var(--text-primary); }
 
-        /* Editor area container */
         .editor-container { flex-grow: 1; overflow: hidden; position: relative; background-color: var(--bg-content); transition: background-color 0.2s ease-out; }
         #monaco-editor-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
 
-        /* Other tab content panes */
         .tab-content { position: absolute; inset: 0; overflow: auto; padding: 1.5rem; background-color: var(--bg-content); transition: background-color 0.2s ease-out; }
         .tab-content.hidden { display: none; }
 
-        /* Settings Layout */
         .settings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
         .settings-section h3 { font-size: 1rem; font-weight: 600; color: var(--text-settings-header); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-ui); transition: color 0.2s ease-out, border-color 0.2s ease-out; }
         .setting-item { display: flex; align-items: center; margin-bottom: 0.75rem; }
@@ -107,26 +146,22 @@
         .setting-item input[type="checkbox"]:checked::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 10px; color: var(--text-primary); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: color 0.2s ease-out; }
         .setting-item label:hover { color: var(--text-primary); }
 
-         /* Bypass Hub Layout */
         .bypass-hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
-        .bypass-card-link { display: block; text-decoration: none; } /* Make link block level */
+        .bypass-card-link { display: block; text-decoration: none; }
         .bypass-card { background-color: var(--bg-bypass-card); border: 1px solid var(--border-bypass-card); border-radius: var(--radius-medium); padding: 1rem; transition: background-color 0.15s ease-out, border-color 0.15s ease-out; cursor: pointer; }
-        .bypass-card-link:hover .bypass-card { background-color: var(--bg-bypass-card-hover); border-color: var(--border-ui); } /* Hover effect on link hover */
+        .bypass-card-link:hover .bypass-card { background-color: var(--bg-bypass-card-hover); border-color: var(--border-ui); }
         .bypass-card h4 { font-weight: 600; color: var(--text-bypass-card-title); margin-bottom: 0.5rem; transition: color 0.2s ease-out; }
         .bypass-card p { font-size: 0.8rem; color: var(--text-bypass-card-desc); display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s ease-out; }
         .bypass-card p i { font-size: 0.85em; }
 
-        /* Theme selection buttons */
         .theme-button { background-color: var(--bg-button); color: var(--text-button); border: 1px solid var(--border-ui); padding: 0.5rem 1rem; border-radius: 0.375rem; cursor: pointer; transition: all 0.15s ease-out; margin-right: 0.5rem; margin-bottom: 0.5rem; }
         .theme-button:hover { background-color: var(--bg-button-hover); }
         .theme-button.active { background-color: var(--bg-sidebar-active); color: var(--text-sidebar-active); font-weight: 600; }
 
-        /* Custom Context Menu */
         #tab-context-menu { position: absolute; z-index: 1000; background-color: var(--bg-context-menu); border: 1px solid var(--border-context-menu); border-radius: var(--radius-medium); padding: 0.5rem 0; min-width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: none; }
         #tab-context-menu button { display: block; width: 100%; background: none; border: none; color: var(--text-context-menu); padding: 0.5rem 1rem; text-align: left; font-size: 0.875rem; cursor: pointer; transition: background-color 0.1s ease-out; }
         #tab-context-menu button:hover { background-color: var(--bg-context-menu-hover); }
 
-        /* Custom scrollbar styling */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.15); border-radius: 4px; border: 2px solid transparent; }
@@ -145,7 +180,12 @@
             <div class="port-info" id="port-info"> <div class="port-indicator offline" id="port-indicator"></div> <span>Port: 5553</span> </div>
         </div>
 
-        <div class="top-menu-bar hidden" id="top-menu-bar"> <button id="execute-btn"><i class="fas fa-play"></i> Execute</button> <button id="clear-btn"><i class="fas fa-eraser"></i> Clear</button> <button id="open-file-btn"><i class="fas fa-folder-open"></i> Open File</button> <button id="exec-file-btn"><i class="fas fa-file-code"></i> Exec File</button> <button id="save-file-btn"><i class="fas fa-save"></i> Save File</button> </div>
+        <div class="top-menu-bar hidden" id="top-menu-bar">
+            <button id="execute-btn"><i class="fas fa-play"></i> Execute</button>
+            <button id="clear-btn"><i class="fas fa-eraser"></i> Clear</button>
+            <button id="open-file-btn"><i class="fas fa-folder-open"></i> Open File</button>
+            <button id="save-file-btn"><i class="fas fa-save"></i> Save File</button>
+        </div>
 
         <div class="main-content-wrapper">
             <div class="sidebar">
@@ -208,6 +248,26 @@
                             <button class="theme-button" data-theme="material-darker">Material Darker</button>
                             <button class="theme-button" data-theme="cobalt">Cobalt</button>
                             <button class="theme-button" data-theme="ayu-mirage">Ayu Mirage</button>
+                            <button class="theme-button" data-theme="matrix">Matrix</button>
+                            <button class="theme-button" data-theme="red-alert">Red Alert</button>
+                            <button class="theme-button" data-theme="cyberpunk-neon">Cyberpunk Neon</button>
+                            <button class="theme-button" data-theme="forest-calm">Forest Calm</button>
+                            <button class="theme-button" data-theme="ocean-deep">Ocean Deep</button>
+                            <button class="theme-button" data-theme="sunset-glow">Sunset Glow</button>
+                            <button class="theme-button" data-theme="arctic-aurora">Arctic Aurora</button>
+                            <button class="theme-button" data-theme="desert-night">Desert Night</button>
+                            <button class="theme-button" data-theme="vintage-paper">Vintage Paper</button>
+                            <button class="theme-button" data-theme="stealth-ops">Stealth Ops</button>
+                            <button class="theme-button" data-theme="lavender-dream">Lavender Dream</button>
+                            <button class="theme-button" data-theme="hacker-green">Hacker Green</button>
+                            <button class="theme-button" data-theme="candy-pop">Candy Pop</button>
+                            <button class="theme-button" data-theme="gothic-rose">Gothic Rose</button>
+                            <button class="theme-button" data-theme="starry-night">Starry Night</button>
+                            <button class="theme-button" data-theme="coffee-house">Coffee House</button>
+                            <button class="theme-button" data-theme="minty-fresh">Minty Fresh</button>
+                            <button class="theme-button" data-theme="crimson-peak">Crimson Peak</button>
+                            <button class="theme-button" data-theme="electric-blue">Electric Blue</button>
+                            <button class="theme-button" data-theme="sandstone">Sandstone</button>
                          </div>
                     </div>
                 </div>
@@ -220,15 +280,16 @@
         <button id="close-tab-btn">Close Tab</button>
     </div>
 
+    <input type="file" id="file-opener" accept=".txt, .lua" style="display: none;">
+
     <script>
         let editor;
         let currentTheme = localStorage.getItem('appTheme') || 'dark';
         let tabCounter = 0;
         let activeTabId = null;
-        let editorModels = {}; // { id: { model: monaco.editor.ITextModel, title: string, path?: string } }
+        let editorModels = {};
         let showMinimap = localStorage.getItem('showMinimap') === 'true';
 
-        // DOM Element References (ensure they are correct)
         const topMenuBar = document.getElementById('top-menu-bar');
         const fileTabsContainer = document.getElementById('file-tabs-container');
         const fileTabsScroller = document.getElementById('file-tabs-scroller');
@@ -246,64 +307,104 @@
         const scrollRightBtn = document.getElementById('tab-scroll-right');
         const portIndicator = document.getElementById('port-indicator');
         const portInfo = document.getElementById('port-info');
+        const fileOpenerInput = document.getElementById('file-opener');
         let contextMenuTargetTabId = null;
 
-        // --- Simulated API State ---
         let isConnected = false;
         let connectionError = null;
 
-        const initialCode = `local Params = {
-    RepoURL = "https://raw.githubusercontent.com/luau/SynSaveInstance/main/",
-    SSI = "saveinstance",
-}
-local synsaveinstance = loadstring(game:HttpGet(Params.RepoURL .. Params.SSI .. ".luau", true), Params.SSI)()
-local Options = {} -- Documentation here https://luau.github.io/UniversalSynSaveInstance/api/SynSaveInstance
-synsaveinstance(Options)`;
+        const initialCode = "-- Welcome to Macsploit v2";
 
-        // --- Monaco Editor Initialization ---
         require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs' }});
         require(['vs/editor/editor.main'], function() {
-            // Define themes *before* creating editor that uses them
             defineCustomMonacoThemes();
 
             if (editorContainer) {
                  editor = monaco.editor.create(editorContainer, {
                     model: null, language: 'lua', theme: getMonacoThemeName(currentTheme),
                     automaticLayout: true,
-                    minimap: { enabled: showMinimap }, // Apply initial minimap state
+                    minimap: { enabled: showMinimap },
                     scrollbar: { verticalScrollbarSize: 8, horizontalScrollbarSize: 8 },
                     fontFamily: '"Source Code Pro", monospace', fontSize: 14
                 });
-                 console.log("Monaco Editor Initialized");
 
-                 applyTheme(currentTheme); // Apply app theme
-                 createNewTab(); // Create and activate the initial tab
+                 applyTheme(currentTheme);
+                 createNewTab();
 
-                 // Show editor pane and conditional UI *after* editor is ready and first tab exists
                  editorContentPane.classList.remove('hidden');
                  updateConditionalUI('editor');
                  updatePortIndicator();
 
-                 // Set initial minimap checkbox state
                  const minimapCheckbox = document.getElementById('show-minimap');
                  if (minimapCheckbox instanceof HTMLInputElement) minimapCheckbox.checked = showMinimap;
 
-
-            } else { console.error("Monaco editor container not found!"); }
+            }
         });
 
-        // --- Simulated API Functions ---
-        function connect() { if (isConnected) return; console.log("Simulating connection..."); connectionError = null; updatePortIndicator(); setTimeout(() => { isConnected = true; updatePortIndicator(); console.log("Connected (Simulated)"); }, 500); }
-        function disconnect() { if (!isConnected) return; console.log("Simulating disconnection..."); isConnected = false; connectionError = "Disconnected"; updatePortIndicator(); }
+        function connect() { if (isConnected) return; connectionError = null; updatePortIndicator(); setTimeout(() => { isConnected = true; updatePortIndicator(); }, 500); }
+        function disconnect() { if (!isConnected) return; isConnected = false; connectionError = "Disconnected"; updatePortIndicator(); }
         function updatePortIndicator() { if (!portIndicator || !portInfo) return; portIndicator.classList.toggle('online', isConnected); portIndicator.classList.toggle('offline', !isConnected); portInfo.title = isConnected ? "Connected" : (connectionError || "Disconnected - Click to Connect"); }
-        function executeScript(script) { if (!isConnected) { console.warn("Not connected"); return; } console.log("Simulating Execute:", script.substring(0, 50) + '...'); }
-        function clearEditor() { if (!isConnected) { console.warn("Not connected"); return; } console.log("Simulating Clear"); if (editor && activeTabId && editorModels[activeTabId]) editorModels[activeTabId].model.setValue(''); }
-        async function openFile() { console.log("Simulating Open File..."); alert("File operations require Tauri backend."); return null; /* Needs Tauri API */ }
-        async function executeFile() { console.log("Simulating Exec File..."); alert("File operations require Tauri backend."); }
-        async function saveFile(content, path) { console.log("Simulating Save File...", path || '(Save As)'); alert("File operations require Tauri backend."); return null; /* Needs Tauri API */ }
-        function toggleSetting(name, value) { if (!isConnected) { console.warn("Not connected"); return false; } console.log(`Simulating toggle setting ${name} to ${value}`); return true; }
+        function executeScript(script) { if (!isConnected) { console.warn("Not connected. Script not executed."); return; } console.log("Simulating Execute:", script.substring(0,100) + "..."); }
 
-        // --- Tab Management ---
+        function clearEditorContent() {
+            if (editor && activeTabId && editorModels[activeTabId]) {
+                editorModels[activeTabId].model.setValue('');
+            } else if (editor) {
+                const currentModel = editor.getModel();
+                if (currentModel) {
+                    currentModel.setValue('');
+                }
+            }
+        }
+
+        function openFile() {
+            fileOpenerInput.click();
+        }
+
+        fileOpenerInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const fileContent = e.target.result;
+                    if (editor && activeTabId && editorModels[activeTabId]) {
+                        editorModels[activeTabId].model.setValue(fileContent);
+                        const tabElement = fileTabsScroller.querySelector(`.file-tab[data-file="${activeTabId}"] .tab-title`);
+                        if (tabElement) {
+                            tabElement.textContent = file.name;
+                            editorModels[activeTabId].title = file.name;
+                            editorModels[activeTabId].path = file.name;
+                        }
+                    } else if (editor) {
+                        createNewTab(file.name, fileContent);
+                    }
+                };
+                reader.readAsText(file);
+            }
+            event.target.value = null;
+        });
+
+        function saveFile() {
+            if (editor && activeTabId && editorModels[activeTabId]) {
+                const content = editorModels[activeTabId].model.getValue();
+                const filename = editorModels[activeTabId].title || "script.lua";
+                const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filename.endsWith('.lua') || filename.endsWith('.txt') ? filename : `${filename}.lua`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+            }
+        }
+
+        function toggleSetting(name, value) {
+            console.log(`Simulating toggle setting ${name} to ${value}`);
+            localStorage.setItem(name, String(value)); // Persist other settings too
+            return true;
+        }
+
         function createTabElement(id, title, isActive = false) {
             const tabElement = document.createElement('div');
             tabElement.classList.add('file-tab', 'flex', 'items-center', 'justify-between', 'gap-2');
@@ -319,7 +420,7 @@ synsaveinstance(Options)`;
             closeBtn.innerHTML = '<i class="fas fa-times text-xs pointer-events-none"></i>';
             closeBtn.classList.add('tab-close-btn');
             closeBtn.title = "Close Tab";
-            closeBtn.dataset.tabId = id; // Link button to tab ID for the click listener
+            closeBtn.dataset.tabId = id;
 
             tabElement.appendChild(titleSpan);
             tabElement.appendChild(closeBtn);
@@ -329,14 +430,16 @@ synsaveinstance(Options)`;
             return tabElement;
         }
 
-        function getOrCreateModel(tabId, title) {
+        function getOrCreateModel(tabId, title, content = null) {
              if (!editorModels[tabId]) {
-                 let content = (tabId === 'tab-1' && tabCounter === 1) ? initialCode : `-- ${title}\n`;
+                 let tabContent = content;
+                 if (tabContent === null) {
+                    tabContent = (tabId === 'tab-1' && Object.keys(editorModels).length === 0) ? initialCode : `-- ${title}\n`;
+                 }
                  editorModels[tabId] = {
-                     model: monaco.editor.createModel(content, 'lua'),
+                     model: monaco.editor.createModel(tabContent, 'lua'),
                      title: title
                  };
-                 console.log(`Created model for ${tabId}`);
              }
              return editorModels[tabId].model;
          }
@@ -347,7 +450,7 @@ synsaveinstance(Options)`;
                  const tabElement = fileTabsScroller.querySelector(`.file-tab[data-file="${tabId}"]`);
                  const title = tabElement ? tabElement.querySelector('.tab-title').textContent : `Tab - ${tabId.split('-')[1]}`;
                  getOrCreateModel(tabId, title);
-                 if (!editorModels[tabId]) { console.error(`Failed to create or find model for ${tabId}`); return; }
+                 if (!editorModels[tabId]) { return; }
             }
 
             activeTabId = tabId;
@@ -355,29 +458,39 @@ synsaveinstance(Options)`;
             allTabs.forEach(t => { t.classList.toggle('active', t.dataset.file === tabId); });
 
             const model = editorModels[tabId].model;
-            if (editor.getModel() !== model) { editor.setModel(model); console.log(`Switched editor model to ${tabId}`); }
+            if (editor.getModel() !== model) { editor.setModel(model); }
             editorContentPane.classList.remove('hidden');
              const activeTabElement = fileTabsScroller.querySelector(`.file-tab[data-file="${tabId}"]`);
              if (activeTabElement) { activeTabElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' }); }
              checkTabOverflow();
         }
 
-        function createNewTab() {
-             if (!editor) { console.error("Editor not ready for new tab"); return; }
+        function createNewTab(title = null, content = null) {
+             if (!editor) { return; }
              tabCounter++;
              const newTabId = `tab-${tabCounter}`;
-             const newTabTitle = `Tab - ${tabCounter}`;
+             const newTabTitle = title || `Tab - ${tabCounter}`;
+             getOrCreateModel(newTabId, newTabTitle, content);
              createTabElement(newTabId, newTabTitle, true);
              setActiveTab(newTabId);
         }
+
 
         function closeTab(tabId) {
             const tabElement = fileTabsScroller.querySelector(`.file-tab[data-file="${tabId}"]`);
             const modelData = editorModels[tabId];
             const allTabs = fileTabsScroller.querySelectorAll('.file-tab');
 
-            if (!tabElement || !modelData || allTabs.length <= 1) { console.log("Cannot close the last tab."); return; }
-            console.log(`Closing tab: ${tabId}`);
+            if (!tabElement || !modelData) { return; }
+
+            if (allTabs.length <= 1) {
+                if (editorModels[tabId]) editorModels[tabId].model.setValue(initialCode);
+                editorModels[tabId].title = "Tab - 1";
+                const titleSpan = tabElement.querySelector('.tab-title');
+                if (titleSpan) titleSpan.textContent = "Tab - 1";
+                return;
+            }
+
             modelData.model.dispose(); delete editorModels[tabId];
 
             let nextActiveTabId = null;
@@ -387,7 +500,7 @@ synsaveinstance(Options)`;
                  if (tabIndex > 0) { nextActiveTabId = allTabs[tabIndex - 1].dataset.file; }
                  else if (allTabs.length > 1) { nextActiveTabId = allTabs[1].dataset.file; }
             } else {
-                nextActiveTabId = activeTabId; // Keep current active tab if closing inactive
+                nextActiveTabId = activeTabId;
             }
 
             tabElement.remove();
@@ -397,9 +510,12 @@ synsaveinstance(Options)`;
             if (remainingTabs.length > 0 && nextActiveTabId && editorModels[nextActiveTabId]) {
                  setActiveTab(nextActiveTabId);
             } else if (remainingTabs.length > 0) {
-                 setActiveTab(remainingTabs[0].dataset.file); // Fallback to first
-            } else { editor.setModel(null); activeTabId = null; updateConditionalUI('none'); }
+                 setActiveTab(remainingTabs[0].dataset.file);
+            } else {
+                 editor.setModel(null); activeTabId = null; updateConditionalUI('none');
+            }
         }
+
 
         function initiateRename(tabId) {
             const tabElement = fileTabsScroller.querySelector(`.file-tab[data-file="${tabId}"]`);
@@ -416,7 +532,6 @@ synsaveinstance(Options)`;
                 const newTitle = titleSpan.textContent.trim();
                 if (newTitle && editorModels[tabId]) {
                     editorModels[tabId].title = newTitle;
-                    console.log(`Renamed tab ${tabId} to "${newTitle}"`);
                 } else { titleSpan.textContent = editorModels[tabId]?.title || `Tab - ${tabId.split('-')[1]}`; }
                 titleSpan.removeEventListener('blur', saveRename);
                 titleSpan.removeEventListener('keydown', handleRenameKeydown);
@@ -429,7 +544,6 @@ synsaveinstance(Options)`;
             titleSpan.addEventListener('keydown', handleRenameKeydown);
         }
 
-        // --- Tab Scrolling ---
         function checkTabOverflow() {
             setTimeout(() => {
                 if (!fileTabsScroller) return;
@@ -446,9 +560,7 @@ synsaveinstance(Options)`;
         if (fileTabsScroller) new ResizeObserver(checkTabOverflow).observe(fileTabsScroller);
         addTabButton.addEventListener('click', checkTabOverflow);
 
-
-        // --- Event Listeners ---
-        addTabButton.addEventListener('click', createNewTab);
+        addTabButton.addEventListener('click', () => createNewTab());
         fileTabsContainer.addEventListener('contextmenu', (event) => {
             const clickedTab = event.target.closest('.file-tab');
             if (clickedTab && clickedTab.dataset.file) {
@@ -461,17 +573,16 @@ synsaveinstance(Options)`;
         });
 
         fileTabsContainer.addEventListener('click', (event) => {
-            hideContextMenu(); // Hide on any left click
+            hideContextMenu();
             const targetElement = event.target;
             const closeButton = targetElement.closest('.tab-close-btn');
             const clickedTab = targetElement.closest('.file-tab');
 
             if (closeButton) {
-                event.stopPropagation(); // Important: Prevent tab activation
+                event.stopPropagation();
                 const tabIdToClose = closeButton.dataset.tabId;
                 if(tabIdToClose) closeTab(tabIdToClose);
             } else if (clickedTab && clickedTab.dataset.file) {
-                 // Only activate if not clicking the close button itself
                  if (!targetElement.closest('.tab-close-btn')) {
                     setActiveTab(clickedTab.dataset.file);
                  }
@@ -482,41 +593,42 @@ synsaveinstance(Options)`;
         renameTabBtn.addEventListener('click', () => { if (contextMenuTargetTabId) { initiateRename(contextMenuTargetTabId); } hideContextMenu(); });
         closeTabBtn.addEventListener('click', () => { if (contextMenuTargetTabId) { closeTab(contextMenuTargetTabId); } hideContextMenu(); });
         function hideContextMenu() { contextMenu.style.display = 'none'; contextMenuTargetTabId = null; }
-        document.addEventListener('click', hideContextMenu);
+        document.addEventListener('click', (event) => {
+            if (!contextMenu.contains(event.target)) {
+                hideContextMenu();
+            }
+        });
         document.addEventListener('scroll', hideContextMenu, true);
         portInfo.addEventListener('click', () => isConnected ? disconnect() : connect());
 
-        // Top Menu Button Listeners (Simulated)
         document.getElementById('execute-btn')?.addEventListener('click', () => { if (editor && activeTabId && editorModels[activeTabId]) executeScript(editorModels[activeTabId].model.getValue()); });
-        document.getElementById('clear-btn')?.addEventListener('click', clearEditor);
-        document.getElementById('open-file-btn')?.addEventListener('click', async () => { const data = await openFile(); if (data && editor && activeTabId && editorModels[activeTabId]) editorModels[activeTabId].model.setValue(data.content); /* TODO: Handle path/title */ });
-        document.getElementById('exec-file-btn')?.addEventListener('click', executeFile);
-        document.getElementById('save-file-btn')?.addEventListener('click', async () => { if (editor && activeTabId && editorModels[activeTabId]) await saveFile(editorModels[activeTabId].model.getValue(), editorModels[activeTabId].path); /* TODO: Handle returned path */ });
+        document.getElementById('clear-btn')?.addEventListener('click', clearEditorContent);
+        document.getElementById('open-file-btn')?.addEventListener('click', openFile);
+        document.getElementById('save-file-btn')?.addEventListener('click', saveFile);
 
-        // Settings Checkbox Listeners
         document.getElementById('settings-content')?.addEventListener('change', (event) => {
             const target = event.target;
             if (target instanceof HTMLInputElement && target.type === 'checkbox' && target.dataset.setting) {
                  const settingName = target.dataset.setting;
                  const newValue = target.checked;
-                 console.log(`Checkbox change: ${settingName} = ${newValue}`);
 
                  if (settingName === 'show-minimap') {
                      showMinimap = newValue;
                      localStorage.setItem('showMinimap', String(showMinimap));
                      if (editor) {
                          editor.updateOptions({ minimap: { enabled: showMinimap } });
-                         console.log(`Set editor minimap to: ${showMinimap}`);
                      }
                  } else {
                      const success = toggleSetting(settingName, newValue);
-                     if (!success) { target.checked = !newValue; }
+                     if (!success) {
+                        target.checked = !newValue;
+                     } else {
+                        localStorage.setItem(settingName, String(newValue));
+                     }
                  }
             }
         });
 
-
-        // --- Sidebar Tab Switching & Conditional UI ---
         function updateConditionalUI(activeSidebarTab) {
             const isEditorTab = activeSidebarTab === 'editor';
             topMenuBar?.classList.toggle('hidden', !isEditorTab);
@@ -542,10 +654,9 @@ synsaveinstance(Options)`;
             });
         });
 
-        // --- Theme Switching Logic ---
         function getMonacoThemeName(appTheme) {
             switch(appTheme) {
-                case 'light': case 'solarized-light': return 'vs-light-custom';
+                case 'light': case 'solarized-light': case 'vintage-paper': case 'lavender-dream': case 'candy-pop': case 'coffee-house': case 'minty-fresh': case 'sandstone': return 'vs-light-custom';
                 case 'monokai': return 'monokai-custom';
                 case 'solarized-dark': return 'solarized-dark-custom';
                 case 'dracula': return 'dracula-custom';
@@ -557,58 +668,153 @@ synsaveinstance(Options)`;
                 case 'cobalt': return 'cobalt-custom';
                 case 'ayu-mirage': return 'ayu-mirage-custom';
                 case 'ocean-blue': return 'ocean-blue-custom';
+                case 'matrix': return 'matrix-custom';
+                case 'red-alert': return 'red-alert-custom';
+                case 'cyberpunk-neon': return 'cyberpunk-neon-custom';
+                case 'forest-calm': return 'forest-calm-custom';
+                case 'ocean-deep': return 'ocean-deep-custom';
+                case 'sunset-glow': return 'sunset-glow-custom';
+                case 'arctic-aurora': return 'arctic-aurora-custom';
+                case 'desert-night': return 'desert-night-custom';
+                case 'stealth-ops': return 'stealth-ops-custom';
+                case 'hacker-green': return 'hacker-green-custom';
+                case 'gothic-rose': return 'gothic-rose-custom';
+                case 'starry-night': return 'starry-night-custom';
+                case 'crimson-peak': return 'crimson-peak-custom';
+                case 'electric-blue': return 'electric-blue-custom';
                 case 'dark': default: return 'vs-dark-custom';
             }
         }
 
         function applyTheme(themeName) {
              currentTheme = themeName;
-             const themeClasses = ['light-theme', 'ocean-blue-theme', 'monokai-theme', 'solarized-dark-theme', 'solarized-light-theme', 'dracula-theme', 'nord-theme', 'gruvbox-dark-theme', 'one-dark-pro-theme', 'github-dark-theme', 'material-darker-theme', 'cobalt-theme', 'ayu-mirage-theme'];
+             const themeClasses = [
+                'light-theme', 'ocean-blue-theme', 'monokai-theme', 'solarized-dark-theme',
+                'solarized-light-theme', 'dracula-theme', 'nord-theme', 'gruvbox-dark-theme',
+                'one-dark-pro-theme', 'github-dark-theme', 'material-darker-theme', 'cobalt-theme',
+                'ayu-mirage-theme', 'matrix-theme', 'red-alert-theme', 'cyberpunk-neon-theme',
+                'forest-calm-theme', 'ocean-deep-theme', 'sunset-glow-theme', 'arctic-aurora-theme',
+                'desert-night-theme', 'vintage-paper-theme', 'stealth-ops-theme', 'lavender-dream-theme',
+                'hacker-green-theme', 'candy-pop-theme', 'gothic-rose-theme', 'starry-night-theme',
+                'coffee-house-theme', 'minty-fresh-theme', 'crimson-peak-theme', 'electric-blue-theme',
+                'sandstone-theme'
+            ];
+             document.body.style.backgroundColor = `var(--bg-window)`; // Apply to body for full page
              appWindow.classList.remove(...themeClasses);
-             if (themeName !== 'dark') { appWindow.classList.add(`${themeName}-theme`); }
+             if (themeName !== 'dark') {
+                appWindow.classList.add(`${themeName}-theme`);
+             }
+
 
              if (editor) {
-                 // Re-define themes before setting to ensure CSS vars are read correctly
                  defineCustomMonacoThemes();
                  const monacoTheme = getMonacoThemeName(themeName);
                  monaco.editor.setTheme(monacoTheme);
-                 console.log("Set Monaco theme to:", monacoTheme);
              }
 
-             themeButtons.forEach(btn => { btn.classList.toggle('active', btn.getAttribute('data-theme') === themeName); });
+             document.querySelectorAll('.theme-button').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-theme') === themeName);
+             });
              localStorage.setItem('appTheme', themeName);
-             console.log("Applied app theme:", themeName);
         }
 
-        themeButtons.forEach(button => {
+        document.querySelectorAll('.theme-button').forEach(button => {
             button.addEventListener('click', () => {
                 applyTheme(button.getAttribute('data-theme'));
             });
         });
 
-        // --- Define Custom Monaco Themes ---
         function defineCustomMonacoThemes() {
             if (typeof monaco === 'undefined' || typeof monaco.editor === 'undefined') { return; }
             const getStyle = (varName) => getComputedStyle(appWindow).getPropertyValue(varName).trim();
 
              const defineTheme = (themeId, baseTheme, themeClassName) => {
-                 const currentClass = Array.from(appWindow.classList).find(cls => cls.endsWith('-theme'));
-                 if (themeClassName) appWindow.classList.add(themeClassName);
-                 const colors = { bg: getStyle('--bg-content'), fg: getStyle('--editor-foreground'), comment: getStyle('--editor-comment'), keyword: getStyle('--editor-keyword'), string: getStyle('--editor-string'), number: getStyle('--editor-number'), func: getStyle('--editor-function') };
-                 Object.keys(colors).forEach(key => { colors[key] = colors[key].replace('#',''); });
-                 if (themeClassName) appWindow.classList.remove(themeClassName);
-                 if (currentClass) appWindow.classList.add(currentClass);
+                 const tempAppWindow = document.getElementById('app-window');
+                 const originalClasses = Array.from(tempAppWindow.classList);
+
+                 if (themeClassName) {
+                    tempAppWindow.className = 'app-window ' + themeClassName;
+                 } else {
+                    tempAppWindow.className = 'app-window'; // For default dark theme
+                 }
+
+                 const bgColor = getStyle('--bg-content') || '#1C1C1C';
+                 const fgColor = getStyle('--editor-foreground') || '#E0E0E0';
+                 const commentColor = getStyle('--editor-comment') || '#6A9955';
+                 const keywordColor = getStyle('--editor-keyword') || '#569CD6';
+                 const stringColor = getStyle('--editor-string') || '#CE9178';
+                 const numberColor = getStyle('--editor-number') || '#b5cea8';
+                 const funcColor = getStyle('--editor-function') || '#DCDCAA';
+                 const mutedColor = getStyle('--text-muted') || '#757575';
+                 const borderUiColor = getStyle('--border-ui') || '#333333';
+                 const selectionBg = getStyle('--editor-selection-background') || getStyle('--bg-button-hover') || '#454545';
+                 const cursorFg = getStyle('--editor-cursor-foreground') || fgColor;
+
+
+                 tempAppWindow.className = originalClasses.join(' ');
+
 
                  monaco.editor.defineTheme(themeId, {
                     base: baseTheme, inherit: true,
-                    rules: [ { token: 'comment', foreground: colors.comment }, { token: 'keyword', foreground: colors.keyword, fontStyle: 'bold' }, { token: 'string', foreground: colors.string }, { token: 'number', foreground: colors.number }, { token: 'identifier', foreground: colors.fg }, { token: 'type.identifier', foreground: colors.func }, { token: 'function', foreground: colors.func }, ],
-                    colors: { 'editor.background': '#' + colors.bg, 'editor.foreground': '#' + colors.fg, 'editorCursor.foreground': '#' + colors.fg, 'editorLineNumber.foreground': getStyle('--text-muted'), 'editorLineNumber.activeForeground': '#' + colors.fg, 'editorIndentGuide.background': getStyle('--border-ui'), 'editorWhitespace.foreground': getStyle('--border-ui'), }
+                    rules: [
+                        { token: 'comment', foreground: commentColor.replace('#','') },
+                        { token: 'keyword', foreground: keywordColor.replace('#',''), fontStyle: 'bold' },
+                        { token: 'string', foreground: stringColor.replace('#','') },
+                        { token: 'number', foreground: numberColor.replace('#','') },
+                        { token: 'identifier', foreground: fgColor.replace('#','') },
+                        { token: 'type.identifier', foreground: funcColor.replace('#','') },
+                        { token: 'function', foreground: funcColor.replace('#','') }
+                    ],
+                    colors: {
+                        'editor.background': bgColor,
+                        'editor.foreground': fgColor,
+                        'editorCursor.foreground': cursorFg,
+                        'editorLineNumber.foreground': mutedColor,
+                        'editorLineNumber.activeForeground': fgColor,
+                        'editorIndentGuide.background': borderUiColor,
+                        'editorIndentGuide.activeBackground': fgColor,
+                        'editorWhitespace.foreground': borderUiColor,
+                        'editor.selectionBackground': selectionBg,
+                        'editor.inactiveSelectionBackground': selectionBg, // Often same as active or slightly different
+                    }
                 });
              };
-            // Define all themes
-            defineTheme('vs-dark-custom', 'vs-dark', ''); defineTheme('vs-light-custom', 'vs', 'light-theme'); defineTheme('ocean-blue-custom', 'vs-dark', 'ocean-blue-theme'); defineTheme('monokai-custom', 'vs-dark', 'monokai-theme'); defineTheme('solarized-dark-custom', 'vs-dark', 'solarized-dark-theme'); defineTheme('solarized-light-custom', 'vs', 'solarized-light-theme'); defineTheme('dracula-custom', 'vs-dark', 'dracula-theme'); defineTheme('nord-custom', 'vs-dark', 'nord-theme'); defineTheme('gruvbox-dark-custom', 'vs-dark', 'gruvbox-dark-theme'); defineTheme('one-dark-pro-custom', 'vs-dark', 'one-dark-pro-theme'); defineTheme('github-dark-custom', 'vs-dark', 'github-dark-theme'); defineTheme('material-darker-custom', 'vs-dark', 'material-darker-theme'); defineTheme('cobalt-custom', 'vs-dark', 'cobalt-theme'); defineTheme('ayu-mirage-custom', 'vs-dark', 'ayu-mirage-theme');
-            console.log("Finished defining custom Monaco themes.");
+            defineTheme('vs-dark-custom', 'vs-dark', '');
+            defineTheme('vs-light-custom', 'vs', 'light-theme');
+            defineTheme('ocean-blue-custom', 'vs-dark', 'ocean-blue-theme');
+            defineTheme('monokai-custom', 'vs-dark', 'monokai-theme');
+            defineTheme('solarized-dark-custom', 'vs-dark', 'solarized-dark-theme');
+            defineTheme('solarized-light-custom', 'vs', 'solarized-light-theme');
+            defineTheme('dracula-custom', 'vs-dark', 'dracula-theme');
+            defineTheme('nord-custom', 'vs-dark', 'nord-theme');
+            defineTheme('gruvbox-dark-custom', 'vs-dark', 'gruvbox-dark-theme');
+            defineTheme('one-dark-pro-custom', 'vs-dark', 'one-dark-pro-theme');
+            defineTheme('github-dark-custom', 'vs-dark', 'github-dark-theme');
+            defineTheme('material-darker-custom', 'vs-dark', 'material-darker-theme');
+            defineTheme('cobalt-custom', 'vs-dark', 'cobalt-theme');
+            defineTheme('ayu-mirage-custom', 'vs-dark', 'ayu-mirage-theme');
+            defineTheme('matrix-custom', 'vs-dark', 'matrix-theme');
+            defineTheme('red-alert-custom', 'vs-dark', 'red-alert-theme');
+            defineTheme('cyberpunk-neon-custom', 'vs-dark', 'cyberpunk-neon-theme');
+            defineTheme('forest-calm-custom', 'vs-dark', 'forest-calm-theme');
+            defineTheme('ocean-deep-custom', 'vs-dark', 'ocean-deep-theme');
+            defineTheme('sunset-glow-custom', 'vs-dark', 'sunset-glow-theme');
+            defineTheme('arctic-aurora-custom', 'vs-dark', 'arctic-aurora-theme');
+            defineTheme('desert-night-custom', 'vs-dark', 'desert-night-theme');
+            defineTheme('vintage-paper-custom', 'vs', 'vintage-paper-theme');
+            defineTheme('stealth-ops-custom', 'vs-dark', 'stealth-ops-theme');
+            defineTheme('lavender-dream-custom', 'vs', 'lavender-dream-theme');
+            defineTheme('hacker-green-custom', 'vs-dark', 'hacker-green-theme');
+            defineTheme('candy-pop-custom', 'vs', 'candy-pop-theme');
+            defineTheme('gothic-rose-custom', 'vs-dark', 'gothic-rose-theme');
+            defineTheme('starry-night-custom', 'vs-dark', 'starry-night-theme');
+            defineTheme('coffee-house-custom', 'vs', 'coffee-house-theme');
+            defineTheme('minty-fresh-custom', 'vs', 'minty-fresh-theme');
+            defineTheme('crimson-peak-custom', 'vs-dark', 'crimson-peak-theme');
+            defineTheme('electric-blue-custom', 'vs-dark', 'electric-blue-theme');
+            defineTheme('sandstone-custom', 'vs', 'sandstone-theme');
         }
+        applyTheme(currentTheme);
 
     </script>
 
